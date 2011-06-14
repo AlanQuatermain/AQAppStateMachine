@@ -1,0 +1,399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		38431B5813A7C26800178A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
+		38431B6313A7C26800178A7E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B6213A7C26800178A7E /* SenTestingKit.framework */; };
+		38431B6513A7C26900178A7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B6413A7C26900178A7E /* UIKit.framework */; };
+		38431B6613A7C26900178A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
+		38431B6813A7C26900178A7E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B6713A7C26900178A7E /* CoreGraphics.framework */; };
+		38431B6B13A7C26900178A7E /* libAQAppStateMachine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5413A7C26800178A7E /* libAQAppStateMachine.a */; };
+		38431B7113A7C26900178A7E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38431B6F13A7C26900178A7E /* InfoPlist.strings */; };
+		38431B7313A7C26900178A7E /* AQAppStateMachineTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 38431B7213A7C26900178A7E /* AQAppStateMachineTests.h */; };
+		38431B7513A7C26900178A7E /* AQAppStateMachineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		38431B6913A7C26900178A7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38431B4B13A7C26800178A7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38431B5313A7C26800178A7E;
+			remoteInfo = AQAppStateMachine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		38431B5413A7C26800178A7E /* libAQAppStateMachine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAQAppStateMachine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		38431B5713A7C26800178A7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		38431B5B13A7C26800178A7E /* AQAppStateMachine-Prefix.pch */ = {isa = PBXFileReference; path = "AQAppStateMachine-Prefix.pch"; sourceTree = "<group>"; };
+		38431B6113A7C26800178A7E /* AQAppStateMachineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AQAppStateMachineTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38431B6213A7C26800178A7E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		38431B6413A7C26900178A7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		38431B6713A7C26900178A7E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		38431B6E13A7C26900178A7E /* AQAppStateMachineTests-Info.plist */ = {isa = PBXFileReference; path = "AQAppStateMachineTests-Info.plist"; sourceTree = "<group>"; };
+		38431B7013A7C26900178A7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38431B7213A7C26900178A7E /* AQAppStateMachineTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAppStateMachineTests.h; sourceTree = "<group>"; };
+		38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AQAppStateMachineTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		38431B5113A7C26800178A7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38431B5813A7C26800178A7E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38431B5D13A7C26800178A7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38431B6313A7C26800178A7E /* SenTestingKit.framework in Frameworks */,
+				38431B6513A7C26900178A7E /* UIKit.framework in Frameworks */,
+				38431B6613A7C26900178A7E /* Foundation.framework in Frameworks */,
+				38431B6813A7C26900178A7E /* CoreGraphics.framework in Frameworks */,
+				38431B6B13A7C26900178A7E /* libAQAppStateMachine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		38431B4913A7C26800178A7E = {
+			isa = PBXGroup;
+			children = (
+				38431B5913A7C26800178A7E /* AQAppStateMachine */,
+				38431B6C13A7C26900178A7E /* AQAppStateMachineTests */,
+				38431B5613A7C26800178A7E /* Frameworks */,
+				38431B5513A7C26800178A7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		38431B5513A7C26800178A7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38431B5413A7C26800178A7E /* libAQAppStateMachine.a */,
+				38431B6113A7C26800178A7E /* AQAppStateMachineTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38431B5613A7C26800178A7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				38431B5713A7C26800178A7E /* Foundation.framework */,
+				38431B6213A7C26800178A7E /* SenTestingKit.framework */,
+				38431B6413A7C26900178A7E /* UIKit.framework */,
+				38431B6713A7C26900178A7E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		38431B5913A7C26800178A7E /* AQAppStateMachine */ = {
+			isa = PBXGroup;
+			children = (
+				38431B5A13A7C26800178A7E /* Supporting Files */,
+			);
+			path = AQAppStateMachine;
+			sourceTree = "<group>";
+		};
+		38431B5A13A7C26800178A7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38431B5B13A7C26800178A7E /* AQAppStateMachine-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38431B6C13A7C26900178A7E /* AQAppStateMachineTests */ = {
+			isa = PBXGroup;
+			children = (
+				38431B7213A7C26900178A7E /* AQAppStateMachineTests.h */,
+				38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */,
+				38431B6D13A7C26900178A7E /* Supporting Files */,
+			);
+			path = AQAppStateMachineTests;
+			sourceTree = "<group>";
+		};
+		38431B6D13A7C26900178A7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38431B6E13A7C26900178A7E /* AQAppStateMachineTests-Info.plist */,
+				38431B6F13A7C26900178A7E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		38431B5213A7C26800178A7E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		38431B5313A7C26800178A7E /* AQAppStateMachine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38431B7813A7C26900178A7E /* Build configuration list for PBXNativeTarget "AQAppStateMachine" */;
+			buildPhases = (
+				38431B5013A7C26800178A7E /* Sources */,
+				38431B5113A7C26800178A7E /* Frameworks */,
+				38431B5213A7C26800178A7E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AQAppStateMachine;
+			productName = AQAppStateMachine;
+			productReference = 38431B5413A7C26800178A7E /* libAQAppStateMachine.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		38431B6013A7C26800178A7E /* AQAppStateMachineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38431B7B13A7C26900178A7E /* Build configuration list for PBXNativeTarget "AQAppStateMachineTests" */;
+			buildPhases = (
+				38431B5C13A7C26800178A7E /* Sources */,
+				38431B5D13A7C26800178A7E /* Frameworks */,
+				38431B5E13A7C26800178A7E /* Resources */,
+				38431B5F13A7C26800178A7E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38431B6A13A7C26900178A7E /* PBXTargetDependency */,
+			);
+			name = AQAppStateMachineTests;
+			productName = AQAppStateMachineTests;
+			productReference = 38431B6113A7C26800178A7E /* AQAppStateMachineTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		38431B4B13A7C26800178A7E /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 38431B4E13A7C26800178A7E /* Build configuration list for PBXProject "AQAppStateMachine" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 38431B4913A7C26800178A7E;
+			productRefGroup = 38431B5513A7C26800178A7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				38431B5313A7C26800178A7E /* AQAppStateMachine */,
+				38431B6013A7C26800178A7E /* AQAppStateMachineTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		38431B5E13A7C26800178A7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38431B7113A7C26900178A7E /* InfoPlist.strings in Resources */,
+				38431B7313A7C26900178A7E /* AQAppStateMachineTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38431B5F13A7C26800178A7E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38431B5013A7C26800178A7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38431B5C13A7C26800178A7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38431B7513A7C26900178A7E /* AQAppStateMachineTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		38431B6A13A7C26900178A7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38431B5313A7C26800178A7E /* AQAppStateMachine */;
+			targetProxy = 38431B6913A7C26900178A7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		38431B6F13A7C26900178A7E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38431B7013A7C26900178A7E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		38431B7613A7C26900178A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		38431B7713A7C26900178A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		38431B7913A7C26900178A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/AQAppStateMachine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AQAppStateMachine/AQAppStateMachine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		38431B7A13A7C26900178A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/AQAppStateMachine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AQAppStateMachine/AQAppStateMachine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		38431B7C13A7C26900178A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AQAppStateMachine/AQAppStateMachine-Prefix.pch";
+				INFOPLIST_FILE = "AQAppStateMachineTests/AQAppStateMachineTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		38431B7D13A7C26900178A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AQAppStateMachine/AQAppStateMachine-Prefix.pch";
+				INFOPLIST_FILE = "AQAppStateMachineTests/AQAppStateMachineTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38431B4E13A7C26800178A7E /* Build configuration list for PBXProject "AQAppStateMachine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38431B7613A7C26900178A7E /* Debug */,
+				38431B7713A7C26900178A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38431B7813A7C26900178A7E /* Build configuration list for PBXNativeTarget "AQAppStateMachine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38431B7913A7C26900178A7E /* Debug */,
+				38431B7A13A7C26900178A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		38431B7B13A7C26900178A7E /* Build configuration list for PBXNativeTarget "AQAppStateMachineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38431B7C13A7C26900178A7E /* Debug */,
+				38431B7D13A7C26900178A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 38431B4B13A7C26800178A7E /* Project object */;
+}
