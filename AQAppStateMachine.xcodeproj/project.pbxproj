@@ -31,12 +31,12 @@
 /* Begin PBXFileReference section */
 		38431B5413A7C26800178A7E /* libAQAppStateMachine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAQAppStateMachine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		38431B5713A7C26800178A7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		38431B5B13A7C26800178A7E /* AQAppStateMachine-Prefix.pch */ = {isa = PBXFileReference; path = "AQAppStateMachine-Prefix.pch"; sourceTree = "<group>"; };
+		38431B5B13A7C26800178A7E /* AQAppStateMachine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AQAppStateMachine-Prefix.pch"; sourceTree = "<group>"; };
 		38431B6113A7C26800178A7E /* AQAppStateMachineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AQAppStateMachineTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38431B6213A7C26800178A7E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		38431B6413A7C26900178A7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		38431B6713A7C26900178A7E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		38431B6E13A7C26900178A7E /* AQAppStateMachineTests-Info.plist */ = {isa = PBXFileReference; path = "AQAppStateMachineTests-Info.plist"; sourceTree = "<group>"; };
+		38431B6E13A7C26900178A7E /* AQAppStateMachineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AQAppStateMachineTests-Info.plist"; sourceTree = "<group>"; };
 		38431B7013A7C26900178A7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38431B7213A7C26900178A7E /* AQAppStateMachineTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAppStateMachineTests.h; sourceTree = "<group>"; };
 		38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AQAppStateMachineTests.m; sourceTree = "<group>"; };
