@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AQBitfield.h"
 
+typedef void (^AQRangeNotification)(NSRange range);
+
 @interface AQNotifyingBitfield : AQBitfield
 
-- (void) notifyModificationOfBitsInRange: (NSRange) range usingBlock: (void (^)(void)) block;
+- (void) notifyModificationOfBitsInRange: (NSRange) range usingBlock: (AQRangeNotification) block;
 
 - (void) removeNotifierForBitsInRange: (NSRange) range;		// exact range match
 - (void) removeAllNotifiersWithinRange: (NSRange) range;	// any wholly-contained ranges

@@ -35,7 +35,7 @@
 		dispatch_release(_syncQ);
 }
 
-- (void) notifyModificationOfBitsInRange: (NSRange) range usingBlock: (void (^)(void)) block
+- (void) notifyModificationOfBitsInRange: (NSRange) range usingBlock: (AQRangeNotification) block
 {
 	dispatch_async(_syncQ, ^{
 		AQRange * rangeObject = [[AQRange alloc] initWithRange: range];
@@ -83,7 +83,11 @@
 
 - (void) _scheduleNotificationForRange: (AQRange *) range
 {
-	dispatch_async(dispatch_get_global_queue(0, 0), [_lookup objectForKey: range]);
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		AQRangeNotification block = (AQRangeNotification)[_lookup objectForKey: range];
+		if ( block != nil )
+			block(range.range);
+	});
 }
 
 - (void) flipBitAtIndex: (NSUInteger) index
