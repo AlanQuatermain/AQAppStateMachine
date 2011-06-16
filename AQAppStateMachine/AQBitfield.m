@@ -86,6 +86,35 @@
 	return ( [self copyWithZone: zone] );
 }
 
+- (NSString *) description
+{
+	NSMutableString * desc = [objc_retainedObject(CFCopyDescription(_vector)) mutableCopy];
+	NSRange rng = [desc rangeOfString: @">"];
+	if ( rng.location == NSNotFound )
+		return ( [desc copy] );
+	
+	[desc replaceCharactersInRange: NSMakeRange(0, rng.location+1)
+						withString: [NSString stringWithFormat: @"<AQBitfield %p>", self]];
+	return ( [desc copy] );
+}
+
+- (NSUInteger) hash
+{
+	return ( (NSUInteger)CFHash(_vector) );
+}
+
+- (BOOL) isEqual: (id) object
+{
+	if ( [object isKindOfClass: [self class]] == NO )
+		return ( NO );
+	
+	AQBitfield * other = (AQBitfield *)object;
+	if ( self.count != other.count )
+		return ( NO );
+	
+	return ( (BOOL)CFEqual(_vector, other->_vector) );
+}
+
 - (NSUInteger) count
 {
 	return ( (NSUInteger)CFBitVectorGetCount(_vector) );
@@ -186,7 +215,97 @@
 	
 	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
 	
-	return ( memcmp(vBytes, cBytes, sizeof(bits)) == 0 );
+	BOOL result = (memcmp(vBytes, cBytes, sizeof(bits)) == 0);
+	free(vBytes);
+	
+	return ( result );
+}
+
+- (BOOL) bitsInRange: (NSRange) range equalToBitfield: (AQBitfield *) bitfield
+{
+	NSParameterAssert(range.length == bitfield.count);
+	if ( range.length == 0 )
+		return ( NO );
+	
+	UInt8 * vBytes = malloc(range.length);
+	bzero(vBytes, range.length);
+	
+	UInt8 * cBytes = (UInt8 *)malloc(range.length);
+	bzero(cBytes, range.length);
+	
+	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
+	CFBitVectorGetBits(bitfield->_vector, CFRangeMake(0, bitfield.count), cBytes);
+	
+	BOOL result = (memcmp(vBytes, cBytes, range.length) == 0);
+	free(vBytes);
+	free(cBytes);
+	
+	return ( result );
+}
+
+- (BOOL) bitsInRange: (NSRange) range maskedWith: (NSUInteger) mask matchBits: (NSUInteger) bits
+{
+	NSParameterAssert(range.length <= sizeof(NSUInteger));
+	if ( range.length == 0 )
+		return ( NO );
+	
+	// mask the bits we're comparing against
+	bits &= mask;
+	
+	NSUInteger swappedBits = CFSwapInt32HostToBig((uint32_t)bits);
+	NSUInteger swappedMask = CFSwapInt32HostToBig((uint32_t)mask);
+	
+	UInt8 * vBytes = malloc(sizeof(bits));
+	bzero(vBytes, sizeof(bits));
+	
+	// mask the bits we've pulled from the bitfield
+	NSUInteger *pCompareNum = (NSUInteger *)vBytes;
+	*pCompareNum &= swappedMask;
+	
+	UInt8 * cBytes = (UInt8 *)&swappedBits;
+	
+	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
+	
+	BOOL result = (memcmp(vBytes, cBytes, sizeof(bits)) == 0);
+	free(vBytes);
+	
+	return ( result );
+}
+
+- (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield
+{
+	NSParameterAssert(range.length == bitfield.count);
+	NSParameterAssert(range.length == mask.count);
+	if ( range.length == 0 )
+		return ( NO );
+	
+	int byteLen = (range.length + 7) / 8;
+	UInt8 * vBytes = malloc(range.length / sizeof(UInt8));
+	bzero(vBytes, range.length);
+	
+	UInt8 * cBytes = (UInt8 *)malloc(range.length);
+	bzero(cBytes, range.length);
+	
+	UInt8 * mBytes = malloc(range.length);
+	bzero(mBytes, range.length);
+	
+	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
+	CFBitVectorGetBits(bitfield->_vector, CFRangeMake(0, bitfield.count), cBytes);
+	CFBitVectorGetBits(mask->_vector, CFRangeMake(0, bitfield.count), mBytes);
+	
+	// apply the mask to both ranges
+	for ( int i = 0; i < byteLen; i++ )
+	{
+		vBytes[i] &= mBytes[i];
+		cBytes[i] &= mBytes[i];
+	}
+	
+	BOOL result = (memcmp(vBytes, cBytes, range.length) == 0);
+	free(vBytes);
+	free(cBytes);
+	free(mBytes);
+	
+	return ( result );
 }
 
 @end

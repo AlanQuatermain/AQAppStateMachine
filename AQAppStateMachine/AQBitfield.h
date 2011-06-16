@@ -17,6 +17,9 @@ typedef CFBit AQBit;
 
 - (id) initWithSize: (NSUInteger) numberOfBits;
 
+- (NSUInteger) hash;
+- (BOOL) isEqual: (id) object;
+
 @property (nonatomic, assign) NSUInteger count;		// number of significant bits
 
 - (NSUInteger) countOfBit: (AQBit) bit inRange: (NSRange) range;
@@ -41,5 +44,9 @@ typedef CFBit AQBit;
 
 // 'range' must be <= sizeof(NSUInteger), will compare least-significant bits of 'bits'
 - (BOOL) bitsInRange: (NSRange) range matchBits: (NSUInteger) bits;
+- (BOOL) bitsInRange: (NSRange) range equalToBitfield: (AQBitfield *) bitfield;
+
+- (BOOL) bitsInRange: (NSRange) range maskedWith: (NSUInteger) mask matchBits: (NSUInteger) bits;
+- (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield;
 
 @end
