@@ -1,4 +1,4 @@
-# AQStateMachine
+# AQAppStateMachine
 #### Copyright (c) 2011 Jim Dovey. All Rights Reserved, Until I Update The Headers With My Usual BSD License.
 
 ## Simply put:
