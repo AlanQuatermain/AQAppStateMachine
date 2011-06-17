@@ -26,6 +26,9 @@
 		3866939513AAA0C600268560 /* AQAppStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866939313AAA0C600268560 /* AQAppStateMachine.h */; };
 		3866939613AAA0C600268560 /* AQAppStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939413AAA0C600268560 /* AQAppStateMachine.m */; };
 		3866939713AAA0C600268560 /* AQAppStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939413AAA0C600268560 /* AQAppStateMachine.m */; };
+		3866939A13ABC70300268560 /* AQStateMatchingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */; };
+		3866939B13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
+		3866939C13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
 		38AC30BC13AA3D5C00AB071C /* AQBitfieldPredicates.h in Headers */ = {isa = PBXBuildFile; fileRef = 38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */; };
 		38AC30BD13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
 		38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
@@ -60,6 +63,8 @@
 		3866938D13AA82C400268560 /* AQNotifyingBitfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQNotifyingBitfield.m; sourceTree = "<group>"; };
 		3866939313AAA0C600268560 /* AQAppStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAppStateMachine.h; sourceTree = "<group>"; };
 		3866939413AAA0C600268560 /* AQAppStateMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAppStateMachine.m; sourceTree = "<group>"; };
+		3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMatchingDescriptor.h; sourceTree = "<group>"; };
+		3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMatchingDescriptor.m; sourceTree = "<group>"; };
 		38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldPredicates.h; sourceTree = "<group>"; };
 		38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfieldPredicates.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +135,8 @@
 				3866938D13AA82C400268560 /* AQNotifyingBitfield.m */,
 				3866939313AAA0C600268560 /* AQAppStateMachine.h */,
 				3866939413AAA0C600268560 /* AQAppStateMachine.m */,
+				3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */,
+				3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */,
 				38431B5A13A7C26800178A7E /* Supporting Files */,
 			);
 			path = AQAppStateMachine;
@@ -174,6 +181,7 @@
 				3866938A13AA805500268560 /* AQRange.h in Headers */,
 				3866938E13AA82C400268560 /* AQNotifyingBitfield.h in Headers */,
 				3866939513AAA0C600268560 /* AQAppStateMachine.h in Headers */,
+				3866939A13ABC70300268560 /* AQStateMatchingDescriptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +288,7 @@
 				3866938B13AA805500268560 /* AQRange.m in Sources */,
 				3866938F13AA82C400268560 /* AQNotifyingBitfield.m in Sources */,
 				3866939613AAA0C600268560 /* AQAppStateMachine.m in Sources */,
+				3866939B13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +300,7 @@
 				38431B8213A7C63B00178A7E /* AQBitfield.m in Sources */,
 				38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */,
 				3866939713AAA0C600268560 /* AQAppStateMachine.m in Sources */,
+				3866939C13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

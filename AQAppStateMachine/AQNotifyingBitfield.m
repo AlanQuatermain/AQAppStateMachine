@@ -11,7 +11,7 @@
 
 @implementation AQNotifyingBitfield
 {
-	NSMutableArray *		_order;
+	id						_order;		// NSMutableArray or NSMutableOrderedSet (if available)
 	NSMutableDictionary *	_lookup;
 	dispatch_queue_t		_syncQ;
 }
@@ -22,7 +22,11 @@
 	if ( self == nil )
 		return ( nil );
 	
-	_order = [NSMutableArray new];
+	if ( [NSMutableOrderedSet self] )
+		_order = [NSMutableOrderedSet new];
+	else
+		_order = [NSMutableArray new];
+	
 	_lookup = [NSMutableDictionary new];
 	_syncQ = dispatch_queue_create("net.alanquatermain.notifyingbitfield.sync", DISPATCH_QUEUE_SERIAL);
 	
