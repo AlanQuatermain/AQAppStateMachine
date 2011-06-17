@@ -60,7 +60,54 @@
 
 - (BOOL) matchesRange: (NSRange) range
 {
-	return ( [_matchingIndices countOfIndexesInRange: range] > 0 );
+	return ( [_matchingIndices intersectsIndexesInRange: range] );
+}
+
+- (id) copyWithZone: (NSZone *) zone
+{
+	AQStateMatchingDescriptor * theCopy = [[[self class] alloc] init];
+	theCopy->_uuid = [_uuid copy];
+	theCopy->_matchingIndices = [_matchingIndices copy];
+	return ( theCopy );
+}
+
+- (BOOL) isEqual: (id) object
+{
+	if ( [object isKindOfClass: [AQStateMatchingDescriptor class]] == NO )
+		return ( NO );
+	
+	AQStateMatchingDescriptor * other = (AQStateMatchingDescriptor *)object;
+	return ( [_matchingIndices isEqual: other->_matchingIndices] );
+}
+
+- (NSComparisonResult) compare: (AQStateMatchingDescriptor *) other
+{
+	__block NSUInteger otherIdx = [other->_matchingIndices firstIndex];
+	__block NSComparisonResult result = NSOrderedSame;
+	[_matchingIndices enumerateIndexesUsingBlock: ^(NSUInteger idx, BOOL *stop) {
+		if ( idx == otherIdx )
+		{
+			otherIdx = [other->_matchingIndices indexGreaterThanIndex: otherIdx];
+			return;		// continue comparison
+		}
+		else if ( otherIdx == NSNotFound )
+		{
+			result = NSOrderedDescending;
+			*stop = YES;
+			return;
+		}
+		
+		result = (idx < otherIdx ? NSOrderedAscending : NSOrderedDescending);
+		*stop = YES;
+	}];
+	
+	if ( result != NSOrderedSame )
+		return ( result );
+	
+	if ( otherIdx != NSNotFound )
+		return ( NSOrderedAscending );
+	
+	return ( NSOrderedSame );
 }
 
 @end

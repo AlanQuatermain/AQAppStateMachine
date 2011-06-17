@@ -10,7 +10,7 @@
 
 @class AQBitfield;
 
-@interface AQStateMatchingDescriptor : NSObject
+@interface AQStateMatchingDescriptor : NSObject <NSCopying>
 {
 	NSString *		_uuid;
 	NSIndexSet *	_matchingIndices;
@@ -22,6 +22,8 @@
 @property (nonatomic, readonly) NSString * uniqueID;
 
 - (BOOL) matchesRange: (NSRange) range;
+
+- (NSComparisonResult) compare: (AQStateMatchingDescriptor *) other;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "AQAppStateMachine.h"
 #import "AQRange.h"
+#import "AQStateMatchingDescriptor.h"
 #import <dispatch/dispatch.h>
 
 @implementation AQAppStateMachine
@@ -51,7 +52,8 @@
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range usingBlock: (void (^)(void)) block
 {
 	// create match descriptor and store it
-	id desc = nil;		// TODO: implement
+	id desc = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: nil];
+	
 	[_matchDescriptors addObject: desc];
 	[_notifierLookup setObject: block forKey: [desc uniqueID]];
 	
@@ -95,6 +97,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	x |= x >> 4;
 	x |= x >> 8;
 	x |= x >> 16;
+	x |= x >> 32;
 	return ( (NSUInteger)(x & ~(x >> 1)) );
 }
 
