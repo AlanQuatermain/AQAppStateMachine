@@ -8,28 +8,18 @@
 
 #import "AQBitfield.h"
 
-#define NSMakeRangeFromCF(cfr) NSMakeRange( cfr.location == kCFNotFound ? NSNotFound : cfr.location, cfr.length )
-#define CFMakeRangeFromNS(nsr) CFRangeMake( nsr.location == NSNotFound ? kCFNotFound : nsr.location, nsr.length )
-
 @implementation AQBitfield
 {
-	CFMutableBitVectorRef	_vector;
+	NSMutableIndexSet *		_storage;
 }
 
-+ (AQBitfield *) bitfieldWithSize: (NSUInteger) numberOfBits
-{
-	return ( [[self alloc] initWithSize: numberOfBits] );
-}
-
-- (id) initWithSize: (NSUInteger) numberOfBits
+- (id) init
 {
 	self = [super init];
 	if ( self == nil )
 		return ( nil );
 	
-	_vector = CFBitVectorCreateMutable(kCFAllocatorDefault, numberOfBits);
-	if ( _vector == NULL )
-		self = nil;		// release via ARC
+	_storage = [NSMutableIndexSet new];
 	
 	return ( self );
 }
@@ -37,47 +27,20 @@
 - (id) initWithCoder: (NSCoder *) aDecoder
 {
 	self = [super init];
-	
-	NSData * bits = [aDecoder decodeObjectForKey: @"bitVectorData"];
-	CFBitVectorRef immutable = CFBitVectorCreate(kCFAllocatorDefault, (const UInt8 *)[bits bytes], [bits length] * sizeof(uint8_t));
-	if ( immutable == NULL )
-	{
-		self = nil;
-		return ( nil );
-	}
-	
-	_vector = CFBitVectorCreateMutableCopy(kCFAllocatorDefault, CFBitVectorGetCount(immutable), immutable);
-	
-	CFRelease(immutable);
+	_storage = [[aDecoder decodeObjectForKey: @"bitVectorData"] mutableCopy];
 	
 	return ( self );
 }
 
-- (void) dealloc
-{
-	// yay ARC! No -release this or -release that! Except I'm using malloc, so:
-	if ( _vector != NULL )
-		CFRelease( _vector );
-	
-	// however: I don't need to call [super dealloc] under ARC -- WIN!
-}
-
 - (void) encodeWithCoder: (NSCoder *) aCoder
 {
-	CFRange rng = CFRangeMake(0, CFBitVectorGetCount(_vector));
-	NSUInteger len = rng.length / sizeof(UInt8);
-	
-	UInt8 * bytes = malloc(rng.length / sizeof(UInt8));
-	CFBitVectorGetBits(_vector, rng, bytes);
-	
-	NSData * data = [NSData dataWithBytesNoCopy: bytes length: len];		// transfers ownership of bytes
-	[aCoder encodeObject: data forKey: @"bitVectorData"];
+	[aCoder encodeObject: _storage forKey: @"bitVectorData"];
 }
 
 - (id) copyWithZone:(NSZone *)zone
 {
 	AQBitfield * bitfield = [[[self class] alloc] init];
-	bitfield->_vector = CFBitVectorCreateMutableCopy(kCFAllocatorDefault, CFBitVectorGetCount(_vector), _vector);
+	[bitfield->_storage addIndexes: _storage];
 	return ( bitfield );
 }
 
@@ -88,19 +51,12 @@
 
 - (NSString *) description
 {
-	NSMutableString * desc = [objc_retainedObject(CFCopyDescription(_vector)) mutableCopy];
-	NSRange rng = [desc rangeOfString: @">"];
-	if ( rng.location == NSNotFound )
-		return ( [desc copy] );
-	
-	[desc replaceCharactersInRange: NSMakeRange(0, rng.location+1)
-						withString: [NSString stringWithFormat: @"<AQBitfield %p>", self]];
-	return ( [desc copy] );
+	return ( [NSString stringWithFormat: @"<AQBitfield %p>{_storage = %@}", self, _storage] );
 }
 
 - (NSUInteger) hash
 {
-	return ( (NSUInteger)CFHash(_vector) );
+	return ( [_storage hash] );
 }
 
 - (BOOL) isEqual: (id) object
@@ -109,95 +65,101 @@
 		return ( NO );
 	
 	AQBitfield * other = (AQBitfield *)object;
-	if ( self.count != other.count )
-		return ( NO );
-	
-	return ( (BOOL)CFEqual(_vector, other->_vector) );
+	return ( [_storage isEqualToIndexSet: other->_storage] );
 }
 
 - (NSUInteger) count
 {
-	return ( (NSUInteger)CFBitVectorGetCount(_vector) );
-}
-
-- (void) setCount: (NSUInteger) count
-{
-	CFBitVectorSetCount(_vector, count);
+	return ( [_storage lastIndex] + 1 );
 }
 
 - (NSUInteger) countOfBit: (AQBit) bit inRange: (NSRange) range
 {
-	return ( (NSUInteger)CFBitVectorGetCountOfBit(_vector, CFMakeRangeFromNS(range), (CFBit)bit) );
+	return ( [_storage countOfIndexesInRange: range] );
 }
 
 - (BOOL) containsBit: (AQBit) bit inRange: (NSRange) range
 {
-	return ( (BOOL)CFBitVectorContainsBit(_vector, CFMakeRangeFromNS(range), (CFBit)bit) );
+	if ( bit )
+		return ( [_storage containsIndexesInRange: range] );
+	
+	return ( [_storage countOfIndexesInRange: range] < range.length );
 }
 
 - (AQBit) bitAtIndex: (NSUInteger) index
 {
-	return ( (AQBit)CFBitVectorGetBitAtIndex(_vector, (CFIndex)index) );
+	if ( [_storage containsIndex: index] )
+		return ( 1 );
+	
+	return ( 0 );
 }
 
 - (AQBitfield *) bitfieldFromRange: (NSRange) range
 {
-	NSParameterAssert(range.length != 0);
-	UInt8 * bytes = malloc(range.length / sizeof(UInt8));
-	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), bytes);
-	
 	AQBitfield * result = [[AQBitfield alloc] init];
-	CFBitVectorRef immutable = CFBitVectorCreate(kCFAllocatorDefault, bytes, (CFIndex)range.length);
-	result->_vector = CFBitVectorCreateMutableCopy(kCFAllocatorDefault, (CFIndex)range.length, immutable);
-	CFRelease(immutable);
-	
+	[result->_storage addIndexes: [_storage indexesInRange: range options: 0 passingTest:^BOOL(NSUInteger idx, BOOL *stop) { return YES; }]];
 	return ( result );
 }
 
 - (NSData *) bits
 {
-	if ( CFBitVectorGetCount(_vector) == 0 )
-		return ( [NSData data] );
-	
-	NSUInteger byteSize = CFBitVectorGetCount(_vector) / sizeof(UInt8);
-	UInt8 * bytes = malloc(byteSize);
-	CFBitVectorGetBits(_vector, CFRangeMake(0, CFBitVectorGetCount(_vector)), bytes);
-	return ( [NSData dataWithBytesNoCopy: bytes length: byteSize] );
+	// TODO: Implement
+	return ( nil );
 }
 
 - (NSUInteger) firstIndexOfBit: (AQBit) bit
 {
-	return ( (NSUInteger)CFBitVectorGetFirstIndexOfBit(_vector, CFRangeMake(0, CFBitVectorGetCount(_vector)), (CFBit)bit) );
+	if ( bit )
+		return ( [_storage firstIndex] );
+	
+	// TODO: Search for negative space
+	return ( 0 );
 }
 
 - (NSUInteger) lastIndexOfBit: (AQBit) bit
 {
-	return ( (NSUInteger)CFBitVectorGetLastIndexOfBit(_vector, CFRangeMake(0, CFBitVectorGetCount(_vector)), (AQBit)bit) );
+	if ( bit )
+		return ( [_storage lastIndex] );
+	
+	// TODO: Search for negative space
+	return ( 0 );
 }
 
 - (void) flipBitAtIndex: (NSUInteger) index
 {
-	CFBitVectorFlipBitAtIndex(_vector, (CFIndex)index);
+	if ( [_storage containsIndex: index] )
+		[_storage removeIndex: index];
+	else
+		[_storage addIndex: index];
 }
 
 - (void) flipBitsInRange: (NSRange) range
 {
-	CFBitVectorFlipBits(_vector, CFMakeRangeFromNS(range));
+	for ( NSUInteger i = range.location; i < NSMaxRange(range); i++ )
+	{
+		[self flipBitAtIndex: i];
+	}
 }
 
 - (void) setBit: (AQBit) bit atIndex: (NSUInteger) index
 {
-	CFBitVectorSetBitAtIndex(_vector, (CFIndex)index, (CFBit)bit);
+	if ( bit )
+		[_storage addIndex: index];
+	else
+		[_storage removeIndex: index];
 }
 
 - (void) setBitsInRange: (NSRange) range usingBit: (AQBit) bit
 {
-	CFBitVectorSetBits(_vector, CFMakeRangeFromNS(range), (CFBit)bit);
+	if ( bit )
+		[_storage addIndexesInRange: range];
+	else
+		[_storage removeIndexesInRange: range];
 }
 
 - (void) setAllBits: (AQBit) bit
 {
-	CFBitVectorSetBits(_vector, CFRangeMake(0, CFBitVectorGetCount(_vector)), (CFBit)bit);
+	[_storage addIndexesInRange: NSMakeRange(0, NSUIntegerMax)];
 }
 
 - (BOOL) bitsInRange: (NSRange) range matchBits: (NSUInteger) bits

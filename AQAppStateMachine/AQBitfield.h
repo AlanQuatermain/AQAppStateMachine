@@ -13,14 +13,10 @@ typedef CFBit AQBit;
 
 @interface AQBitfield : NSObject <NSCopying, NSMutableCopying, NSCoding>
 
-+ (AQBitfield *) bitfieldWithSize: (NSUInteger) numberOfBits;
-
-- (id) initWithSize: (NSUInteger) numberOfBits;
-
 - (NSUInteger) hash;
 - (BOOL) isEqual: (id) object;
 
-@property (nonatomic, assign) NSUInteger count;		// number of significant bits
+@property (nonatomic, readonly) NSUInteger count;		// number of significant bits
 
 - (NSUInteger) countOfBit: (AQBit) bit inRange: (NSRange) range;
 
