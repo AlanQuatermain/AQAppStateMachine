@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3821C49D13AFC43D00175CEE /* AQBitfieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C49C13AFC43D00175CEE /* AQBitfieldTests.m */; };
 		38431B5813A7C26800178A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
 		38431B6313A7C26800178A7E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B6213A7C26800178A7E /* SenTestingKit.framework */; };
 		38431B6613A7C26900178A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
@@ -102,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3821C49B13AFC43D00175CEE /* AQBitfieldTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldTests.h; sourceTree = "<group>"; };
+		3821C49C13AFC43D00175CEE /* AQBitfieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfieldTests.m; sourceTree = "<group>"; };
 		38431B5413A7C26800178A7E /* libAQAppStateMachine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAQAppStateMachine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		38431B5713A7C26800178A7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		38431B5B13A7C26800178A7E /* AQAppStateMachine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AQAppStateMachine-Prefix.pch"; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 			children = (
 				38431B7213A7C26900178A7E /* AQAppStateMachineTests.h */,
 				38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */,
+				3821C49B13AFC43D00175CEE /* AQBitfieldTests.h */,
+				3821C49C13AFC43D00175CEE /* AQBitfieldTests.m */,
 				386693EF13AF8A1500268560 /* SortedDictionary */,
 				38431B6D13A7C26900178A7E /* Supporting Files */,
 			);
@@ -561,6 +566,7 @@
 				3866945713AF8A1F00268560 /* MutableSortedDictionary.m in Sources */,
 				3866945A13AF8A1F00268560 /* SortedDictionary.m in Sources */,
 				3866946013AFB77500268560 /* AQAdditions.m in Sources */,
+				3821C49D13AFC43D00175CEE /* AQBitfieldTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

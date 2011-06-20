@@ -45,4 +45,9 @@ typedef CFBit AQBit;
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (NSUInteger) mask matchBits: (NSUInteger) bits;
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield;
 
+- (void) shiftBitsLeftBy: (NSUInteger) bits;
+- (void) shiftBitsRightBy: (NSUInteger) bits;
+
+- (void) maskWithBits: (AQBitfield *) mask;
+
 @end

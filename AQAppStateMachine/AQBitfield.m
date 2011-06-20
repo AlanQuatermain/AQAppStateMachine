@@ -75,7 +75,10 @@
 
 - (NSUInteger) countOfBit: (AQBit) bit inRange: (NSRange) range
 {
-	return ( [_storage countOfIndexesInRange: range] );
+	if ( bit )
+		return ( [_storage countOfIndexesInRange: range] );
+	else
+		return ( range.length - [_storage countOfIndexesInRange: range] );
 }
 
 - (BOOL) containsBit: (AQBit) bit inRange: (NSRange) range
@@ -112,8 +115,31 @@
 	if ( bit )
 		return ( [_storage firstIndex] );
 	
-	// TODO: Search for negative space
-	return ( 0 );
+	__block NSUInteger result = 0;
+	
+	if ( [_storage respondsToSelector: @selector(enumerateRangesUsingBlock:)] )
+	{
+		[_storage enumerateRangesUsingBlock: ^(NSRange range, BOOL *stop) {
+			if ( range.location == 0 )
+				result = NSMaxRange(range)+1;
+			*stop = YES;
+		}];
+	}
+	else
+	{
+		__block NSUInteger lastHighest = 0;
+		[_storage enumerateIndexesUsingBlock: ^(NSUInteger idx, BOOL *stop) {
+			if ( idx - lastHighest > 1 )
+			{
+				result = lastHighest+1;
+				*stop = YES;
+			}
+			
+			lastHighest = idx;
+		}];
+	}
+	
+	return ( result );
 }
 
 - (NSUInteger) lastIndexOfBit: (AQBit) bit
@@ -174,7 +200,7 @@
 
 - (BOOL) bitsInRange: (NSRange) range matchBits: (NSUInteger) bits
 {
-	NSParameterAssert(range.length <= sizeof(NSUInteger));
+	NSParameterAssert(range.length <= sizeof(NSUInteger)*8);
 	if ( range.length == 0 )
 		return ( NO );
 	
@@ -194,7 +220,7 @@
 
 - (BOOL) bitsInRange: (NSRange) range equalToBitfield: (AQBitfield *) bitfield
 {
-	NSParameterAssert(range.length == bitfield.count);
+	NSParameterAssert(range.length <= bitfield.count);
 	if ( range.length == 0 )
 		return ( NO );
 	
@@ -204,7 +230,7 @@
 
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (NSUInteger) mask matchBits: (NSUInteger) bits
 {
-	NSParameterAssert(range.length <= sizeof(NSUInteger));
+	NSParameterAssert(range.length <= sizeof(NSUInteger)*8);
 	if ( range.length == 0 )
 		return ( NO );
 	
@@ -228,18 +254,57 @@
 
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield
 {
-	NSParameterAssert(range.length == bitfield.count);
-	NSParameterAssert(range.length == mask.count);
+	NSParameterAssert(range.length <= bitfield.count);
+	NSParameterAssert(range.length <= mask.count);
 	if ( range.length == 0 )
 		return ( NO );
 	
 	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
-	NSMutableIndexSet * test = [bitfield mutableCopy];
+	NSMutableIndexSet * test = [bitfield->_storage mutableCopy];
 	
 	[tmp removeIndexes: mask->_storage];
 	[test removeIndexes: mask->_storage];
 	
 	return ( [tmp isEqualToIndexSet: test] );
+}
+
+- (void) shiftBitsLeftBy: (NSUInteger) bits
+{
+	NSInteger shift = 0 - (NSInteger)bits;
+	[_storage shiftIndexesStartingAtIndex: bits by: shift];
+}
+
+- (void) shiftBitsRightBy: (NSUInteger) bits
+{
+	[_storage shiftIndexesStartingAtIndex: 0 by: (NSInteger)bits];
+}
+
+- (void) maskWithBits: (AQBitfield *) mask
+{
+	NSRange range = NSMakeRange(0, MIN(self.count, mask.count));
+	
+	if ( [mask->_storage respondsToSelector: @selector(enumerateRangesUsingBlock:)] )
+	{
+		__block NSUInteger negativeRangeLocation = 0;
+		[mask->_storage enumerateRangesInRange: range options: 0 usingBlock: ^(NSRange range, BOOL *stop) {
+			if ( range.location > negativeRangeLocation )
+			{
+				[_storage removeIndexesInRange: NSMakeRange(negativeRangeLocation, range.location - negativeRangeLocation)];
+			}
+			negativeRangeLocation = NSMaxRange(range);
+		}];
+		
+		if ( negativeRangeLocation < [_storage lastIndex] )
+		{
+			[_storage removeIndexesInRange: NSMakeRange(negativeRangeLocation, NSUIntegerMax-negativeRangeLocation)];
+		}
+	}
+	else
+	{
+		[mask->_storage enumerateIndexesInRange: range options: 0 usingBlock: ^(NSUInteger idx, BOOL *stop) {
+			// TODO: Implement
+		}];
+	}
 }
 
 @end
