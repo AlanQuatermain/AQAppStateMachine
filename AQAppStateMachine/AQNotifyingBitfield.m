@@ -8,26 +8,22 @@
 
 #import "AQNotifyingBitfield.h"
 #import "AQRange.h"
+#import "MutableSortedDictionary.h"
 
 @implementation AQNotifyingBitfield
 {
-	id						_order;		// NSMutableArray or NSMutableOrderedSet (if available)
-	NSMutableDictionary *	_lookup;
-	dispatch_queue_t		_syncQ;
+	MutableSortedDictionary *	_lookup;
+	dispatch_queue_t			_syncQ;
+	dispatch_group_t			_group;
 }
 
-- (id) initWithSize: (NSUInteger) numberOfBits
+- (id) init
 {
-    self = [super initWithSize: numberOfBits];
+    self = [super init];
 	if ( self == nil )
 		return ( nil );
 	
-	if ( [NSMutableOrderedSet self] )
-		_order = [NSMutableOrderedSet new];
-	else
-		_order = [NSMutableArray new];
-	
-	_lookup = [NSMutableDictionary new];
+	_lookup = [MutableSortedDictionary new];
 	_syncQ = dispatch_queue_create("net.alanquatermain.notifyingbitfield.sync", DISPATCH_QUEUE_SERIAL);
 	
 	return ( self );
@@ -43,13 +39,6 @@
 {
 	dispatch_async(_syncQ, ^{
 		AQRange * rangeObject = [[AQRange alloc] initWithRange: range];
-		NSUInteger existingIdx = [_order indexOfObject: rangeObject];
-		if ( existingIdx == NSNotFound )
-		{
-			[_order addObject: rangeObject];
-			[_order sortUsingSelector: @selector(compare:)];
-		}
-		
 		[_lookup setObject: [block copy] forKey: rangeObject];
 	});
 }
@@ -58,7 +47,6 @@
 {
 	dispatch_async(_syncQ, ^{
 		AQRange * obj = [[AQRange alloc] initWithRange: range];
-		[_order removeObject: obj];
 		[_lookup removeObjectForKey: obj];
 	});
 }
@@ -66,9 +54,7 @@
 - (void) removeAllNotifiersWithinRange: (NSRange) range
 {
 	dispatch_async(_syncQ, ^{
-		NSMutableIndexSet * indicesToRemove = [NSMutableIndexSet indexSet];
-		
-		[_order enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
 			NSRange testRange = [obj range];
 			if ( NSEqualRanges(testRange, NSIntersectionRange(range, testRange)) == NO )
 			{
@@ -77,11 +63,8 @@
 				return;		// not wholly contained in the input range
 			}
 			
-			[indicesToRemove addIndex: idx];
 			[_lookup removeObjectForKey: obj];
 		}];
-		
-		[_order removeObjectsAtIndexes: indicesToRemove];
 	});
 }
 
@@ -99,7 +82,7 @@
 	[super flipBitAtIndex: index];
 	
 	dispatch_async(_syncQ, ^{
-		[_order enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
 			if ( NSLocationInRange(index, [obj range]) )
 			{
 				[self _scheduleNotificationForRange: obj];
@@ -117,7 +100,7 @@
 	[super flipBitsInRange: range];
 	
 	dispatch_async(_syncQ, ^{
-		[_order enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
 			if ( NSIntersectionRange(range, [obj range]).location != NSNotFound )
 			{
 				[self _scheduleNotificationForRange: obj];
@@ -135,7 +118,7 @@
 	[super setBit: bit atIndex: index];
 	
 	dispatch_async(_syncQ, ^{
-		[_order enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
 			if ( NSLocationInRange(index, [obj range]) )
 			{
 				[self _scheduleNotificationForRange: obj];
@@ -153,7 +136,7 @@
 	[super setBitsInRange: range usingBit: bit];
 	
 	dispatch_async(_syncQ, ^{
-		[_order enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
 			if ( NSIntersectionRange(range, [obj range]).location != NSNotFound )
 			{
 				[self _scheduleNotificationForRange: obj];

@@ -122,7 +122,7 @@
 
 - (id) initWith32BitMask: (NSUInteger) mask forRange: (NSRange) range
 {
-	AQBitfield * field = [[AQBitfield alloc] initWithSize: 32];
+	AQBitfield * field = [[AQBitfield alloc] init];
 	for ( NSUInteger i = 0; mask != 0; mask >>= 1, i++ )
 	{
 		if ( mask & 1 )
@@ -135,7 +135,7 @@
 
 - (id) initWith64BitMask: (UInt64) mask forRange: (NSRange) range
 {
-	AQBitfield * field = [[AQBitfield alloc] initWithSize: 64];
+	AQBitfield * field = [[AQBitfield alloc] init];
 	for ( UInt64 i = 0; mask != 0; mask >>= 1, i++ )
 	{
 		if ( mask & 1 )

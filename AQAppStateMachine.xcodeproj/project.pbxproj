@@ -29,6 +29,63 @@
 		3866939A13ABC70300268560 /* AQStateMatchingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */; };
 		3866939B13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
 		3866939C13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
+		3866940113AF8A1500268560 /* MutableSortedDictionaryContentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F113AF8A1500268560 /* MutableSortedDictionaryContentTests.m */; };
+		3866940213AF8A1500268560 /* NSStringExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F313AF8A1500268560 /* NSStringExtensionsTests.m */; };
+		3866940313AF8A1500268560 /* SortedDictionary+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F513AF8A1500268560 /* SortedDictionary+Test.m */; };
+		3866940413AF8A1500268560 /* SortedDictionaryContentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F713AF8A1500268560 /* SortedDictionaryContentTests.m */; };
+		3866940513AF8A1500268560 /* SortedDictionaryCreationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F913AF8A1500268560 /* SortedDictionaryCreationTests.m */; };
+		3866940613AF8A1500268560 /* SortedDictionaryInitializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693FB13AF8A1500268560 /* SortedDictionaryInitializationTests.m */; };
+		3866940713AF8A1500268560 /* SortedDictionaryProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693FD13AF8A1500268560 /* SortedDictionaryProtocolTests.m */; };
+		3866940813AF8A1500268560 /* SortedDictionarySerializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693FF13AF8A1500268560 /* SortedDictionarySerializationTests.m */; };
+		3866940913AF8A1500268560 /* test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3866940013AF8A1500268560 /* test.plist */; };
+		3866942E13AF8A1F00268560 /* AvlTree+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866940C13AF8A1F00268560 /* AvlTree+Private.h */; };
+		3866942F13AF8A1F00268560 /* AvlTree+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866940D13AF8A1F00268560 /* AvlTree+Private.m */; };
+		3866943013AF8A1F00268560 /* AvlTree+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866940D13AF8A1F00268560 /* AvlTree+Private.m */; };
+		3866943113AF8A1F00268560 /* AvlTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866940E13AF8A1F00268560 /* AvlTree.h */; };
+		3866943213AF8A1F00268560 /* AvlTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866940F13AF8A1F00268560 /* AvlTree.m */; };
+		3866943313AF8A1F00268560 /* AvlTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866940F13AF8A1F00268560 /* AvlTree.m */; };
+		3866943413AF8A1F00268560 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941013AF8A1F00268560 /* common.h */; };
+		3866943513AF8A1F00268560 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941113AF8A1F00268560 /* common.m */; };
+		3866943613AF8A1F00268560 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941113AF8A1F00268560 /* common.m */; };
+		3866943713AF8A1F00268560 /* EntryEnumerator+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941313AF8A1F00268560 /* EntryEnumerator+Private.h */; };
+		3866943813AF8A1F00268560 /* EntryEnumerator+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941413AF8A1F00268560 /* EntryEnumerator+Private.m */; };
+		3866943913AF8A1F00268560 /* EntryEnumerator+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941413AF8A1F00268560 /* EntryEnumerator+Private.m */; };
+		3866943A13AF8A1F00268560 /* EntryEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941513AF8A1F00268560 /* EntryEnumerator.h */; };
+		3866943B13AF8A1F00268560 /* EntryEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941613AF8A1F00268560 /* EntryEnumerator.m */; };
+		3866943C13AF8A1F00268560 /* EntryEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941613AF8A1F00268560 /* EntryEnumerator.m */; };
+		3866943D13AF8A1F00268560 /* KeyEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941713AF8A1F00268560 /* KeyEnumerator.h */; };
+		3866943E13AF8A1F00268560 /* KeyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941813AF8A1F00268560 /* KeyEnumerator.m */; };
+		3866943F13AF8A1F00268560 /* KeyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941813AF8A1F00268560 /* KeyEnumerator.m */; };
+		3866944013AF8A1F00268560 /* ObjectEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941913AF8A1F00268560 /* ObjectEnumerator.h */; };
+		3866944113AF8A1F00268560 /* ObjectEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941A13AF8A1F00268560 /* ObjectEnumerator.m */; };
+		3866944213AF8A1F00268560 /* ObjectEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941A13AF8A1F00268560 /* ObjectEnumerator.m */; };
+		3866944313AF8A1F00268560 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941B13AF8A1F00268560 /* Node.h */; };
+		3866944413AF8A1F00268560 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941C13AF8A1F00268560 /* Node.m */; };
+		3866944513AF8A1F00268560 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941C13AF8A1F00268560 /* Node.m */; };
+		3866944613AF8A1F00268560 /* NSString+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941D13AF8A1F00268560 /* NSString+Base64.h */; };
+		3866944713AF8A1F00268560 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941E13AF8A1F00268560 /* NSString+Base64.m */; };
+		3866944813AF8A1F00268560 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941E13AF8A1F00268560 /* NSString+Base64.m */; };
+		3866944913AF8A1F00268560 /* NSString+Indent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866941F13AF8A1F00268560 /* NSString+Indent.h */; };
+		3866944A13AF8A1F00268560 /* NSString+Indent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942013AF8A1F00268560 /* NSString+Indent.m */; };
+		3866944B13AF8A1F00268560 /* NSString+Indent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942013AF8A1F00268560 /* NSString+Indent.m */; };
+		3866944C13AF8A1F00268560 /* PropertyListReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866942213AF8A1F00268560 /* PropertyListReader.h */; };
+		3866944D13AF8A1F00268560 /* PropertyListReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942313AF8A1F00268560 /* PropertyListReader.m */; };
+		3866944E13AF8A1F00268560 /* PropertyListReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942313AF8A1F00268560 /* PropertyListReader.m */; };
+		3866944F13AF8A1F00268560 /* PropertyListWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866942413AF8A1F00268560 /* PropertyListWriter.h */; };
+		3866945013AF8A1F00268560 /* PropertyListWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942513AF8A1F00268560 /* PropertyListWriter.m */; };
+		3866945113AF8A1F00268560 /* PropertyListWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942513AF8A1F00268560 /* PropertyListWriter.m */; };
+		3866945213AF8A1F00268560 /* SortedDictionary+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866942613AF8A1F00268560 /* SortedDictionary+Private.h */; };
+		3866945313AF8A1F00268560 /* SortedDictionary+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942713AF8A1F00268560 /* SortedDictionary+Private.m */; };
+		3866945413AF8A1F00268560 /* SortedDictionary+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942713AF8A1F00268560 /* SortedDictionary+Private.m */; };
+		3866945513AF8A1F00268560 /* MutableSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866942913AF8A1F00268560 /* MutableSortedDictionary.h */; };
+		3866945613AF8A1F00268560 /* MutableSortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942A13AF8A1F00268560 /* MutableSortedDictionary.m */; };
+		3866945713AF8A1F00268560 /* MutableSortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942A13AF8A1F00268560 /* MutableSortedDictionary.m */; };
+		3866945813AF8A1F00268560 /* SortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866942B13AF8A1F00268560 /* SortedDictionary.h */; };
+		3866945913AF8A1F00268560 /* SortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942C13AF8A1F00268560 /* SortedDictionary.m */; };
+		3866945A13AF8A1F00268560 /* SortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942C13AF8A1F00268560 /* SortedDictionary.m */; };
+		3866945B13AF8A1F00268560 /* SortedDictionaryEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866942D13AF8A1F00268560 /* SortedDictionaryEntry.h */; };
+		3866945F13AF8AF300268560 /* AQAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866945D13AF8AF300268560 /* AQAdditions.m */; };
+		3866946013AFB77500268560 /* AQAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866945D13AF8AF300268560 /* AQAdditions.m */; };
 		38AC30BC13AA3D5C00AB071C /* AQBitfieldPredicates.h in Headers */ = {isa = PBXBuildFile; fileRef = 38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */; };
 		38AC30BD13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
 		38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
@@ -65,6 +122,55 @@
 		3866939413AAA0C600268560 /* AQAppStateMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAppStateMachine.m; sourceTree = "<group>"; };
 		3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMatchingDescriptor.h; sourceTree = "<group>"; };
 		3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMatchingDescriptor.m; sourceTree = "<group>"; };
+		386693F013AF8A1500268560 /* MutableSortedDictionaryContentTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSortedDictionaryContentTests.h; sourceTree = "<group>"; };
+		386693F113AF8A1500268560 /* MutableSortedDictionaryContentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSortedDictionaryContentTests.m; sourceTree = "<group>"; };
+		386693F213AF8A1500268560 /* NSStringExtensionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringExtensionsTests.h; sourceTree = "<group>"; };
+		386693F313AF8A1500268560 /* NSStringExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringExtensionsTests.m; sourceTree = "<group>"; };
+		386693F413AF8A1500268560 /* SortedDictionary+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SortedDictionary+Test.h"; sourceTree = "<group>"; };
+		386693F513AF8A1500268560 /* SortedDictionary+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SortedDictionary+Test.m"; sourceTree = "<group>"; };
+		386693F613AF8A1500268560 /* SortedDictionaryContentTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionaryContentTests.h; sourceTree = "<group>"; };
+		386693F713AF8A1500268560 /* SortedDictionaryContentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedDictionaryContentTests.m; sourceTree = "<group>"; };
+		386693F813AF8A1500268560 /* SortedDictionaryCreationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionaryCreationTests.h; sourceTree = "<group>"; };
+		386693F913AF8A1500268560 /* SortedDictionaryCreationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedDictionaryCreationTests.m; sourceTree = "<group>"; };
+		386693FA13AF8A1500268560 /* SortedDictionaryInitializationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionaryInitializationTests.h; sourceTree = "<group>"; };
+		386693FB13AF8A1500268560 /* SortedDictionaryInitializationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedDictionaryInitializationTests.m; sourceTree = "<group>"; };
+		386693FC13AF8A1500268560 /* SortedDictionaryProtocolTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionaryProtocolTests.h; sourceTree = "<group>"; };
+		386693FD13AF8A1500268560 /* SortedDictionaryProtocolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedDictionaryProtocolTests.m; sourceTree = "<group>"; };
+		386693FE13AF8A1500268560 /* SortedDictionarySerializationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionarySerializationTests.h; sourceTree = "<group>"; };
+		386693FF13AF8A1500268560 /* SortedDictionarySerializationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedDictionarySerializationTests.m; sourceTree = "<group>"; };
+		3866940013AF8A1500268560 /* test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test.plist; sourceTree = "<group>"; };
+		3866940C13AF8A1F00268560 /* AvlTree+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AvlTree+Private.h"; sourceTree = "<group>"; };
+		3866940D13AF8A1F00268560 /* AvlTree+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AvlTree+Private.m"; sourceTree = "<group>"; };
+		3866940E13AF8A1F00268560 /* AvlTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvlTree.h; sourceTree = "<group>"; };
+		3866940F13AF8A1F00268560 /* AvlTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvlTree.m; sourceTree = "<group>"; };
+		3866941013AF8A1F00268560 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		3866941113AF8A1F00268560 /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = common.m; sourceTree = "<group>"; };
+		3866941313AF8A1F00268560 /* EntryEnumerator+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EntryEnumerator+Private.h"; sourceTree = "<group>"; };
+		3866941413AF8A1F00268560 /* EntryEnumerator+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EntryEnumerator+Private.m"; sourceTree = "<group>"; };
+		3866941513AF8A1F00268560 /* EntryEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryEnumerator.h; sourceTree = "<group>"; };
+		3866941613AF8A1F00268560 /* EntryEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryEnumerator.m; sourceTree = "<group>"; };
+		3866941713AF8A1F00268560 /* KeyEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyEnumerator.h; sourceTree = "<group>"; };
+		3866941813AF8A1F00268560 /* KeyEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyEnumerator.m; sourceTree = "<group>"; };
+		3866941913AF8A1F00268560 /* ObjectEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectEnumerator.h; sourceTree = "<group>"; };
+		3866941A13AF8A1F00268560 /* ObjectEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectEnumerator.m; sourceTree = "<group>"; };
+		3866941B13AF8A1F00268560 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		3866941C13AF8A1F00268560 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
+		3866941D13AF8A1F00268560 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		3866941E13AF8A1F00268560 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		3866941F13AF8A1F00268560 /* NSString+Indent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indent.h"; sourceTree = "<group>"; };
+		3866942013AF8A1F00268560 /* NSString+Indent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indent.m"; sourceTree = "<group>"; };
+		3866942213AF8A1F00268560 /* PropertyListReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyListReader.h; sourceTree = "<group>"; };
+		3866942313AF8A1F00268560 /* PropertyListReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyListReader.m; sourceTree = "<group>"; };
+		3866942413AF8A1F00268560 /* PropertyListWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyListWriter.h; sourceTree = "<group>"; };
+		3866942513AF8A1F00268560 /* PropertyListWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyListWriter.m; sourceTree = "<group>"; };
+		3866942613AF8A1F00268560 /* SortedDictionary+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SortedDictionary+Private.h"; sourceTree = "<group>"; };
+		3866942713AF8A1F00268560 /* SortedDictionary+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SortedDictionary+Private.m"; sourceTree = "<group>"; };
+		3866942913AF8A1F00268560 /* MutableSortedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSortedDictionary.h; sourceTree = "<group>"; };
+		3866942A13AF8A1F00268560 /* MutableSortedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSortedDictionary.m; sourceTree = "<group>"; };
+		3866942B13AF8A1F00268560 /* SortedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionary.h; sourceTree = "<group>"; };
+		3866942C13AF8A1F00268560 /* SortedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedDictionary.m; sourceTree = "<group>"; };
+		3866942D13AF8A1F00268560 /* SortedDictionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedDictionaryEntry.h; sourceTree = "<group>"; };
+		3866945D13AF8AF300268560 /* AQAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAdditions.m; sourceTree = "<group>"; };
 		38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldPredicates.h; sourceTree = "<group>"; };
 		38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfieldPredicates.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +243,7 @@
 				3866939413AAA0C600268560 /* AQAppStateMachine.m */,
 				3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */,
 				3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */,
+				3866940A13AF8A1F00268560 /* SortedDictionary */,
 				38431B5A13A7C26800178A7E /* Supporting Files */,
 			);
 			path = AQAppStateMachine;
@@ -155,6 +262,7 @@
 			children = (
 				38431B7213A7C26900178A7E /* AQAppStateMachineTests.h */,
 				38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */,
+				386693EF13AF8A1500268560 /* SortedDictionary */,
 				38431B6D13A7C26900178A7E /* Supporting Files */,
 			);
 			path = AQAppStateMachineTests;
@@ -167,6 +275,101 @@
 				38431B6F13A7C26900178A7E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		386693EF13AF8A1500268560 /* SortedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				386693F013AF8A1500268560 /* MutableSortedDictionaryContentTests.h */,
+				386693F113AF8A1500268560 /* MutableSortedDictionaryContentTests.m */,
+				386693F213AF8A1500268560 /* NSStringExtensionsTests.h */,
+				386693F313AF8A1500268560 /* NSStringExtensionsTests.m */,
+				386693F413AF8A1500268560 /* SortedDictionary+Test.h */,
+				386693F513AF8A1500268560 /* SortedDictionary+Test.m */,
+				386693F613AF8A1500268560 /* SortedDictionaryContentTests.h */,
+				386693F713AF8A1500268560 /* SortedDictionaryContentTests.m */,
+				386693F813AF8A1500268560 /* SortedDictionaryCreationTests.h */,
+				386693F913AF8A1500268560 /* SortedDictionaryCreationTests.m */,
+				386693FA13AF8A1500268560 /* SortedDictionaryInitializationTests.h */,
+				386693FB13AF8A1500268560 /* SortedDictionaryInitializationTests.m */,
+				386693FC13AF8A1500268560 /* SortedDictionaryProtocolTests.h */,
+				386693FD13AF8A1500268560 /* SortedDictionaryProtocolTests.m */,
+				386693FE13AF8A1500268560 /* SortedDictionarySerializationTests.h */,
+				386693FF13AF8A1500268560 /* SortedDictionarySerializationTests.m */,
+				3866940013AF8A1500268560 /* test.plist */,
+			);
+			path = SortedDictionary;
+			sourceTree = "<group>";
+		};
+		3866940A13AF8A1F00268560 /* SortedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				3866940B13AF8A1F00268560 /* Internal */,
+				3866942813AF8A1F00268560 /* Public */,
+			);
+			path = SortedDictionary;
+			sourceTree = "<group>";
+		};
+		3866940B13AF8A1F00268560 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				3866940C13AF8A1F00268560 /* AvlTree+Private.h */,
+				3866940D13AF8A1F00268560 /* AvlTree+Private.m */,
+				3866940E13AF8A1F00268560 /* AvlTree.h */,
+				3866940F13AF8A1F00268560 /* AvlTree.m */,
+				3866941013AF8A1F00268560 /* common.h */,
+				3866941113AF8A1F00268560 /* common.m */,
+				3866941213AF8A1F00268560 /* Enumerators */,
+				3866941B13AF8A1F00268560 /* Node.h */,
+				3866941C13AF8A1F00268560 /* Node.m */,
+				3866941D13AF8A1F00268560 /* NSString+Base64.h */,
+				3866941E13AF8A1F00268560 /* NSString+Base64.m */,
+				3866941F13AF8A1F00268560 /* NSString+Indent.h */,
+				3866942013AF8A1F00268560 /* NSString+Indent.m */,
+				3866942113AF8A1F00268560 /* Serialization */,
+				3866942613AF8A1F00268560 /* SortedDictionary+Private.h */,
+				3866942713AF8A1F00268560 /* SortedDictionary+Private.m */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		3866941213AF8A1F00268560 /* Enumerators */ = {
+			isa = PBXGroup;
+			children = (
+				3866941313AF8A1F00268560 /* EntryEnumerator+Private.h */,
+				3866941413AF8A1F00268560 /* EntryEnumerator+Private.m */,
+				3866941513AF8A1F00268560 /* EntryEnumerator.h */,
+				3866941613AF8A1F00268560 /* EntryEnumerator.m */,
+				3866941713AF8A1F00268560 /* KeyEnumerator.h */,
+				3866941813AF8A1F00268560 /* KeyEnumerator.m */,
+				3866941913AF8A1F00268560 /* ObjectEnumerator.h */,
+				3866941A13AF8A1F00268560 /* ObjectEnumerator.m */,
+			);
+			path = Enumerators;
+			sourceTree = "<group>";
+		};
+		3866942113AF8A1F00268560 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				3866942213AF8A1F00268560 /* PropertyListReader.h */,
+				3866942313AF8A1F00268560 /* PropertyListReader.m */,
+				3866942413AF8A1F00268560 /* PropertyListWriter.h */,
+				3866942513AF8A1F00268560 /* PropertyListWriter.m */,
+			);
+			path = Serialization;
+			sourceTree = "<group>";
+		};
+		3866942813AF8A1F00268560 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				3866942913AF8A1F00268560 /* MutableSortedDictionary.h */,
+				3866942A13AF8A1F00268560 /* MutableSortedDictionary.m */,
+				3866942B13AF8A1F00268560 /* SortedDictionary.h */,
+				3866942C13AF8A1F00268560 /* SortedDictionary.m */,
+				3866945D13AF8AF300268560 /* AQAdditions.m */,
+				3866942D13AF8A1F00268560 /* SortedDictionaryEntry.h */,
+			);
+			path = Public;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +385,22 @@
 				3866938E13AA82C400268560 /* AQNotifyingBitfield.h in Headers */,
 				3866939513AAA0C600268560 /* AQAppStateMachine.h in Headers */,
 				3866939A13ABC70300268560 /* AQStateMatchingDescriptor.h in Headers */,
+				3866942E13AF8A1F00268560 /* AvlTree+Private.h in Headers */,
+				3866943113AF8A1F00268560 /* AvlTree.h in Headers */,
+				3866943413AF8A1F00268560 /* common.h in Headers */,
+				3866943713AF8A1F00268560 /* EntryEnumerator+Private.h in Headers */,
+				3866943A13AF8A1F00268560 /* EntryEnumerator.h in Headers */,
+				3866943D13AF8A1F00268560 /* KeyEnumerator.h in Headers */,
+				3866944013AF8A1F00268560 /* ObjectEnumerator.h in Headers */,
+				3866944313AF8A1F00268560 /* Node.h in Headers */,
+				3866944613AF8A1F00268560 /* NSString+Base64.h in Headers */,
+				3866944913AF8A1F00268560 /* NSString+Indent.h in Headers */,
+				3866944C13AF8A1F00268560 /* PropertyListReader.h in Headers */,
+				3866944F13AF8A1F00268560 /* PropertyListWriter.h in Headers */,
+				3866945213AF8A1F00268560 /* SortedDictionary+Private.h in Headers */,
+				3866945513AF8A1F00268560 /* MutableSortedDictionary.h in Headers */,
+				3866945813AF8A1F00268560 /* SortedDictionary.h in Headers */,
+				3866945B13AF8A1F00268560 /* SortedDictionaryEntry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +476,7 @@
 			files = (
 				38431B7113A7C26900178A7E /* InfoPlist.strings in Resources */,
 				38431B7313A7C26900178A7E /* AQAppStateMachineTests.h in Resources */,
+				3866940913AF8A1500268560 /* test.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +509,22 @@
 				3866938F13AA82C400268560 /* AQNotifyingBitfield.m in Sources */,
 				3866939613AAA0C600268560 /* AQAppStateMachine.m in Sources */,
 				3866939B13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */,
+				3866942F13AF8A1F00268560 /* AvlTree+Private.m in Sources */,
+				3866943213AF8A1F00268560 /* AvlTree.m in Sources */,
+				3866943513AF8A1F00268560 /* common.m in Sources */,
+				3866943813AF8A1F00268560 /* EntryEnumerator+Private.m in Sources */,
+				3866943B13AF8A1F00268560 /* EntryEnumerator.m in Sources */,
+				3866943E13AF8A1F00268560 /* KeyEnumerator.m in Sources */,
+				3866944113AF8A1F00268560 /* ObjectEnumerator.m in Sources */,
+				3866944413AF8A1F00268560 /* Node.m in Sources */,
+				3866944713AF8A1F00268560 /* NSString+Base64.m in Sources */,
+				3866944A13AF8A1F00268560 /* NSString+Indent.m in Sources */,
+				3866944D13AF8A1F00268560 /* PropertyListReader.m in Sources */,
+				3866945013AF8A1F00268560 /* PropertyListWriter.m in Sources */,
+				3866945313AF8A1F00268560 /* SortedDictionary+Private.m in Sources */,
+				3866945613AF8A1F00268560 /* MutableSortedDictionary.m in Sources */,
+				3866945913AF8A1F00268560 /* SortedDictionary.m in Sources */,
+				3866945F13AF8AF300268560 /* AQAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +537,30 @@
 				38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */,
 				3866939713AAA0C600268560 /* AQAppStateMachine.m in Sources */,
 				3866939C13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */,
+				3866940113AF8A1500268560 /* MutableSortedDictionaryContentTests.m in Sources */,
+				3866940213AF8A1500268560 /* NSStringExtensionsTests.m in Sources */,
+				3866940313AF8A1500268560 /* SortedDictionary+Test.m in Sources */,
+				3866940413AF8A1500268560 /* SortedDictionaryContentTests.m in Sources */,
+				3866940513AF8A1500268560 /* SortedDictionaryCreationTests.m in Sources */,
+				3866940613AF8A1500268560 /* SortedDictionaryInitializationTests.m in Sources */,
+				3866940713AF8A1500268560 /* SortedDictionaryProtocolTests.m in Sources */,
+				3866940813AF8A1500268560 /* SortedDictionarySerializationTests.m in Sources */,
+				3866943013AF8A1F00268560 /* AvlTree+Private.m in Sources */,
+				3866943313AF8A1F00268560 /* AvlTree.m in Sources */,
+				3866943613AF8A1F00268560 /* common.m in Sources */,
+				3866943913AF8A1F00268560 /* EntryEnumerator+Private.m in Sources */,
+				3866943C13AF8A1F00268560 /* EntryEnumerator.m in Sources */,
+				3866943F13AF8A1F00268560 /* KeyEnumerator.m in Sources */,
+				3866944213AF8A1F00268560 /* ObjectEnumerator.m in Sources */,
+				3866944513AF8A1F00268560 /* Node.m in Sources */,
+				3866944813AF8A1F00268560 /* NSString+Base64.m in Sources */,
+				3866944B13AF8A1F00268560 /* NSString+Indent.m in Sources */,
+				3866944E13AF8A1F00268560 /* PropertyListReader.m in Sources */,
+				3866945113AF8A1F00268560 /* PropertyListWriter.m in Sources */,
+				3866945413AF8A1F00268560 /* SortedDictionary+Private.m in Sources */,
+				3866945713AF8A1F00268560 /* MutableSortedDictionary.m in Sources */,
+				3866945A13AF8A1F00268560 /* SortedDictionary.m in Sources */,
+				3866946013AFB77500268560 /* AQAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

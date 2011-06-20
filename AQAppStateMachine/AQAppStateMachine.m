@@ -29,7 +29,7 @@
 		return ( nil );
 	
 	// start out with 32 bits
-	_stateBits = [[AQNotifyingBitfield alloc] initWithSize: 32];
+	_stateBits = [[AQNotifyingBitfield alloc] init];
 	_namedRanges = [NSMutableDictionary new];
 	_matchDescriptors = [NSMutableArray new];
 	_notifierLookup = [NSMutableDictionary new];
@@ -119,7 +119,6 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	dispatch_sync(_syncQ, ^{
 		AQRange * range = [[AQRange alloc] initWithRange: NSMakeRange(_stateBits.count, length)];
 		[_namedRanges setObject: range forKey: name];
-		[_stateBits setCount: NSMaxRange(range.range)];
 	});
 }
 

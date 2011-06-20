@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2/trunk/SortedDictionary/Internal/Serialization
+END
+PropertyListWriter.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2/trunk/SortedDictionary/Internal/Serialization/PropertyListWriter.h
+END
+PropertyListWriter.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2/trunk/SortedDictionary/Internal/Serialization/PropertyListWriter.m
+END
+PropertyListReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2/trunk/SortedDictionary/Internal/Serialization/PropertyListReader.h
+END
+PropertyListReader.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2/trunk/SortedDictionary/Internal/Serialization/PropertyListReader.m
+END
