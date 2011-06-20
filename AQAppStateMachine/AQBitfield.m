@@ -162,25 +162,34 @@
 	[_storage addIndexesInRange: NSMakeRange(0, NSUIntegerMax)];
 }
 
+- (NSMutableIndexSet *) _zeroBasedIndexSetForIndexesInRange: (NSRange) range
+{
+	NSMutableIndexSet * tmp = [_storage mutableCopy];
+	[tmp removeIndexesInRange: NSMakeRange(NSMaxRange(range), NSUIntegerMax-NSMaxRange(range))];
+	if ( range.location != 0 )
+		[tmp shiftIndexesStartingAtIndex: range.location by: -(NSInteger)(range.location)];
+	
+	return ( tmp );
+}
+
 - (BOOL) bitsInRange: (NSRange) range matchBits: (NSUInteger) bits
 {
 	NSParameterAssert(range.length <= sizeof(NSUInteger));
 	if ( range.length == 0 )
 		return ( NO );
 	
-	NSUInteger swappedBits = CFSwapInt32HostToBig((uint32_t)bits);
+	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
+	NSUInteger i;
+	for ( i = 0; bits > 0; i++, bits >>= 1 )
+	{
+		if ( (((bits & 1) == 1) && ([tmp containsIndex: i] == NO)) ||
+			(((bits & 1) != 1) && ([tmp containsIndex: i] == YES)) )
+		{
+			return ( NO );
+		}
+	}
 	
-	UInt8 * vBytes = malloc(sizeof(bits));
-	bzero(vBytes, sizeof(bits));
-	
-	UInt8 * cBytes = (UInt8 *)&swappedBits;
-	
-	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
-	
-	BOOL result = (memcmp(vBytes, cBytes, sizeof(bits)) == 0);
-	free(vBytes);
-	
-	return ( result );
+	return ( [tmp indexGreaterThanIndex: i] == NSNotFound );
 }
 
 - (BOOL) bitsInRange: (NSRange) range equalToBitfield: (AQBitfield *) bitfield
@@ -189,20 +198,8 @@
 	if ( range.length == 0 )
 		return ( NO );
 	
-	UInt8 * vBytes = malloc(range.length);
-	bzero(vBytes, range.length);
-	
-	UInt8 * cBytes = (UInt8 *)malloc(range.length);
-	bzero(cBytes, range.length);
-	
-	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
-	CFBitVectorGetBits(bitfield->_vector, CFRangeMake(0, bitfield.count), cBytes);
-	
-	BOOL result = (memcmp(vBytes, cBytes, range.length) == 0);
-	free(vBytes);
-	free(cBytes);
-	
-	return ( result );
+	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
+	return ( [tmp isEqualToIndexSet: bitfield->_storage] );
 }
 
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (NSUInteger) mask matchBits: (NSUInteger) bits
@@ -211,27 +208,22 @@
 	if ( range.length == 0 )
 		return ( NO );
 	
-	// mask the bits we're comparing against
-	bits &= mask;
+	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
+	NSUInteger i;
+	for ( i = 0; bits > 0 && mask > 0; i++, bits >>= 1, mask >>= 1 )
+	{
+		// skip bits not matching the mask
+		if ( (mask & 1) == 0 )
+			continue;
+		
+		if ( (((bits & 1) == 1) && ([tmp containsIndex: i] == NO)) ||
+			 (((bits & 1) != 1) && ([tmp containsIndex: i] == YES)) )
+		{
+			return ( NO );
+		}
+	}
 	
-	NSUInteger swappedBits = CFSwapInt32HostToBig((uint32_t)bits);
-	NSUInteger swappedMask = CFSwapInt32HostToBig((uint32_t)mask);
-	
-	UInt8 * vBytes = malloc(sizeof(bits));
-	bzero(vBytes, sizeof(bits));
-	
-	// mask the bits we've pulled from the bitfield
-	NSUInteger *pCompareNum = (NSUInteger *)vBytes;
-	*pCompareNum &= swappedMask;
-	
-	UInt8 * cBytes = (UInt8 *)&swappedBits;
-	
-	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
-	
-	BOOL result = (memcmp(vBytes, cBytes, sizeof(bits)) == 0);
-	free(vBytes);
-	
-	return ( result );
+	return ( [tmp indexGreaterThanIndex: i] == NSNotFound );
 }
 
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield
@@ -241,33 +233,13 @@
 	if ( range.length == 0 )
 		return ( NO );
 	
-	int byteLen = (range.length + 7) / 8;
-	UInt8 * vBytes = malloc(range.length / sizeof(UInt8));
-	bzero(vBytes, range.length);
+	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
+	NSMutableIndexSet * test = [bitfield mutableCopy];
 	
-	UInt8 * cBytes = (UInt8 *)malloc(range.length);
-	bzero(cBytes, range.length);
+	[tmp removeIndexes: mask->_storage];
+	[test removeIndexes: mask->_storage];
 	
-	UInt8 * mBytes = malloc(range.length);
-	bzero(mBytes, range.length);
-	
-	CFBitVectorGetBits(_vector, CFMakeRangeFromNS(range), vBytes);
-	CFBitVectorGetBits(bitfield->_vector, CFRangeMake(0, bitfield.count), cBytes);
-	CFBitVectorGetBits(mask->_vector, CFRangeMake(0, bitfield.count), mBytes);
-	
-	// apply the mask to both ranges
-	for ( int i = 0; i < byteLen; i++ )
-	{
-		vBytes[i] &= mBytes[i];
-		cBytes[i] &= mBytes[i];
-	}
-	
-	BOOL result = (memcmp(vBytes, cBytes, range.length) == 0);
-	free(vBytes);
-	free(cBytes);
-	free(mBytes);
-	
-	return ( result );
+	return ( [tmp isEqualToIndexSet: test] );
 }
 
 @end
