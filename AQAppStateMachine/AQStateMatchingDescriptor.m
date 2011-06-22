@@ -61,7 +61,13 @@
 
 - (NSRange) fullRange
 {
-	return ( NSMakeRange([_matchingIndices firstIndex], [_matchingIndices lastIndex] - [_matchingIndices firstIndex]) );
+	NSUInteger first = [_matchingIndices firstIndex];
+	NSUInteger last = [_matchingIndices lastIndex];
+	
+	if ( first == NSNotFound )
+		return ( NSMakeRange(NSNotFound, 0) );
+	
+	return ( NSMakeRange(first, (last - first) + 1) );
 }
 
 - (BOOL) matchesRange: (NSRange) range

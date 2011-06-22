@@ -53,4 +53,33 @@
 	STAssertFalse([desc matchesRange: no], @"Expected range %@ to NOT match descriptor %@", NSStringFromRange(no), desc);
 }
 
+- (void) testComparisons
+{
+	NSRange range = NSMakeRange(0, 10);
+	NSRange equal = NSMakeRange(0, 10);
+	NSRange higherForLength = NSMakeRange(0, 20);
+	NSRange higherForLocation = NSMakeRange(10, 10);
+	
+	AQStateMatchingDescriptor * descRange = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: nil];
+	AQStateMatchingDescriptor * descEqual = [[AQStateMatchingDescriptor alloc] initWithRange: equal matchingMask: nil];
+	AQStateMatchingDescriptor * descLength = [[AQStateMatchingDescriptor alloc] initWithRange: higherForLength matchingMask: nil];
+	AQStateMatchingDescriptor * descLocation = [[AQStateMatchingDescriptor alloc] initWithRange: higherForLocation matchingMask: nil];
+	
+	STAssertTrue([descRange compare: descEqual] == NSOrderedSame, @"Expected comparison of %@ to %@ to return 'same', got %lu", descRange, descEqual, (unsigned long)[descRange compare: descEqual]);
+	STAssertTrue([descRange compare: descLength] == NSOrderedAscending, @"Expected comparison of %@ to %@ to return 'ascending', got %lu", descRange, descLength, (unsigned long)[descRange compare: descLength]);
+	STAssertTrue([descLength compare: descRange] == NSOrderedDescending, @"Expected comparison of %@ to %@ to return 'ascending', got %lu", descLength, descRange, (unsigned long)[descLength compare: descRange]);
+	STAssertTrue([descRange compare: descLocation] == NSOrderedAscending, @"Expected comparison of %@ to %@ to return 'ascending', got %lu", descRange, descLocation, (unsigned long)[descRange compare: descLocation]);
+	STAssertTrue([descLocation compare: descRange] == NSOrderedDescending, @"Expected comparison of %@ to %@ to return 'ascending', got %lu", descLocation, descRange, (unsigned long)[descLocation compare: descRange]);
+}
+
+- (void) testFullRange
+{
+	AQRange * r1 = [[AQRange alloc] initWithRange: NSMakeRange(0, 10)];
+	AQRange * r2 = [[AQRange alloc] initWithRange: NSMakeRange(15, 5)];
+	NSRange totalRange = NSMakeRange(0, 20);
+	
+	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWithRanges: [NSArray arrayWithObjects: r1, r2, nil] matchingMasks: nil];
+	STAssertTrue(NSEqualRanges(totalRange, desc.fullRange), @"Expected total range of %@ to be %@, got %@", desc, NSStringFromRange(totalRange), NSStringFromRange(desc.fullRange));
+}
+
 @end
