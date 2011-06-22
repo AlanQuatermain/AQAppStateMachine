@@ -58,6 +58,11 @@
     return ( self );
 }
 
+- (NSRange) fullRange
+{
+	return ( NSMakeRange([_matchingIndices firstIndex], [_matchingIndices lastIndex] - [_matchingIndices firstIndex]) );
+}
+
 - (BOOL) matchesRange: (NSRange) range
 {
 	return ( [_matchingIndices intersectsIndexesInRange: range] );

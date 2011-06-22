@@ -17,9 +17,11 @@
 }
 
 // designated initializer
+// to specify 'no mask' in an array, use NSNull
 - (id) initWithRanges: (NSIndexSet *) ranges matchingMasks: (NSArray *) masks;
 
 @property (nonatomic, readonly) NSString * uniqueID;
+@property (nonatomic, readonly) NSRange fullRange;
 
 - (BOOL) matchesRange: (NSRange) range;
 

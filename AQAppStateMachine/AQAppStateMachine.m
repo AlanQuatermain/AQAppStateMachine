@@ -44,6 +44,32 @@
 		dispatch_release(_syncQ);
 }
 
+- (void) _runNotificationBlocksForChangeInRange: (NSRange) range
+{
+	for ( AQStateMatchingDescriptor * match in _matchDescriptors )
+	{
+		if ( [match matchesRange: range] == NO )
+			continue;
+		
+		dispatch_block_t block = (dispatch_block_t)[_notifierLookup objectForKey: [match uniqueID]];
+		if ( block != nil )
+			block();
+	}
+}
+
+- (void) _notifyForChangesToStatesMatchingDescriptor: (AQStateMatchingDescriptor *) desc
+										  usingBlock: (void (^)(void)) block
+{
+	[_matchDescriptors addObject: desc];
+	[_notifierLookup setObject: block forKey: [desc uniqueID]];
+	
+	NSRange notifyRange = desc.fullRange;
+	[_stateBits notifyModificationOfBitsInRange: notifyRange usingBlock: ^(NSRange range) {
+		// find and run any stored blocks
+		[self _runNotificationBlocksForChangeInRange: range];
+	}];
+}
+
 - (void) notifyForChangesToStateBitAtIndex: (NSUInteger) index usingBlock: (void (^)(void)) block
 {
 	[self notifyForChangesToStateBitsInRange: NSMakeRange(index, 1) usingBlock: block];
@@ -52,28 +78,24 @@
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range usingBlock: (void (^)(void)) block
 {
 	// create match descriptor and store it
-	id desc = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: nil];
-	
-	[_matchDescriptors addObject: desc];
-	[_notifierLookup setObject: block forKey: [desc uniqueID]];
-	
-	[_stateBits notifyModificationOfBitsInRange: range usingBlock: ^(NSRange range) {
-		// find and run any stored blocks
-	}];
+	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: nil];
+	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
 }
 
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range
 						  maskedWithInteger: (NSUInteger) mask
 								 usingBlock: (void (^)(void)) block
 {
-	
+	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWith32BitMask: mask forRange: range];
+	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
 }
 
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range
 							 maskedWithBits: (AQBitfield *) mask
 								 usingBlock: (void (^)(void)) block
 {
-	
+	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: mask];
+	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
 }
 
 @end
