@@ -106,6 +106,50 @@
 	STAssertEqualObjects(bitfield, theCopy, @"Expected %@ to be equal to its copy %@", bitfield, theCopy);
 }
 
+- (void) testFirstIndexOfBit
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	[bitfield setBitsInRange: NSMakeRange(0, 20) usingBit: 1];
+	
+	STAssertTrue([bitfield firstIndexOfBit: 1] == 0, @"Expected first index of bit 1 in %@ to be 0, instead got %lu", bitfield, (unsigned long)[bitfield firstIndexOfBit: 1]);
+	STAssertTrue([bitfield firstIndexOfBit: 0] == 20, @"Expected first index of bit 0 in %@ to be 20, instead got %lu", bitfield, (unsigned long)[bitfield firstIndexOfBit: 0]);
+}
+
+- (void) testLastIndexOfBit
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	[bitfield setAllBits: 1];
+	[bitfield setBitsInRange: NSMakeRange(0, 20) usingBit: 0];
+	
+	STAssertTrue([bitfield lastIndexOfBit: 1] == NSNotFound-1, @"Expected last index of bit 1 in %@ to be %lu, instead got %lu", bitfield, NSNotFound-1, (unsigned long)[bitfield lastIndexOfBit: 1]);
+	STAssertTrue([bitfield lastIndexOfBit: 0] == 19, @"Expected last index of bit 0 in %@ to be 19, instead got %lu", bitfield, (unsigned long)[bitfield lastIndexOfBit: 0]);
+}
+
+- (void) testFlipBitAtIndex
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	NSRange rng = NSMakeRange(0, 20);
+	[bitfield setBitsInRange: rng usingBit: 1];
+	[bitfield flipBitAtIndex: 10];
+	
+	STAssertTrue([bitfield countOfBit: 1 inRange: rng] == 19, @"Expected bitfield with 20 set bits and 1 toggled to have 19 set bits in range 0-20, instead got %lu", (unsigned long)[bitfield countOfBit: 1 inRange: rng]);
+	STAssertTrue([bitfield bitAtIndex: 10] == 0, @"Expected bitfield with 20 set bits and 1 toggled at index 10 to have a 0 bit at index 10");
+}
+
+- (void) testFlipBits
+{
+	AQBitfield * bitfield1 = [AQBitfield new];
+	NSRange rng = NSMakeRange(0, 20);
+	[bitfield1 setBitsInRange: rng usingBit: 1];
+	[bitfield1 setBit: 0 atIndex: 10];
+	
+	AQBitfield * bitfield2 = [AQBitfield new];
+	[bitfield2 setBit: 1 atIndex: 10];
+	
+	[bitfield1 flipBitsInRange: rng];
+	STAssertEqualObjects(bitfield1, bitfield2, @"Expected bitfield %@ with bits in range 0..20 flipped to equal bitfield %@", bitfield1, bitfield2);
+}
+
 - (void) testBitShifts
 {
 	AQBitfield * bitfield1 = [AQBitfield new];
@@ -159,6 +203,26 @@
 	STAssertFalse([bitfield bitsInRange: rng equalToBitfield: test], @"Expected bits in range %@ of %@ to NOT match %@", NSStringFromRange(rng), bitfield, test);
 }
 
+- (void) testMaskWithBits
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	[bitfield setBitsInRange: NSMakeRange(0, 20) usingBit: 1];
+	[bitfield setBit: 0 atIndex: 15];
+	// 11111111111111101111
+	
+	AQBitfield * mask = [AQBitfield new];
+	[mask setBitsInRange: NSMakeRange(5, 5) usingBit: 1];
+	[mask setBit: 1 atIndex: 15];
+	// 00000111110000010000
+	
+	AQBitfield * expected = [AQBitfield new];
+	[expected setBitsInRange: NSMakeRange(5, 5) usingBit: 1];
+	
+	AQBitfield * result = [bitfield copy];
+	[result maskWithBits: mask];
+	STAssertEqualObjects(result, expected, @"Expected %@ masked with %@ to equal %@, but instead got %@", bitfield, mask, expected, result);
+}
+
 - (void) testMaskedBitsInRangeAgainstInteger
 {
 	AQBitfield * bitfield = [AQBitfield new];
@@ -188,8 +252,9 @@
 	rng.length = 100-20;
 	
 	AQBitfield * mask = [AQBitfield new];
-	[mask setBitsInRange: NSMakeRange(0, 7) usingBit: 1];
-	[mask setBitsInRange: NSMakeRange(8, 7) usingBit: 1];
+	[mask setBitsInRange: NSMakeRange(0, 16) usingBit: 1];
+	[mask setBit: 0 atIndex: 7];
+	[mask setBit: 0 atIndex: 15];
 	[mask setBit: 1 atIndex: 80];
 	
 	STAssertTrue([bitfield bitsInRange: rng maskedWith: mask equalToBitfield: test], @"Expected bits in range %@ of %@ masked with %@ to match %@", NSStringFromRange(rng), bitfield, mask, test);

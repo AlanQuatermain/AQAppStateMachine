@@ -104,12 +104,6 @@
 	return ( result );
 }
 
-- (NSData *) bits
-{
-	// TODO: Implement
-	return ( nil );
-}
-
 - (NSUInteger) firstIndexOfBit: (AQBit) bit
 {
 	if ( bit )
@@ -121,7 +115,7 @@
 	{
 		[_storage enumerateRangesUsingBlock: ^(NSRange range, BOOL *stop) {
 			if ( range.location == 0 )
-				result = NSMaxRange(range)+1;
+				result = NSMaxRange(range);
 			*stop = YES;
 		}];
 	}
@@ -147,8 +141,36 @@
 	if ( bit )
 		return ( [_storage lastIndex] );
 	
-	// TODO: Search for negative space
-	return ( 0 );
+	__block NSUInteger result = NSNotFound;
+	
+	if ( [_storage respondsToSelector: @selector(enumerateRangesUsingBlock:)] )
+	{
+		[_storage enumerateRangesWithOptions: NSEnumerationReverse usingBlock: ^(NSRange range, BOOL *stop) {
+			if ( NSMaxRange(range) < NSNotFound-1 )
+			{
+				result = NSNotFound-1;
+			}
+			else if ( range.location > 0 )
+			{
+				result = range.location-1;
+			}
+			
+			*stop = YES;
+		}];
+	}
+	else
+	{
+		__block NSUInteger lastLowest = NSNotFound-1;
+		[_storage enumerateIndexesWithOptions: NSEnumerationReverse usingBlock: ^(NSUInteger idx, BOOL *stop) {
+			if ( idx < lastLowest-1 )
+			{
+				result = lastLowest-1;
+				*stop = YES;
+			}
+		}];
+	}
+	
+	return ( result );
 }
 
 - (void) flipBitAtIndex: (NSUInteger) index
@@ -185,7 +207,7 @@
 
 - (void) setAllBits: (AQBit) bit
 {
-	[_storage addIndexesInRange: NSMakeRange(0, NSUIntegerMax)];
+	[_storage addIndexesInRange: NSMakeRange(0, NSNotFound)];
 }
 
 - (NSMutableIndexSet *) _zeroBasedIndexSetForIndexesInRange: (NSRange) range
@@ -259,13 +281,14 @@
 	if ( range.length == 0 )
 		return ( NO );
 	
-	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
-	NSMutableIndexSet * test = [bitfield->_storage mutableCopy];
+	AQBitfield * tmp1 = [self bitfieldFromRange: range];
+	[tmp1 maskWithBits: mask];
 	
-	[tmp removeIndexes: mask->_storage];
-	[test removeIndexes: mask->_storage];
+	AQBitfield * tmp2 = [bitfield copy];
+	[tmp2 maskWithBits: mask];
+	[tmp2->_storage removeIndexesInRange: NSMakeRange(range.length, NSUIntegerMax-range.length)];
 	
-	return ( [tmp isEqualToIndexSet: test] );
+	return ( [tmp1 isEqual: tmp2] );
 }
 
 - (void) shiftBitsLeftBy: (NSUInteger) bits
@@ -294,16 +317,30 @@
 			negativeRangeLocation = NSMaxRange(range);
 		}];
 		
-		if ( negativeRangeLocation < [_storage lastIndex] )
+		if ( negativeRangeLocation <= [_storage lastIndex] )
 		{
 			[_storage removeIndexesInRange: NSMakeRange(negativeRangeLocation, NSUIntegerMax-negativeRangeLocation)];
 		}
 	}
 	else
 	{
+		__block NSRange negativeRange = NSMakeRange(0, 0);
 		[mask->_storage enumerateIndexesInRange: range options: 0 usingBlock: ^(NSUInteger idx, BOOL *stop) {
-			// TODO: Implement
+			if ( idx != 0 && NSMaxRange(negativeRange) < idx-1 )
+			{
+				// expand negative range to fill the area below current index and remove all indices from local storage
+				negativeRange.length = idx-negativeRange.location;
+				[_storage removeIndexesInRange: negativeRange];
+			}
+			
+			negativeRange.location = idx+1;
 		}];
+		
+		if ( negativeRange.location <= [_storage lastIndex] )
+		{
+			negativeRange.length = [_storage lastIndex] - negativeRange.location;
+			[_storage removeIndexesInRange: negativeRange];
+		}
 	}
 }
 

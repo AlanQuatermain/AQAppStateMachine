@@ -25,8 +25,6 @@ typedef CFBit AQBit;
 
 - (AQBitfield *) bitfieldFromRange: (NSRange) range;	// throws NSRangeException
 
-@property (nonatomic, readonly) NSData * bits;
-
 - (NSUInteger) firstIndexOfBit: (AQBit) bit;
 - (NSUInteger) lastIndexOfBit: (AQBit) bit;
 
