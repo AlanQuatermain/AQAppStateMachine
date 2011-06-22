@@ -225,9 +225,12 @@
 	NSParameterAssert(range.length <= sizeof(NSUInteger)*8);
 	if ( range.length == 0 )
 		return ( NO );
+	if ( bits == 0 )
+		return ( [self countOfBit: 1 inRange: range] == 0 );
 	
 	NSMutableIndexSet * tmp = [self _zeroBasedIndexSetForIndexesInRange: range];
 	NSUInteger i;
+	
 	for ( i = 0; bits > 0; i++, bits >>= 1 )
 	{
 		if ( (((bits & 1) == 1) && ([tmp containsIndex: i] == NO)) ||
@@ -271,7 +274,7 @@
 		}
 	}
 	
-	return ( [tmp indexGreaterThanIndex: i] == NSNotFound );
+	return ( (mask == 0) || [tmp indexGreaterThanIndex: i] == NSNotFound );
 }
 
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield
@@ -282,6 +285,7 @@
 		return ( NO );
 	
 	AQBitfield * tmp1 = [self bitfieldFromRange: range];
+	[tmp1 shiftBitsLeftBy: range.location];
 	[tmp1 maskWithBits: mask];
 	
 	AQBitfield * tmp2 = [bitfield copy];
