@@ -28,6 +28,16 @@
 	return ( self );
 }
 
+- (NSString *) description
+{
+	return ( NSStringFromRange(_range) );
+}
+
+- (id) copyWithZone: (NSZone *) zone
+{
+	return ( [[AQRange alloc] initWithRange: _range] );
+}
+
 - (NSUInteger) hash
 {
 	return ( _range.location << 16 | _range.length );
@@ -64,7 +74,7 @@
 	
 	// locations are identical, but lengths are not
 	// in this case, we order by which is *finished* first, i.e. one with the lowest length
-	if ( _range.length > nsRange.length )
+	if ( _range.length < nsRange.length )
 		return ( NSOrderedAscending );
 	
 	return ( NSOrderedDescending );

@@ -54,8 +54,10 @@
 - (void) removeAllNotifiersWithinRange: (NSRange) range
 {
 	dispatch_async(_syncQ, ^{
+		NSMutableSet * keys = [NSMutableSet new];
+		
 		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			NSRange testRange = [obj range];
+			NSRange testRange = [key range];
 			if ( NSEqualRanges(testRange, NSIntersectionRange(range, testRange)) == NO )
 			{
 				if ( testRange.location > NSMaxRange(range) )
@@ -63,90 +65,78 @@
 				return;		// not wholly contained in the input range
 			}
 			
-			[_lookup removeObjectForKey: obj];
+			[keys addObject: key];
+		}];
+		
+		for ( id key in keys )
+		{
+			[_lookup removeObjectForKey: key];
+		}
+	});
+}
+
+- (void) _scheduleNotificationsForIndex: (NSUInteger) index
+{
+	dispatch_async(_syncQ, ^{
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
+			if ( NSLocationInRange(index, [key range]) )
+			{
+				AQRangeNotification block = (AQRangeNotification)obj;
+				if ( block != nil )
+				{
+					dispatch_async(dispatch_get_global_queue(0, 0), ^{ block([key range]); });
+				}
+			}
+			else if ( index < [key range].location )
+			{
+				*stop = YES;
+			}
 		}];
 	});
 }
 
-- (void) _scheduleNotificationForRange: (AQRange *) range
+- (void) _scheduleNotificationsForRange: (NSRange) range
 {
-	dispatch_async(dispatch_get_global_queue(0, 0), ^{
-		AQRangeNotification block = (AQRangeNotification)[_lookup objectForKey: range];
-		if ( block != nil )
-			block(range.range);
+	dispatch_async(_syncQ, ^{
+		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
+			if ( NSIntersectionRange(range, [key range]).length != 0 )
+			{
+				AQRangeNotification block = (AQRangeNotification)obj;
+				if ( block != nil )
+				{
+					dispatch_async(dispatch_get_global_queue(0, 0), ^{ block([key range]); });
+				}
+			}
+			else if ( NSMaxRange(range) < [key range].location )
+			{
+				*stop = YES;
+			}
+		}];
 	});
 }
 
 - (void) flipBitAtIndex: (NSUInteger) index
 {
 	[super flipBitAtIndex: index];
-	
-	dispatch_async(_syncQ, ^{
-		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			if ( NSLocationInRange(index, [obj range]) )
-			{
-				[self _scheduleNotificationForRange: obj];
-			}
-			else if ( index < [obj range].location )
-			{
-				*stop = YES;
-			}
-		}];
-	});
+	[self _scheduleNotificationsForIndex: index];
 }
 
 - (void) flipBitsInRange: (NSRange) range
 {
 	[super flipBitsInRange: range];
-	
-	dispatch_async(_syncQ, ^{
-		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			if ( NSIntersectionRange(range, [obj range]).location != NSNotFound )
-			{
-				[self _scheduleNotificationForRange: obj];
-			}
-			else if ( NSMaxRange(range) < [obj range].location )
-			{
-				*stop = YES;
-			}
-		}];
-	});
+	[self _scheduleNotificationsForRange: range];
 }
 
 - (void) setBit: (AQBit) bit atIndex: (NSUInteger) index
 {
 	[super setBit: bit atIndex: index];
-	
-	dispatch_async(_syncQ, ^{
-		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			if ( NSLocationInRange(index, [obj range]) )
-			{
-				[self _scheduleNotificationForRange: obj];
-			}
-			else if ( index < [obj range].location )
-			{
-				*stop = YES;
-			}
-		}];
-	});
+	[self _scheduleNotificationsForIndex: index];
 }
 
 - (void) setBitsInRange: (NSRange) range usingBit: (AQBit) bit
 {
 	[super setBitsInRange: range usingBit: bit];
-	
-	dispatch_async(_syncQ, ^{
-		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			if ( NSIntersectionRange(range, [obj range]).location != NSNotFound )
-			{
-				[self _scheduleNotificationForRange: obj];
-			}
-			else if ( NSMaxRange(range) < [obj range].location )
-			{
-				*stop = YES;
-			}
-		}];
-	});
+	[self _scheduleNotificationsForRange: range];
 }
 
 - (void) setAllBits: (AQBit) bit
@@ -156,7 +146,8 @@
 	// always scheduling for all bits
 	dispatch_async(_syncQ, ^{
 		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			[self _scheduleNotificationForRange: obj];
+			AQRangeNotification block = (AQRangeNotification)obj;
+			dispatch_async(dispatch_get_global_queue(0, 0), ^{ block([key range]); });
 		}];
 	});
 }

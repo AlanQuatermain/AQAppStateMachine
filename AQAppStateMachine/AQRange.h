@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AQRange : NSObject
+@interface AQRange : NSObject <NSCopying>
 {
 	NSRange		_range;
 }
