@@ -9,12 +9,13 @@
 #import "AQStateMatchingDescriptor.h"
 #import "AQRange.h"
 #import "AQBitfield.h"
+#import "AQRangeMethods.h"
 
 @implementation AQStateMatchingDescriptor
 
 @synthesize uniqueID=_uuid;
 
-- (id) initWithRanges: (NSIndexSet *) ranges matchingMasks: (NSArray *) masks
+- (id) initWithRanges: (NSArray *) ranges matchingMasks: (NSArray *) masks
 {
 	NSParameterAssert([masks count] == 0 || [ranges count] == [masks count]);
 	
@@ -28,12 +29,12 @@
 	CFRelease(uuid);
 	
 	NSMutableIndexSet * indices = [NSMutableIndexSet new];
-	__block NSUInteger idx = 0;
-	[ranges enumerateRangesUsingBlock: ^(NSRange range, BOOL *stop) {
+	[ranges enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
 		AQBitfield * mask = nil;
+		NSRange range = [obj range];
 		if ( [masks count] != 0 )
 		{
-			mask = [masks objectAtIndex: idx++];
+			mask = [masks objectAtIndex: idx];
 			if ( (id)mask == [NSNull null] )
 				mask = nil;
 		}
@@ -115,18 +116,27 @@
 	return ( NSOrderedSame );
 }
 
+- (NSString *) description
+{
+	return ( [NSString stringWithFormat: @"%@{uniqueID=%@, matchingIndices=%@}", [super description], _uuid, _matchingIndices] );
+}
+
 @end
 
 @implementation AQStateMatchingDescriptor (CreationConvenience)
 
 - (id) initWithRange: (NSRange) range matchingMask: (AQBitfield *) mask
 {
-	return ( [self initWithRanges: [NSIndexSet indexSetWithIndexesInRange: range]
-					matchingMasks: [NSArray arrayWithObject: mask]] );
+	return ( [self initWithRanges: [NSArray arrayWithObject: [[AQRange alloc] initWithRange: range]]
+					matchingMasks: (mask ? [NSArray arrayWithObject: mask] : nil)] );
 }
 
 - (id) initWith32BitMask: (NSUInteger) mask forRange: (NSRange) range
 {
+	if ( mask == 0 )
+		return ( [self initWithRanges: [NSArray arrayWithObject: [[AQRange alloc] initWithRange: range]]
+						matchingMasks: nil] );
+	
 	AQBitfield * field = [[AQBitfield alloc] init];
 	for ( NSUInteger i = 0; mask != 0; mask >>= 1, i++ )
 	{
@@ -134,12 +144,16 @@
 			[field setBit: 1 atIndex: i];
 	}
 	
-	return ( [self initWithRanges: [NSIndexSet indexSetWithIndexesInRange: range]
+	return ( [self initWithRanges: [NSArray arrayWithObject: [[AQRange alloc] initWithRange: range]]
 					matchingMasks: [NSArray arrayWithObject: field]] );
 }
 
 - (id) initWith64BitMask: (UInt64) mask forRange: (NSRange) range
 {
+	if ( mask == 0 )
+		return ( [self initWithRanges: [NSArray arrayWithObject: [[AQRange alloc] initWithRange: range]]
+						matchingMasks: nil] );
+	
 	AQBitfield * field = [[AQBitfield alloc] init];
 	for ( UInt64 i = 0; mask != 0; mask >>= 1, i++ )
 	{
@@ -147,7 +161,7 @@
 			[field setBit: 1 atIndex: i];
 	}
 	
-	return ( [self initWithRanges: [NSIndexSet indexSetWithIndexesInRange: range]
+	return ( [self initWithRanges: [NSArray arrayWithObject: [[AQRange alloc] initWithRange: range]]
 					matchingMasks: [NSArray arrayWithObject: field]] );
 }
 
