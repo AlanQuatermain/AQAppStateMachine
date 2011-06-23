@@ -78,6 +78,18 @@
 	STAssertTrue([bitfield countOfBit: 0 inRange: rng] == 0, @"Bitfield with all bits set at 0..4 should have no zero bits in that range, instead has %lu", (unsigned long)[bitfield countOfBit: 0 inRange: rng]);
 }
 
+- (void) testBitCount
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	STAssertTrue(bitfield.count == 0, @"Expected newly-initialized bitfield to have a count of zero, but got %lu", (unsigned long)bitfield.count);
+	
+	[bitfield setBit: 1 atIndex: 10];
+	STAssertTrue(bitfield.count == 11, @"Expected bitfield with only bit 10 set to have a count of eleven, but got %lu", (unsigned long)bitfield.count);
+	
+	[bitfield setBit: 0 atIndex: 10];
+	STAssertTrue(bitfield.count == 0, @"Expected cleared bitfield to have a count of zero, but got %lu", (unsigned long)bitfield.count);
+}
+
 - (void) testRemoveBits
 {
 	AQBitfield * bitfield = [AQBitfield new];

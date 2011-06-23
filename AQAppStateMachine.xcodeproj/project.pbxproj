@@ -94,6 +94,7 @@
 		38AC30BD13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
 		38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
 		38C168C713B376500040BF99 /* AQRangeMethodsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C168C613B376500040BF99 /* AQRangeMethodsTest.m */; };
+		38C168CB13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C168CA13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m */; };
 		38F0AA1513B2638B006E014F /* AQStateMatchingDescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */; };
 		38F0AA1913B268F1006E014F /* AQRangeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 38F0AA1713B268F1006E014F /* AQRangeMethods.h */; };
 		38F0AA1A13B268F1006E014F /* AQRangeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F0AA1813B268F1006E014F /* AQRangeMethods.m */; };
@@ -192,6 +193,8 @@
 		38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfieldPredicates.m; sourceTree = "<group>"; };
 		38C168C513B376500040BF99 /* AQRangeMethodsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRangeMethodsTest.h; sourceTree = "<group>"; };
 		38C168C613B376500040BF99 /* AQRangeMethodsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQRangeMethodsTest.m; sourceTree = "<group>"; };
+		38C168C913B3A4E60040BF99 /* AQAppStateMachineCoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAppStateMachineCoreTests.h; sourceTree = "<group>"; };
+		38C168CA13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAppStateMachineCoreTests.m; sourceTree = "<group>"; };
 		38F0AA1313B2638B006E014F /* AQStateMatchingDescriptorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMatchingDescriptorTests.h; sourceTree = "<group>"; };
 		38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMatchingDescriptorTests.m; sourceTree = "<group>"; };
 		38F0AA1713B268F1006E014F /* AQRangeMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRangeMethods.h; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 				38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */,
 				38C168C513B376500040BF99 /* AQRangeMethodsTest.h */,
 				38C168C613B376500040BF99 /* AQRangeMethodsTest.m */,
+				38C168C913B3A4E60040BF99 /* AQAppStateMachineCoreTests.h */,
+				38C168CA13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m */,
 				386693EF13AF8A1500268560 /* SortedDictionary */,
 				38431B6D13A7C26900178A7E /* Supporting Files */,
 			);
@@ -607,6 +612,7 @@
 				38F0AA1513B2638B006E014F /* AQStateMatchingDescriptorTests.m in Sources */,
 				38F0AA1B13B268F1006E014F /* AQRangeMethods.m in Sources */,
 				38C168C713B376500040BF99 /* AQRangeMethodsTest.m in Sources */,
+				38C168CB13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

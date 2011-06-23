@@ -40,13 +40,6 @@
  This is intended to be a singleton class.
  */
 @interface AQAppStateMachine : NSObject
-{
-	AQNotifyingBitfield *	_stateBits;
-	NSMutableDictionary *	_namedRanges;
-	NSMutableArray *		_matchDescriptors;
-	NSMutableDictionary *	_notifierLookup;
-	dispatch_queue_t		_syncQ;
-}
 
 /*!
  Obtain/create the singleton state machine instance.
@@ -58,6 +51,8 @@
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range usingBlock: (void (^)(void)) block;
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWithInteger: (NSUInteger) mask
 								 usingBlock: (void (^)(void)) block;
+- (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWith64BitInteger: (UInt64) mask
+								 usingBlock: (void (^)(void))block;
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWithBits: (AQBitfield *) mask
 								 usingBlock: (void (^)(void)) block;
 
@@ -92,12 +87,37 @@
 							  matchingMaskBitfield: (AQBitfield *) mask
 										usingBlock: (void (^)(void)) block;
 
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										  toInteger: (NSUInteger) value
+										 usingBlock: (void (^)(void)) block;
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										   toUInt64: (NSUInteger) value
+										 usingBlock: (void (^)(void)) block;
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+											 toBits: (AQBitfield *) bits
+										 usingBlock: (void (^)(void)) block;
+
+- (BOOL) bitIsSetAtIndex: (NSUInteger) index forName: (NSString *) name;
+- (BOOL) bitsSetAtIndexes: (NSIndexSet *) indexes forName: (NSString *) name;
+- (BOOL) bitValuesForName: (NSString *) name matchInteger: (NSUInteger) value;
+- (BOOL) bitValuesForName: (NSString *) name matchBits: (AQBitfield *) bits;
+
 @end
 
 @interface AQAppStateMachine (MultipleEnumerationNotifications)
 
-// TODO: Figure out a nice API to assign a block to bits in multiple named state enum ranges
-// Probably it'll involve a custom descriptor object
+// When monitoring items within multiple enums/ranges, we will need to supply lists of name/mask pairs.
+// Masks can be an AQBitfield or any form of NSNumber, or NSNull for no mask.
+// However, for this particular API, there *must* be a matching number of names and masks. Fill an NSArray
+//  with NSNulls if necessary.
+- (void) notifyChangesToStateMachineValuesWithNames: (NSArray *) names
+									  matchingMasks: (NSArray *) masks
+										 usingBlock: (void (^)(void)) block;
+
+- (void) notifyEqualityOfStateMachineValuesWithNames: (NSArray *) names
+									   matchingMasks: (NSArray *) masks
+											toValues: (NSArray *) values
+										  usingBlock: (void (^)(void)) block;
 
 @end
 

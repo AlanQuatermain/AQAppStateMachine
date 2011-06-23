@@ -97,7 +97,11 @@
 
 - (NSUInteger) count
 {
-	return ( [_storage lastIndex] + 1 );
+	NSUInteger last = [_storage lastIndex];
+	if ( last == NSNotFound )
+		return ( 0 );
+	
+	return ( last + 1 );
 }
 
 - (NSUInteger) countOfBit: (AQBit) bit inRange: (NSRange) range
@@ -272,7 +276,6 @@
 
 - (BOOL) bitsInRange: (NSRange) range equalToBitfield: (AQBitfield *) bitfield
 {
-	NSParameterAssert(range.length <= bitfield.count);
 	if ( range.length == 0 )
 		return ( NO );
 	
@@ -306,8 +309,6 @@
 
 - (BOOL) bitsInRange: (NSRange) range maskedWith: (AQBitfield *) mask equalToBitfield: (AQBitfield *) bitfield
 {
-	NSParameterAssert(range.length <= bitfield.count);
-	NSParameterAssert(range.length <= mask.count);
 	if ( range.length == 0 )
 		return ( NO );
 	
