@@ -93,6 +93,7 @@
 		38AC30BC13AA3D5C00AB071C /* AQBitfieldPredicates.h in Headers */ = {isa = PBXBuildFile; fileRef = 38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */; };
 		38AC30BD13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
 		38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
+		38C168C713B376500040BF99 /* AQRangeMethodsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C168C613B376500040BF99 /* AQRangeMethodsTest.m */; };
 		38F0AA1513B2638B006E014F /* AQStateMatchingDescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */; };
 		38F0AA1913B268F1006E014F /* AQRangeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 38F0AA1713B268F1006E014F /* AQRangeMethods.h */; };
 		38F0AA1A13B268F1006E014F /* AQRangeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F0AA1813B268F1006E014F /* AQRangeMethods.m */; };
@@ -189,6 +190,8 @@
 		3866945D13AF8AF300268560 /* AQAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAdditions.m; sourceTree = "<group>"; };
 		38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldPredicates.h; sourceTree = "<group>"; };
 		38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfieldPredicates.m; sourceTree = "<group>"; };
+		38C168C513B376500040BF99 /* AQRangeMethodsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRangeMethodsTest.h; sourceTree = "<group>"; };
+		38C168C613B376500040BF99 /* AQRangeMethodsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQRangeMethodsTest.m; sourceTree = "<group>"; };
 		38F0AA1313B2638B006E014F /* AQStateMatchingDescriptorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMatchingDescriptorTests.h; sourceTree = "<group>"; };
 		38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMatchingDescriptorTests.m; sourceTree = "<group>"; };
 		38F0AA1713B268F1006E014F /* AQRangeMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRangeMethods.h; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				3821C4A613B240A900175CEE /* AQNotifyingBitfieldTests.m */,
 				38F0AA1313B2638B006E014F /* AQStateMatchingDescriptorTests.h */,
 				38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */,
+				38C168C513B376500040BF99 /* AQRangeMethodsTest.h */,
+				38C168C613B376500040BF99 /* AQRangeMethodsTest.m */,
 				386693EF13AF8A1500268560 /* SortedDictionary */,
 				38431B6D13A7C26900178A7E /* Supporting Files */,
 			);
@@ -601,6 +606,7 @@
 				3821C4A713B240A900175CEE /* AQNotifyingBitfieldTests.m in Sources */,
 				38F0AA1513B2638B006E014F /* AQStateMatchingDescriptorTests.m in Sources */,
 				38F0AA1B13B268F1006E014F /* AQRangeMethods.m in Sources */,
+				38C168C713B376500040BF99 /* AQRangeMethodsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
