@@ -105,7 +105,7 @@ static void DuplicateMethod(Class cls, SEL from, SEL to)
 			range.length = (currentIndex - rangeStartIndex) + 1;
 		}
 		
-		if ( (opts & NSEnumerationConcurrent) == NSEnumerationConcurrent )
+		if ( group != NULL )
 		{
 			dispatch_group_async(group, dispatch_get_global_queue(0, 0), ^{ block(range, stop); });
 		}
@@ -117,6 +117,9 @@ static void DuplicateMethod(Class cls, SEL from, SEL to)
 		currentIndex = idx;
 		rangeStartIndex = idx;
 	}];
+	
+	if ( group != NULL )
+		dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 
 - (NSUInteger) numberOfRanges
