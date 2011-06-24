@@ -33,7 +33,5 @@
 	<false/>
 	<key>--project-version</key>
 	<string>0.1</string>
-	<key>--publish-docset</key>
-	<false/>
 </dict>
 </plist>
