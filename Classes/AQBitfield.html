@@ -1,0 +1,1536 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AQBitfield Class Reference</title>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" />
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 702)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">AQBitfield Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/count">&nbsp;&nbsp;&nbsp;&nbsp;count</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/bitAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- bitAtIndex:</option>
+	
+	<option value="//api/name/bitfieldFromRange:">&nbsp;&nbsp;&nbsp;&nbsp;- bitfieldFromRange:</option>
+	
+	<option value="//api/name/bitsInRange:equalToBitfield:">&nbsp;&nbsp;&nbsp;&nbsp;- bitsInRange:equalToBitfield:</option>
+	
+	<option value="//api/name/bitsInRange:maskedWith:equalToBitfield:">&nbsp;&nbsp;&nbsp;&nbsp;- bitsInRange:maskedWith:equalToBitfield:</option>
+	
+	<option value="//api/name/bitsInRange:maskedWith:matchBits:">&nbsp;&nbsp;&nbsp;&nbsp;- bitsInRange:maskedWith:matchBits:</option>
+	
+	<option value="//api/name/bitsInRange:matchBits:">&nbsp;&nbsp;&nbsp;&nbsp;- bitsInRange:matchBits:</option>
+	
+	<option value="//api/name/containsBit:inRange:">&nbsp;&nbsp;&nbsp;&nbsp;- containsBit:inRange:</option>
+	
+	<option value="//api/name/countOfBit:inRange:">&nbsp;&nbsp;&nbsp;&nbsp;- countOfBit:inRange:</option>
+	
+	<option value="//api/name/firstIndexOfBit:">&nbsp;&nbsp;&nbsp;&nbsp;- firstIndexOfBit:</option>
+	
+	<option value="//api/name/flipBitAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- flipBitAtIndex:</option>
+	
+	<option value="//api/name/flipBitsInRange:">&nbsp;&nbsp;&nbsp;&nbsp;- flipBitsInRange:</option>
+	
+	<option value="//api/name/hash">&nbsp;&nbsp;&nbsp;&nbsp;- hash</option>
+	
+	<option value="//api/name/isEqual:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqual:</option>
+	
+	<option value="//api/name/lastIndexOfBit:">&nbsp;&nbsp;&nbsp;&nbsp;- lastIndexOfBit:</option>
+	
+	<option value="//api/name/maskWithBits:">&nbsp;&nbsp;&nbsp;&nbsp;- maskWithBits:</option>
+	
+	<option value="//api/name/setAllBits:">&nbsp;&nbsp;&nbsp;&nbsp;- setAllBits:</option>
+	
+	<option value="//api/name/setBit:atIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- setBit:atIndex:</option>
+	
+	<option value="//api/name/setBitsInRange:usingBit:">&nbsp;&nbsp;&nbsp;&nbsp;- setBitsInRange:usingBit:</option>
+	
+	<option value="//api/name/shiftBitsLeftBy:">&nbsp;&nbsp;&nbsp;&nbsp;- shiftBitsLeftBy:</option>
+	
+	<option value="//api/name/shiftBitsRightBy:">&nbsp;&nbsp;&nbsp;&nbsp;- shiftBitsRightBy:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Comparisons">Comparisons</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Counting">Counting</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Bit Accessors">Bit Accessors</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Significant Bits">Significant Bits</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Toggling Bits">Toggling Bits</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Setting Bits">Setting Bits</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Matching bit values">Matching bit values</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/count">count</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitAtIndex:">bitAtIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitfieldFromRange:">bitfieldFromRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitsInRange:equalToBitfield:">bitsInRange:equalToBitfield:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitsInRange:maskedWith:equalToBitfield:">bitsInRange:maskedWith:equalToBitfield:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitsInRange:maskedWith:matchBits:">bitsInRange:maskedWith:matchBits:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitsInRange:matchBits:">bitsInRange:matchBits:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/containsBit:inRange:">containsBit:inRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/countOfBit:inRange:">countOfBit:inRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/firstIndexOfBit:">firstIndexOfBit:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flipBitAtIndex:">flipBitAtIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flipBitsInRange:">flipBitsInRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hash">hash</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqual:">isEqual:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lastIndexOfBit:">lastIndexOfBit:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maskWithBits:">maskWithBits:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setAllBits:">setAllBits:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBit:atIndex:">setBit:atIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBitsInRange:usingBit:">setBitsInRange:usingBit:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shiftBitsLeftBy:">shiftBitsLeftBy:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shiftBitsRightBy:">shiftBitsRightBy:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="AQBitfield Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">AQBitfield Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding<br />NSCopying<br />NSMutableCopying</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">AQBitfield.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A class representing a bitfield of indeterminate size.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Comparisons" name="task_Comparisons"></a>
+						<h3 class="subsubtitle task-title">Comparisons</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hash">&ndash;&nbsp;hash</a></code>
+		<span class="tooltip"><p>Returns a <a href="#//api/name/hash">hash</a> code for the object&rsquo;s current state.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEqual:">&ndash;&nbsp;isEqual:</a></code>
+		<span class="tooltip"><p>Check for equality with another object.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Counting" name="task_Counting"></a>
+						<h3 class="subsubtitle task-title">Counting</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/count">&nbsp;&nbsp;count</a></code>
+		<span class="tooltip"><p>The number of significant bits within the bitfield.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/countOfBit:inRange:">&ndash;&nbsp;countOfBit:inRange:</a></code>
+		<span class="tooltip"><p>Count the number of bits with a particular value within a range.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/containsBit:inRange:">&ndash;&nbsp;containsBit:inRange:</a></code>
+		<span class="tooltip"><p>Determine whether a given bit value exists within a range.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Bit Accessors" name="task_Bit Accessors"></a>
+						<h3 class="subsubtitle task-title">Bit Accessors</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitAtIndex:">&ndash;&nbsp;bitAtIndex:</a></code>
+		<span class="tooltip"><p>Inspect the value of a specified bit.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitfieldFromRange:">&ndash;&nbsp;bitfieldFromRange:</a></code>
+		<span class="tooltip"><p>Obtain a (zero-based) bitfield containing a copy of all bits from a given range.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Significant Bits" name="task_Significant Bits"></a>
+						<h3 class="subsubtitle task-title">Significant Bits</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/firstIndexOfBit:">&ndash;&nbsp;firstIndexOfBit:</a></code>
+		<span class="tooltip"><p>Find the index of the least-significant bit containing a specified value.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lastIndexOfBit:">&ndash;&nbsp;lastIndexOfBit:</a></code>
+		<span class="tooltip"><p>Find the index of the most-significant bit containing a specified value.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Toggling Bits" name="task_Toggling Bits"></a>
+						<h3 class="subsubtitle task-title">Toggling Bits</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/flipBitAtIndex:">&ndash;&nbsp;flipBitAtIndex:</a></code>
+		<span class="tooltip"><p>Toggle the value of a particular bit.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/flipBitsInRange:">&ndash;&nbsp;flipBitsInRange:</a></code>
+		<span class="tooltip"><p>Toggle all bits in a given range.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Setting Bits" name="task_Setting Bits"></a>
+						<h3 class="subsubtitle task-title">Setting Bits</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setBit:atIndex:">&ndash;&nbsp;setBit:atIndex:</a></code>
+		<span class="tooltip"><p>Set the value of a specific bit.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setBitsInRange:usingBit:">&ndash;&nbsp;setBitsInRange:usingBit:</a></code>
+		<span class="tooltip"><p>Set the value of all bits in a range.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setAllBits:">&ndash;&nbsp;setAllBits:</a></code>
+		<span class="tooltip"><p>Fills the entire bitfield (from <code>0</code> to <code>NSNotFound-1</code>) with a given value.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Matching bit values" name="task_Matching bit values"></a>
+						<h3 class="subsubtitle task-title">Matching bit values</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitsInRange:matchBits:">&ndash;&nbsp;bitsInRange:matchBits:</a></code>
+		<span class="tooltip"><p>Look for a match within the bitfield to an integer-sized value.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitsInRange:equalToBitfield:">&ndash;&nbsp;bitsInRange:equalToBitfield:</a></code>
+		<span class="tooltip"><p>Look for a match within a sub-range of the bitfield.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitsInRange:maskedWith:matchBits:">&ndash;&nbsp;bitsInRange:maskedWith:matchBits:</a></code>
+		<span class="tooltip"><p>Look for a match within the bitfield to an integer-sized value according to a mask.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitsInRange:maskedWith:equalToBitfield:">&ndash;&nbsp;bitsInRange:maskedWith:equalToBitfield:</a></code>
+		<span class="tooltip"><p>Look for a match within a sub-range of the bitfield according to a mask.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shiftBitsLeftBy:">&ndash;&nbsp;shiftBitsLeftBy:</a></code>
+		<span class="tooltip"><p>Shift all bits in the field to the left.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shiftBitsRightBy:">&ndash;&nbsp;shiftBitsRightBy:</a></code>
+		<span class="tooltip"><p>Shift all bits in the field to the right.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/maskWithBits:">&ndash;&nbsp;maskWithBits:</a></code>
+		<span class="tooltip"><p>Mask a bitfield using a bitwise AND operation.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/count" title="count"></a>
+	<h3 class="subsubtitle method-title">count</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The number of significant bits within the bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSUInteger count</code></div>
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><strong>NB:</strong> This returns the number of bits in the range which covers all <code>1</code> bits in the bitfield.
+i.e. it will return <code>((index of highest 1-bit) + 1)</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/bitAtIndex:" title="bitAtIndex:"></a>
+	<h3 class="subsubtitle method-title">bitAtIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Inspect the value of a specified bit.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (AQBit)bitAtIndex:(NSUInteger)<em>index</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>index</em></dt>
+			<dd><p>The index of the bit to check.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of the specified bit.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitfieldFromRange:" title="bitfieldFromRange:"></a>
+	<h3 class="subsubtitle method-title">bitfieldFromRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Obtain a (zero-based) bitfield containing a copy of all bits from a given range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (AQBitfield *)bitfieldFromRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of the receiver from which to create the new bitfield.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new bitfield containing the bits from the specified range.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection arguments-section exceptions">
+		<h4 class="method-subtitle exception-title">Exceptions</h4>
+		
+		<dl class="argument-def exception-def">
+			<dt><em>NSRangeException</em></dt>
+			<dd><p>Thrown if the range is beyond that allowable (<code>0..NSNotFound</code>)</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitsInRange:equalToBitfield:" title="bitsInRange:equalToBitfield:"></a>
+	<h3 class="subsubtitle method-title">bitsInRange:equalToBitfield:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Look for a match within a sub-range of the bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)bitsInRange:(NSRange)<em>range</em> equalToBitfield:(AQBitfield *)<em>bitfield</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to compare.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bitfield</em></dt>
+			<dd><p>A zero-based bitfield corresponding to the bits within <em>range</em> to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if a match is found, <code>NO</code> otherwise.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitsInRange:maskedWith:equalToBitfield:" title="bitsInRange:maskedWith:equalToBitfield:"></a>
+	<h3 class="subsubtitle method-title">bitsInRange:maskedWith:equalToBitfield:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Look for a match within a sub-range of the bitfield according to a mask.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)bitsInRange:(NSRange)<em>range</em> maskedWith:(AQBitfield *)<em>mask</em> equalToBitfield:(AQBitfield *)<em>bitfield</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to compare.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mask</em></dt>
+			<dd><p>A mask to determine which bits in the bitfield&rsquo;s sub-range to actually compare.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bitfield</em></dt>
+			<dd><p>A zero-based bitfield corresponding to the bits within \a range to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if a match is found, <code>NO</code> otherwise.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitsInRange:maskedWith:matchBits:" title="bitsInRange:maskedWith:matchBits:"></a>
+	<h3 class="subsubtitle method-title">bitsInRange:maskedWith:matchBits:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Look for a match within the bitfield to an integer-sized value according to a mask.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)bitsInRange:(NSRange)<em>range</em> maskedWith:(NSUInteger)<em>mask</em> matchBits:(NSUInteger)<em>bits</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to compare. Must be <code>&lt;= sizeof(NSUInteger)</code>. Compares least-significant bits of <em>bits</em>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mask</em></dt>
+			<dd><p>A mask to determine which bits in the bitfield&rsquo;s sub-range to actually compare.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bits</em></dt>
+			<dd><p>The value to compare against.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if a match is found, <code>NO</code> otherwise.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitsInRange:matchBits:" title="bitsInRange:matchBits:"></a>
+	<h3 class="subsubtitle method-title">bitsInRange:matchBits:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Look for a match within the bitfield to an integer-sized value.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)bitsInRange:(NSRange)<em>range</em> matchBits:(NSUInteger)<em>bits</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to compare. Must be <code>&lt;= sizeof(NSUInteger)</code>. Compares least-significant bits of <em>bits</em>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bits</em></dt>
+			<dd><p>The value to compare against.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if a match is found, <code>NO</code> otherwise.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/containsBit:inRange:" title="containsBit:inRange:"></a>
+	<h3 class="subsubtitle method-title">containsBit:inRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determine whether a given bit value exists within a range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)containsBit:(AQBit)<em>bit</em> inRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The bit value for which to search.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to check.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the given bit value exists within the range, <code>NO</code> otherwise.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/countOfBit:inRange:" title="countOfBit:inRange:"></a>
+	<h3 class="subsubtitle method-title">countOfBit:inRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Count the number of bits with a particular value within a range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)countOfBit:(AQBit)<em>bit</em> inRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The bit value to <a href="#//api/name/count">count</a>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to check.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The number of bits set to the value of <em>bit</em> within <em>range</em>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/firstIndexOfBit:" title="firstIndexOfBit:"></a>
+	<h3 class="subsubtitle method-title">firstIndexOfBit:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Find the index of the least-significant bit containing a specified value.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)firstIndexOfBit:(AQBit)<em>bit</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The bit value for which to search.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The index of the least-significant bit with the given value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/flipBitAtIndex:" title="flipBitAtIndex:"></a>
+	<h3 class="subsubtitle method-title">flipBitAtIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Toggle the value of a particular bit.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)flipBitAtIndex:(NSUInteger)<em>index</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>index</em></dt>
+			<dd><p>The index of the bit whose value to toggle.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/flipBitsInRange:" title="flipBitsInRange:"></a>
+	<h3 class="subsubtitle method-title">flipBitsInRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Toggle all bits in a given range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)flipBitsInRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to toggle.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hash" title="hash"></a>
+	<h3 class="subsubtitle method-title">hash</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a <a href="#//api/name/hash">hash</a> code for the object&rsquo;s current state.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)hash</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEqual:" title="isEqual:"></a>
+	<h3 class="subsubtitle method-title">isEqual:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check for equality with another object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isEqual:(id)<em>object</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the objects are equal, <code>NO</code> otherwise.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lastIndexOfBit:" title="lastIndexOfBit:"></a>
+	<h3 class="subsubtitle method-title">lastIndexOfBit:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Find the index of the most-significant bit containing a specified value.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)lastIndexOfBit:(AQBit)<em>bit</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The bit value for which to search.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The index of the most-significant bit with the given value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/maskWithBits:" title="maskWithBits:"></a>
+	<h3 class="subsubtitle method-title">maskWithBits:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Mask a bitfield using a bitwise AND operation.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)maskWithBits:(AQBitfield *)<em>mask</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mask</em></dt>
+			<dd><p>The mask to apply to the bitfield&rsquo;s current state.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setAllBits:" title="setAllBits:"></a>
+	<h3 class="subsubtitle method-title">setAllBits:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Fills the entire bitfield (from <code>0</code> to <code>NSNotFound-1</code>) with a given value.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setAllBits:(AQBit)<em>bit</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The value to use.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setBit:atIndex:" title="setBit:atIndex:"></a>
+	<h3 class="subsubtitle method-title">setBit:atIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the value of a specific bit.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setBit:(AQBit)<em>bit</em> atIndex:(NSUInteger)<em>index</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The value to set.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>index</em></dt>
+			<dd><p>The index of the bit to set.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setBitsInRange:usingBit:" title="setBitsInRange:usingBit:"></a>
+	<h3 class="subsubtitle method-title">setBitsInRange:usingBit:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the value of all bits in a range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setBitsInRange:(NSRange)<em>range</em> usingBit:(AQBit)<em>bit</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to modify.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bit</em></dt>
+			<dd><p>The value to set.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shiftBitsLeftBy:" title="shiftBitsLeftBy:"></a>
+	<h3 class="subsubtitle method-title">shiftBitsLeftBy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shift all bits in the field to the left.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)shiftBitsLeftBy:(NSUInteger)<em>bits</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bits</em></dt>
+			<dd><p>The number of places to shift.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shiftBitsRightBy:" title="shiftBitsRightBy:"></a>
+	<h3 class="subsubtitle method-title">shiftBitsRightBy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shift all bits in the field to the right.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)shiftBitsRightBy:(NSUInteger)<em>bits</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bits</em></dt>
+			<dd><p>The number of places to shift.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2011 Jim Dovey. All rights reserved. (Last updated: 2011-06-24)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 702)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

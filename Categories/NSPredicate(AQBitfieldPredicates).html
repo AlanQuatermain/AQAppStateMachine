@@ -1,0 +1,602 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>NSPredicate(AQBitfieldPredicates) Category Reference</title>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" />
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 702)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">NSPredicate(AQBitfieldPredicates) Category Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/predicateForMatchingAllBits:inRange:">&nbsp;&nbsp;&nbsp;&nbsp;+ predicateForMatchingAllBits:inRange:</option>
+	
+	<option value="//api/name/predicateForMatchingBitValue:atIndex:">&nbsp;&nbsp;&nbsp;&nbsp;+ predicateForMatchingBitValue:atIndex:</option>
+	
+	<option value="//api/name/predicateForMatchingBitfield:againstRange:">&nbsp;&nbsp;&nbsp;&nbsp;+ predicateForMatchingBitfield:againstRange:</option>
+	
+	<option value="//api/name/predicateForMatchingBitfield:maskedWith:againstRange:">&nbsp;&nbsp;&nbsp;&nbsp;+ predicateForMatchingBitfield:maskedWith:againstRange:</option>
+	
+	<option value="//api/name/predicateForMatchingBits:maskedWith:inRange:">&nbsp;&nbsp;&nbsp;&nbsp;+ predicateForMatchingBits:maskedWith:inRange:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/predicateForMatchingAllBits:inRange:">predicateForMatchingAllBits:inRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/predicateForMatchingBitValue:atIndex:">predicateForMatchingBitValue:atIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/predicateForMatchingBitfield:againstRange:">predicateForMatchingBitfield:againstRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/predicateForMatchingBitfield:maskedWith:againstRange:">predicateForMatchingBitfield:maskedWith:againstRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/predicateForMatchingBits:maskedWith:inRange:">predicateForMatchingBits:maskedWith:inRange:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="NSPredicate(AQBitfieldPredicates) Category Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">NSPredicate(AQBitfieldPredicates) Category Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">AQBitfieldPredicates.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Custom predicate constructors for dealing with <a href="../Classes/AQBitfield.html">AQBitfield</a> instances.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/predicateForMatchingBitValue:atIndex:">+&nbsp;predicateForMatchingBitValue:atIndex:</a></code>
+		<span class="tooltip"><p>Match the value of a single bit in a bitfield.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/predicateForMatchingAllBits:inRange:">+&nbsp;predicateForMatchingAllBits:inRange:</a></code>
+		<span class="tooltip"><p>Match the value of all bits in a range of a bitfield.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/predicateForMatchingBitfield:againstRange:">+&nbsp;predicateForMatchingBitfield:againstRange:</a></code>
+		<span class="tooltip"><p>Match the bits in one bitfield against those in a range within another bitfield.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/predicateForMatchingBits:maskedWith:inRange:">+&nbsp;predicateForMatchingBits:maskedWith:inRange:</a></code>
+		<span class="tooltip"><p>Match the value of certain bits in a range of a bitfield.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/predicateForMatchingBitfield:maskedWith:againstRange:">+&nbsp;predicateForMatchingBitfield:maskedWith:againstRange:</a></code>
+		<span class="tooltip"><p>Match the bits in one bitfield against those in a range within another bitfield.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/predicateForMatchingAllBits:inRange:" title="predicateForMatchingAllBits:inRange:"></a>
+	<h3 class="subsubtitle method-title">predicateForMatchingAllBits:inRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Match the value of all bits in a range of a bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSPredicate *)predicateForMatchingAllBits:(NSUInteger)<em>value</em> inRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The bit values expected. For ranges smaller than <code>sizeof(NSUInteger)</code>,
+the least-significant bytes of the value are used for the comparison. All values are
+converted to <strong>big-endian</strong> format for byte-by-byte comparisons.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits in the bitfield against which to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new <code>NSPredicate</code>.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a predicate which evaluates to YES when all bits in a value
+match all bits in a specified range of a bitfield. The specified range must
+be less than or equal to <code>sizeof(NSUInteger)</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfieldPredicates.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/predicateForMatchingBitValue:atIndex:" title="predicateForMatchingBitValue:atIndex:"></a>
+	<h3 class="subsubtitle method-title">predicateForMatchingBitValue:atIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Match the value of a single bit in a bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSPredicate *)predicateForMatchingBitValue:(AQBit)<em>value</em> atIndex:(NSUInteger)<em>index</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The bit value expected. Can be <code>1</code> or <code>0</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>index</em></dt>
+			<dd><p>The index of the bit to compare in the bitfield.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new <code>NSPredicate</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfieldPredicates.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/predicateForMatchingBitfield:againstRange:" title="predicateForMatchingBitfield:againstRange:"></a>
+	<h3 class="subsubtitle method-title">predicateForMatchingBitfield:againstRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Match the bits in one bitfield against those in a range within another bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSPredicate *)predicateForMatchingBitfield:(AQBitfield *)<em>match</em> againstRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>match</em></dt>
+			<dd><p>A bitfield defining the bits to match.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits in the bitfield against which to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new <code>NSPredicate</code>.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a predicate which matches the contents of one bitfield against the contents
+of a range of bits within an equal- or larger-sized bitfield.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfieldPredicates.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/predicateForMatchingBitfield:maskedWith:againstRange:" title="predicateForMatchingBitfield:maskedWith:againstRange:"></a>
+	<h3 class="subsubtitle method-title">predicateForMatchingBitfield:maskedWith:againstRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Match the bits in one bitfield against those in a range within another bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSPredicate *)predicateForMatchingBitfield:(AQBitfield *)<em>match</em> maskedWith:(AQBitfield *)<em>mask</em> againstRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>match</em></dt>
+			<dd><p>A bitfield defining the bits to match.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mask</em></dt>
+			<dd><p>A bitfield defining the mask to apply to the contents of rangein the</p>
+
+<pre><code>    comparison bitfield before performing the comparison.
+</code></pre></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits in the bitfield against which to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new <code>NSPredicate</code>.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a predicate which matches the contents of one bitfield against the contents
+of a range of bits within an equal- or larger-sized bitfield.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfieldPredicates.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/predicateForMatchingBits:maskedWith:inRange:" title="predicateForMatchingBits:maskedWith:inRange:"></a>
+	<h3 class="subsubtitle method-title">predicateForMatchingBits:maskedWith:inRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Match the value of certain bits in a range of a bitfield.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSPredicate *)predicateForMatchingBits:(NSUInteger)<em>value</em> maskedWith:(NSUInteger)<em>mask</em> inRange:(NSRange)<em>range</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The bit values expected. For ranges smaller than <code>sizeof(NSUInteger)</code>,
+the least-significant bytes of the value are used for the comparison. All values are
+converted to <strong>big-endian</strong> format for byte-by-byte comparisons.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mask</em></dt>
+			<dd><p>The mask to apply to the contents of <em>range</em> in the comparison bitfield</p>
+
+<pre><code>    before performing the comparison.
+</code></pre></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits in the bitfield against which to compare.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new <code>NSPredicate</code>.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a predicate which evaluates to <code>YES</code> when a set of masked bits in a value
+match the bits in a specified range of a bitfield, masked using the same mask. The
+specified range must be less than or equal to <code>sizeof(NSUInteger)</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfieldPredicates.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2011 Jim Dovey. All rights reserved. (Last updated: 2011-06-24)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 702)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
