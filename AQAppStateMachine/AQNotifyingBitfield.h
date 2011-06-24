@@ -36,13 +36,37 @@
 #import <Foundation/Foundation.h>
 #import "AQBitfield.h"
 
+/**
+ A Block type for processing range modification notifications.
+ @param range The range of bits modified.
+ */
 typedef void (^AQRangeNotification)(NSRange range);
 
+/**
+ A bitfield which supports calling notification callback blocks whenever bits within certain ranges
+ are modified.
+ */
 @interface AQNotifyingBitfield : AQBitfield
 
+/**
+ Install a notifier block for a given range of a bitfield.
+ @param range The range to watch.
+ @param block The block to run when any bits within _range_ are modified.
+ */
 - (void) notifyModificationOfBitsInRange: (NSRange) range usingBlock: (AQRangeNotification) block;
 
-- (void) removeNotifierForBitsInRange: (NSRange) range;		// exact range match
-- (void) removeAllNotifiersWithinRange: (NSRange) range;	// any wholly-contained ranges
+/**
+ Remove a notifier for a specific range.
+ @param range The range for which to search. Must exactly match a range passed to
+ notifyModificationOfBitsInRange:usingBlock:.
+ */
+- (void) removeNotifierForBitsInRange: (NSRange) range;
+
+/**
+ Remove any notifiers attached to ranges are within a given range.
+ @param range The range to search. Only notifiers whose ranges are _completely_ within this value will
+ be removed.
+ */
+- (void) removeAllNotifiersWithinRange: (NSRange) range;
 
 @end

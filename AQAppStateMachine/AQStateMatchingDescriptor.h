@@ -37,32 +37,72 @@
 
 @class AQBitfield;
 
+/**
+ A class describing a comparison match for an AQBitfield.
+ */
 @interface AQStateMatchingDescriptor : NSObject <NSCopying>
 {
 	NSString *		_uuid;
 	NSIndexSet *	_matchingIndices;
 }
 
-// designated initializer
-// to specify 'no mask' in an array, use NSNull
+/**
+ Initialize a new descriptor.
+ 
+ If masks are only required for some but not all entries in the _ranges_ array, the
+ corresponding entry in the _masks_ array should be an `NSNull` instance.
+ @param ranges An array of AQRange objects specifying ranges to match.
+ @param masks An array of AQBitfield objects providing masks to apply to the ranges. May be `nil`.
+ @return The newly-initialized instance.
+ */
 - (id) initWithRanges: (NSArray *) ranges matchingMasks: (NSArray *) masks;
 
+/// A unique identifier for this descriptor.
 @property (nonatomic, readonly) NSString * uniqueID;
+/// The full range covered by this descriptor.
 @property (nonatomic, readonly) NSRange fullRange;
 
+/**
+ Determine whether a descriptor checks any bits within a specific range.
+ @param range The range of bits to compare.
+ @result `YES` if the descriptor checks bits within _range_, `NO` otherwise.
+ */
 - (BOOL) matchesRange: (NSRange) range;
 
+/**
+ Compare two descriptors.
+ @param other The descriptor against which to compare the receiver.
+ @return An `NSComparisonResult` indicating the relative sort ordering of the two descriptors.
+ */
 - (NSComparisonResult) compare: (AQStateMatchingDescriptor *) other;
 
 @end
 
+/// Convenience functions for creating descriptors for single range/mask pairs.
 @interface AQStateMatchingDescriptor (CreationConvenience)
 
-// single range & mask
+/**
+ Initialize a descriptor using a single range and mask.
+ @param range The range to match.
+ @param mask A mask specifying which bits within the range to match. May be `nil`.
+ @return The newly-initialized instance.
+ */
 - (id) initWithRange: (NSRange) range matchingMask: (AQBitfield *) mask;
 
-// masks using integral types
+/**
+ Initialize a descriptor using a single range and a 32-bit mask.
+ @param mask A mask specifying which bits within the range to match. Do not pass zero.
+ @param range The range to match.
+ @return The newly-initialized instance.
+ */
 - (id) initWith32BitMask: (NSUInteger) mask forRange: (NSRange) range;
+
+/**
+ Initialize a descriptor using a single range and a 64-bit mask.
+ @param mask A mask specifying which bits within the range to match. Do not pass zero.
+ @param range The range to match.
+ @return The newly-initialized instance.
+ */
 - (id) initWith64BitMask: (UInt64) mask forRange: (NSRange) range;
 
 @end

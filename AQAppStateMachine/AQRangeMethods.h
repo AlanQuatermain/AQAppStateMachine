@@ -35,9 +35,16 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Range-based methods for NSIndexSet.
+ 
+ This category specifically implements some implementations of the enumerateRangesUsingBlock: functionality
+ coming in OS X 10.7 and iOS 5.0. At runtime it will detect whether the official versions are available,
+ and if they are not it will create them using the implementations given here for source code compatibility.
+ */
 @interface NSIndexSet (AQRangeMethods)
 
-// so the compiler is happy if we don't target iOS 5 at all
+// Cover methods for the official implementations if we target < iOS 5.0
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_5_0
 - (void)enumerateRangesUsingBlock:(void (^)(NSRange range, BOOL *stop))block;
 - (void)enumerateRangesWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NSRange range, BOOL *stop))block;
@@ -49,7 +56,9 @@
 - (void)aq_enumerateRangesWithOptions:(NSEnumerationOptions)opts usingBlock:(void (^)(NSRange range, BOOL *stop))block;
 - (void)aq_enumerateRangesInRange:(NSRange)range options:(NSEnumerationOptions)opts usingBlock:(void (^)(NSRange range, BOOL *stop))block;
 
-// custom methods
+/**
+ The number of ranges present in the index set.
+ */
 - (NSUInteger) numberOfRanges;
 
 @end

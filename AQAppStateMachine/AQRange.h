@@ -35,19 +35,52 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ A simple object wrapper around an `NSRange` structure which implements some sorting logic.
+ */
 @interface AQRange : NSObject <NSCopying>
 {
 	NSRange		_range;
 }
 
-- (id) initWithRange: (NSRange) range;		// designated initializer
+/**
+ Initialize a new `AQRange` instance.
+ 
+ This is the designated initializer for `AQRange`.
+ @param range The `NSRange` whose value the receiver will take on.
+ @return The new instance.
+ */
+- (id) initWithRange: (NSRange) range;
 
+/// The underlying range represented by this object.
 @property (nonatomic, readonly) NSRange range;
 
+/**
+ Test for equality against another object.
+ @param object The object against which to compare.
+ @result `YES` if the objects match, `NO` otherwise.
+ */
 - (BOOL) isEqual: (id) object;
+
+/**
+ Test for equality with an `NSRange` structure.
+ @param nsRange The range against which to compare.
+ @result `YES` if the objects match, `NO` otherwise.
+ */
 - (BOOL) isEqualToNSRange: (NSRange) nsRange;
 
+/**
+ Compare one AQRange against another.
+ @param other The range against which to compare the receiver.
+ @return An `NSComparisonResult` describing the relative ordering of the two objects.
+ */
 - (NSComparisonResult) compare: (AQRange *) other;
+
+/**
+ Compare against an `NSRange` structure.
+ @param nsRange The range against which to compare the receiver.
+ @return An `NSComparisonResult` describing the relative ordering of the two objects.
+ */
 - (NSComparisonResult) compareToNSRange: (NSRange) nsRange;
 
 @end

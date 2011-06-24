@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--company-id</key>
+	<string>net.alanquatermain</string>
+	<key>--ignore</key>
+	<array>
+		<string>AQAppStateMachineTests</string>
+		<string>AQAppStateMachine/SortedDictionary</string>
+	</array>
+	<key>--logformat</key>
+	<integer>1</integer>
+	<key>--print-settings</key>
+	<true/>
+	<key>--project-company</key>
+	<string>Jim Dovey</string>
+	<key>--project-name</key>
+	<string>AQAppStateMachine</string>
+	<key>--repeat-first-par</key>
+	<false/>
+	<key>--templates</key>
+	<string>./Templates</string>
+	<key>--verbose</key>
+	<integer>3</integer>
+	<key>--merge-categories</key>
+	<true/>
+	<key>--keep-merged-sections</key>
+	<true/>
+	<key>--keep-undocumented-objects</key>
+	<false/>
+	<key>--keep-undocumented-members</key>
+	<false/>
+	<key>--project-version</key>
+	<string>0.1</string>
+	<key>--publish-docset</key>
+	<false/>
+</dict>
+</plist>
