@@ -23,55 +23,6 @@
 		38431B8213A7C63B00178A7E /* AQBitfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 38431B7F13A7C63B00178A7E /* AQBitfield.m */; };
 		38431B8413A7CCDC00178A7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B8313A7CCDC00178A7E /* UIKit.framework */; };
 		38431B8513A7CCF100178A7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B8313A7CCDC00178A7E /* UIKit.framework */; };
-		38466B9E13B8E59600FEAFC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B8313A7CCDC00178A7E /* UIKit.framework */; };
-		38466B9F13B8E59600FEAFC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
-		38466BA113B8E59600FEAFC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38466BA013B8E59600FEAFC8 /* CoreGraphics.framework */; };
-		38466BA713B8E59600FEAFC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38466BA513B8E59600FEAFC8 /* InfoPlist.strings */; };
-		38466BA913B8E59600FEAFC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38466BA813B8E59600FEAFC8 /* main.m */; };
-		38466BAD13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38466BAC13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.m */; };
-		38466BAF13B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 38466BAE13B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.h */; };
-		38466BB113B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38466BB013B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.m */; };
-		38466BB413B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38466BB213B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.xib */; };
-		38466BB813B8E5CE00FEAFC8 /* AQBitfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 38431B7F13A7C63B00178A7E /* AQBitfield.m */; };
-		38466BB913B8E5CE00FEAFC8 /* AQBitfieldPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */; };
-		38466BBA13B8E5CE00FEAFC8 /* AQRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866938913AA805500268560 /* AQRange.m */; };
-		38466BBB13B8E5CE00FEAFC8 /* AQNotifyingBitfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866938D13AA82C400268560 /* AQNotifyingBitfield.m */; };
-		38466BBC13B8E5CE00FEAFC8 /* AQAppStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939413AAA0C600268560 /* AQAppStateMachine.m */; };
-		38466BBD13B8E5CE00FEAFC8 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
-		38466BBE13B8E5CE00FEAFC8 /* AQRangeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F0AA1813B268F1006E014F /* AQRangeMethods.m */; };
-		38466BBF13B8E5CE00FEAFC8 /* AvlTree+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866940D13AF8A1F00268560 /* AvlTree+Private.m */; };
-		38466BC013B8E5CE00FEAFC8 /* AvlTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866940F13AF8A1F00268560 /* AvlTree.m */; };
-		38466BC113B8E5CE00FEAFC8 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941113AF8A1F00268560 /* common.m */; };
-		38466BC213B8E5CE00FEAFC8 /* EntryEnumerator+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941413AF8A1F00268560 /* EntryEnumerator+Private.m */; };
-		38466BC313B8E5CE00FEAFC8 /* EntryEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941613AF8A1F00268560 /* EntryEnumerator.m */; };
-		38466BC413B8E5CE00FEAFC8 /* KeyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941813AF8A1F00268560 /* KeyEnumerator.m */; };
-		38466BC513B8E5CE00FEAFC8 /* ObjectEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941A13AF8A1F00268560 /* ObjectEnumerator.m */; };
-		38466BC613B8E5CE00FEAFC8 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941C13AF8A1F00268560 /* Node.m */; };
-		38466BC713B8E5CE00FEAFC8 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866941E13AF8A1F00268560 /* NSString+Base64.m */; };
-		38466BC813B8E5CE00FEAFC8 /* NSString+Indent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942013AF8A1F00268560 /* NSString+Indent.m */; };
-		38466BC913B8E5CE00FEAFC8 /* PropertyListReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942313AF8A1F00268560 /* PropertyListReader.m */; };
-		38466BCA13B8E5CE00FEAFC8 /* PropertyListWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942513AF8A1F00268560 /* PropertyListWriter.m */; };
-		38466BCB13B8E5CE00FEAFC8 /* SortedDictionary+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942713AF8A1F00268560 /* SortedDictionary+Private.m */; };
-		38466BCC13B8E5CE00FEAFC8 /* MutableSortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942A13AF8A1F00268560 /* MutableSortedDictionary.m */; };
-		38466BCD13B8E5CE00FEAFC8 /* SortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866942C13AF8A1F00268560 /* SortedDictionary.m */; };
-		38466BCE13B8E5CE00FEAFC8 /* AQAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866945D13AF8AF300268560 /* AQAdditions.m */; };
-		38466BCF13B8E5CE00FEAFC8 /* AQAppStateMachineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38431B7413A7C26900178A7E /* AQAppStateMachineTests.m */; };
-		38466BD013B8E5CE00FEAFC8 /* AQBitfieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C49C13AFC43D00175CEE /* AQBitfieldTests.m */; };
-		38466BD113B8E5CE00FEAFC8 /* AQBitfieldPredicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C4A013B2322400175CEE /* AQBitfieldPredicateTests.m */; };
-		38466BD213B8E5CE00FEAFC8 /* AQRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C4A313B23C8500175CEE /* AQRangeTests.m */; };
-		38466BD313B8E5CE00FEAFC8 /* AQNotifyingBitfieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C4A613B240A900175CEE /* AQNotifyingBitfieldTests.m */; };
-		38466BD413B8E5CE00FEAFC8 /* AQStateMatchingDescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F0AA1413B2638B006E014F /* AQStateMatchingDescriptorTests.m */; };
-		38466BD513B8E5CE00FEAFC8 /* AQRangeMethodsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C168C613B376500040BF99 /* AQRangeMethodsTest.m */; };
-		38466BD613B8E5CE00FEAFC8 /* AQAppStateMachineCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C168CA13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m */; };
-		38466BD713B8E5CE00FEAFC8 /* MutableSortedDictionaryContentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F113AF8A1500268560 /* MutableSortedDictionaryContentTests.m */; };
-		38466BD813B8E5CE00FEAFC8 /* NSStringExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F313AF8A1500268560 /* NSStringExtensionsTests.m */; };
-		38466BD913B8E5CE00FEAFC8 /* SortedDictionary+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F513AF8A1500268560 /* SortedDictionary+Test.m */; };
-		38466BDA13B8E5CE00FEAFC8 /* SortedDictionaryContentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F713AF8A1500268560 /* SortedDictionaryContentTests.m */; };
-		38466BDB13B8E5CE00FEAFC8 /* SortedDictionaryCreationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F913AF8A1500268560 /* SortedDictionaryCreationTests.m */; };
-		38466BDC13B8E5CE00FEAFC8 /* SortedDictionaryInitializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693FB13AF8A1500268560 /* SortedDictionaryInitializationTests.m */; };
-		38466BDD13B8E5CE00FEAFC8 /* SortedDictionaryProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693FD13AF8A1500268560 /* SortedDictionaryProtocolTests.m */; };
-		38466BDE13B8E5CE00FEAFC8 /* SortedDictionarySerializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693FF13AF8A1500268560 /* SortedDictionarySerializationTests.m */; };
-		38466BE013B8E61A00FEAFC8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38466BDF13B8E61A00FEAFC8 /* SenTestingKit.framework */; };
 		3866938A13AA805500268560 /* AQRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866938813AA805500268560 /* AQRange.h */; };
 		3866938B13AA805500268560 /* AQRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866938913AA805500268560 /* AQRange.m */; };
 		3866938E13AA82C400268560 /* AQNotifyingBitfield.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866938C13AA82C400268560 /* AQNotifyingBitfield.h */; };
@@ -181,17 +132,7 @@
 		38431B7E13A7C63B00178A7E /* AQBitfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfield.h; sourceTree = "<group>"; };
 		38431B7F13A7C63B00178A7E /* AQBitfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfield.m; sourceTree = "<group>"; };
 		38431B8313A7CCDC00178A7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		38466B9C13B8E59600FEAFC8 /* RunTestsInInstruments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunTestsInInstruments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38466BA013B8E59600FEAFC8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		38466BA413B8E59600FEAFC8 /* RunTestsInInstruments-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RunTestsInInstruments-Info.plist"; sourceTree = "<group>"; };
-		38466BA613B8E59600FEAFC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		38466BA813B8E59600FEAFC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		38466BAA13B8E59600FEAFC8 /* RunTestsInInstruments-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunTestsInInstruments-Prefix.pch"; sourceTree = "<group>"; };
-		38466BAB13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunTestsInInstrumentsAppDelegate.h; sourceTree = "<group>"; };
-		38466BAC13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunTestsInInstrumentsAppDelegate.m; sourceTree = "<group>"; };
-		38466BAE13B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunTestsInInstrumentsViewController.h; sourceTree = "<group>"; };
-		38466BB013B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunTestsInInstrumentsViewController.m; sourceTree = "<group>"; };
-		38466BB313B8E59600FEAFC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RunTestsInInstrumentsViewController.xib; sourceTree = "<group>"; };
 		38466BDF13B8E61A00FEAFC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3866938813AA805500268560 /* AQRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRange.h; sourceTree = "<group>"; };
 		3866938913AA805500268560 /* AQRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQRange.m; sourceTree = "<group>"; };
@@ -283,17 +224,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38466B9913B8E59600FEAFC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38466BE013B8E61A00FEAFC8 /* SenTestingKit.framework in Frameworks */,
-				38466B9E13B8E59600FEAFC8 /* UIKit.framework in Frameworks */,
-				38466B9F13B8E59600FEAFC8 /* Foundation.framework in Frameworks */,
-				38466BA113B8E59600FEAFC8 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -303,7 +233,6 @@
 				38466BDF13B8E61A00FEAFC8 /* SenTestingKit.framework */,
 				38431B5913A7C26800178A7E /* AQAppStateMachine */,
 				38431B6C13A7C26900178A7E /* AQAppStateMachineTests */,
-				38466BA213B8E59600FEAFC8 /* RunTestsInInstruments */,
 				38431B5613A7C26800178A7E /* Frameworks */,
 				38431B5513A7C26800178A7E /* Products */,
 			);
@@ -314,7 +243,6 @@
 			children = (
 				38431B5413A7C26800178A7E /* libAQAppStateMachine.a */,
 				38431B6113A7C26800178A7E /* AQAppStateMachineTests.octest */,
-				38466B9C13B8E59600FEAFC8 /* RunTestsInInstruments.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -391,30 +319,6 @@
 			children = (
 				38431B6E13A7C26900178A7E /* AQAppStateMachineTests-Info.plist */,
 				38431B6F13A7C26900178A7E /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		38466BA213B8E59600FEAFC8 /* RunTestsInInstruments */ = {
-			isa = PBXGroup;
-			children = (
-				38466BAB13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.h */,
-				38466BAC13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.m */,
-				38466BAE13B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.h */,
-				38466BB013B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.m */,
-				38466BB213B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.xib */,
-				38466BA313B8E59600FEAFC8 /* Supporting Files */,
-			);
-			path = RunTestsInInstruments;
-			sourceTree = "<group>";
-		};
-		38466BA313B8E59600FEAFC8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38466BA413B8E59600FEAFC8 /* RunTestsInInstruments-Info.plist */,
-				38466BA513B8E59600FEAFC8 /* InfoPlist.strings */,
-				38466BA813B8E59600FEAFC8 /* main.m */,
-				38466BAA13B8E59600FEAFC8 /* RunTestsInInstruments-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -586,23 +490,6 @@
 			productReference = 38431B6113A7C26800178A7E /* AQAppStateMachineTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		38466B9B13B8E59600FEAFC8 /* RunTestsInInstruments */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38466BB513B8E59600FEAFC8 /* Build configuration list for PBXNativeTarget "RunTestsInInstruments" */;
-			buildPhases = (
-				38466B9813B8E59600FEAFC8 /* Sources */,
-				38466B9913B8E59600FEAFC8 /* Frameworks */,
-				38466B9A13B8E59600FEAFC8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = RunTestsInInstruments;
-			productName = RunTestsInInstruments;
-			productReference = 38466B9C13B8E59600FEAFC8 /* RunTestsInInstruments.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -625,7 +512,6 @@
 			targets = (
 				38431B5313A7C26800178A7E /* AQAppStateMachine */,
 				38431B6013A7C26800178A7E /* AQAppStateMachineTests */,
-				38466B9B13B8E59600FEAFC8 /* RunTestsInInstruments */,
 			);
 		};
 /* End PBXProject section */
@@ -638,16 +524,6 @@
 				38431B7113A7C26900178A7E /* InfoPlist.strings in Resources */,
 				38431B7313A7C26900178A7E /* AQAppStateMachineTests.h in Resources */,
 				3866940913AF8A1500268560 /* test.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38466B9A13B8E59600FEAFC8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38466BA713B8E59600FEAFC8 /* InfoPlist.strings in Resources */,
-				38466BAF13B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.h in Resources */,
-				38466BB413B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,55 +620,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38466B9813B8E59600FEAFC8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38466BB813B8E5CE00FEAFC8 /* AQBitfield.m in Sources */,
-				38466BB913B8E5CE00FEAFC8 /* AQBitfieldPredicates.m in Sources */,
-				38466BBA13B8E5CE00FEAFC8 /* AQRange.m in Sources */,
-				38466BBB13B8E5CE00FEAFC8 /* AQNotifyingBitfield.m in Sources */,
-				38466BBC13B8E5CE00FEAFC8 /* AQAppStateMachine.m in Sources */,
-				38466BBD13B8E5CE00FEAFC8 /* AQStateMatchingDescriptor.m in Sources */,
-				38466BBE13B8E5CE00FEAFC8 /* AQRangeMethods.m in Sources */,
-				38466BBF13B8E5CE00FEAFC8 /* AvlTree+Private.m in Sources */,
-				38466BC013B8E5CE00FEAFC8 /* AvlTree.m in Sources */,
-				38466BC113B8E5CE00FEAFC8 /* common.m in Sources */,
-				38466BC213B8E5CE00FEAFC8 /* EntryEnumerator+Private.m in Sources */,
-				38466BC313B8E5CE00FEAFC8 /* EntryEnumerator.m in Sources */,
-				38466BC413B8E5CE00FEAFC8 /* KeyEnumerator.m in Sources */,
-				38466BC513B8E5CE00FEAFC8 /* ObjectEnumerator.m in Sources */,
-				38466BC613B8E5CE00FEAFC8 /* Node.m in Sources */,
-				38466BC713B8E5CE00FEAFC8 /* NSString+Base64.m in Sources */,
-				38466BC813B8E5CE00FEAFC8 /* NSString+Indent.m in Sources */,
-				38466BC913B8E5CE00FEAFC8 /* PropertyListReader.m in Sources */,
-				38466BCA13B8E5CE00FEAFC8 /* PropertyListWriter.m in Sources */,
-				38466BCB13B8E5CE00FEAFC8 /* SortedDictionary+Private.m in Sources */,
-				38466BCC13B8E5CE00FEAFC8 /* MutableSortedDictionary.m in Sources */,
-				38466BCD13B8E5CE00FEAFC8 /* SortedDictionary.m in Sources */,
-				38466BCE13B8E5CE00FEAFC8 /* AQAdditions.m in Sources */,
-				38466BCF13B8E5CE00FEAFC8 /* AQAppStateMachineTests.m in Sources */,
-				38466BD013B8E5CE00FEAFC8 /* AQBitfieldTests.m in Sources */,
-				38466BD113B8E5CE00FEAFC8 /* AQBitfieldPredicateTests.m in Sources */,
-				38466BD213B8E5CE00FEAFC8 /* AQRangeTests.m in Sources */,
-				38466BD313B8E5CE00FEAFC8 /* AQNotifyingBitfieldTests.m in Sources */,
-				38466BD413B8E5CE00FEAFC8 /* AQStateMatchingDescriptorTests.m in Sources */,
-				38466BD513B8E5CE00FEAFC8 /* AQRangeMethodsTest.m in Sources */,
-				38466BD613B8E5CE00FEAFC8 /* AQAppStateMachineCoreTests.m in Sources */,
-				38466BD713B8E5CE00FEAFC8 /* MutableSortedDictionaryContentTests.m in Sources */,
-				38466BD813B8E5CE00FEAFC8 /* NSStringExtensionsTests.m in Sources */,
-				38466BD913B8E5CE00FEAFC8 /* SortedDictionary+Test.m in Sources */,
-				38466BDA13B8E5CE00FEAFC8 /* SortedDictionaryContentTests.m in Sources */,
-				38466BDB13B8E5CE00FEAFC8 /* SortedDictionaryCreationTests.m in Sources */,
-				38466BDC13B8E5CE00FEAFC8 /* SortedDictionaryInitializationTests.m in Sources */,
-				38466BDD13B8E5CE00FEAFC8 /* SortedDictionaryProtocolTests.m in Sources */,
-				38466BDE13B8E5CE00FEAFC8 /* SortedDictionarySerializationTests.m in Sources */,
-				38466BA913B8E59600FEAFC8 /* main.m in Sources */,
-				38466BAD13B8E59600FEAFC8 /* RunTestsInInstrumentsAppDelegate.m in Sources */,
-				38466BB113B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -810,22 +637,6 @@
 				38431B7013A7C26900178A7E /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		38466BA513B8E59600FEAFC8 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38466BA613B8E59600FEAFC8 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		38466BB213B8E59600FEAFC8 /* RunTestsInInstrumentsViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38466BB313B8E59600FEAFC8 /* en */,
-			);
-			name = RunTestsInInstrumentsViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -927,45 +738,6 @@
 			};
 			name = Release;
 		};
-		38466BB613B8E59600FEAFC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/Developer/Library/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RunTestsInInstruments/RunTestsInInstruments-Prefix.pch";
-				INFOPLIST_FILE = "RunTestsInInstruments/RunTestsInInstruments-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		38466BB713B8E59600FEAFC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/Developer/Library/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RunTestsInInstruments/RunTestsInInstruments-Prefix.pch";
-				INFOPLIST_FILE = "RunTestsInInstruments/RunTestsInInstruments-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -995,14 +767,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		38466BB513B8E59600FEAFC8 /* Build configuration list for PBXNativeTarget "RunTestsInInstruments" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38466BB613B8E59600FEAFC8 /* Debug */,
-				38466BB713B8E59600FEAFC8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
