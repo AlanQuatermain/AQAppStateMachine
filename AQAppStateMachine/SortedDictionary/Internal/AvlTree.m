@@ -26,13 +26,13 @@
 	return self;
 }
 
-/*
+#if !USING_ARC
 // destructor
 - (void) dealloc {
 	[root release];
 	[super dealloc];
 }
-*/
+#endif
 
 // private methods
 
@@ -152,8 +152,13 @@
 - (id) objectForKey: (id) aKey { return [[self findNodeWithKey: aKey orNearest: NO] value]; }
 
 // enumerators
+#if USING_ARC
 - (NSEnumerator *) entryEnumerator			{ return [[EntryEnumerator alloc] initGoingForwardFromNode: [self leftmostDescendantOf: root]]; }
 - (NSEnumerator *) reverseEntryEnumerator	{ return [[EntryEnumerator alloc] initGoingBackFromNode:	 [self rightmostDescendantOf: root]]; }
+#else
+- (NSEnumerator *) entryEnumerator			{ return [[[EntryEnumerator alloc] initGoingForwardFromNode: [self leftmostDescendantOf: root]] autorelease]; }
+- (NSEnumerator *) reverseEntryEnumerator	{ return [[[EntryEnumerator alloc] initGoingBackFromNode:	 [self rightmostDescendantOf: root]] autorelease]; }
+#endif
 
 
 - (void) setObject: (id) anObject forKey: (id) aKey {
@@ -191,7 +196,9 @@
 
 
 - (void) removeAllObjects {
-	//[root release];
+#if !USING_ARC
+	[root release];
+#endif
 	root	= nil;
 	count	= 0;
 }
@@ -231,7 +238,9 @@
 	// release the node -- O(1)
 	[nodeToRemove setChild: nil atSide: odLeft];
 	[nodeToRemove setChild: nil atSide: odRight];
-	//[nodeToRemove release];	
+#if !USING_ARC
+	[nodeToRemove release];	
+#endif
 	
 	// update the cached entry count
 	--count;
@@ -256,7 +265,11 @@
 
 - (id) initWithCoder: (NSCoder *) decoder {
 	if (self = [super init]) {
-		root	= [decoder decodeObjectForKey: @"Root"];//[[decoder decodeObjectForKey:	@"Root"] retain];
+#if USING_ARC
+		root	= [decoder decodeObjectForKey: @"Root"];
+#else
+		root	= [[decoder decodeObjectForKey:	@"Root"] retain];
+#endif
 		count	= [decoder decodeIntegerForKey:	@"Count"];
 	}
 	return self;
@@ -266,7 +279,11 @@
 // NSCopying protocol implementation
 
 - (id) copyWithZone: (NSZone *) zone {
+#if USING_ARC
 	return [[AvlTree alloc] initWithNode: [root copy] andCount: count];
+#else
+	return [[AvlTree alloc] initWithNode: [[root copy] autorelease] andCount: count];
+#endif
 }
 
 

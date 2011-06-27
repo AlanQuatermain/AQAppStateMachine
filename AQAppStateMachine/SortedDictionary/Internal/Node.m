@@ -22,7 +22,7 @@
 	return self;
 }
 
-/*
+#if !USING_ARC
 // destructor
 - (void) dealloc {
 	[children[odRight] release];
@@ -31,7 +31,7 @@
 	[key release];
 	[super dealloc];
 }
-*/
+#endif
 
 // explicit property accessors
 
@@ -102,8 +102,13 @@
 		self.value	= [decoder decodeObjectForKey:	@"Value"];
 		balance		= [decoder decodeIntegerForKey:	@"Balance"];
 		parent		= nil;
+#if USING_ARC
 		self.left	= [decoder decodeObjectForKey:	@"Left"];
 		self.right	= [decoder decodeObjectForKey:	@"Right"];
+#else
+		self.left	= [[decoder decodeObjectForKey:	@"Left"] retain];
+		self.right	= [[decoder decodeObjectForKey:	@"Right"] retain];
+#endif
 	}
 	return self;
 }
@@ -114,8 +119,13 @@
 - (id) copyWithZone: (NSZone *) zone {
 	Node *copy = [[Node alloc] initWithKey: key value: value andParent: parent];
 	copy.balance	= balance;
+#if USING_ARC
 	copy.left		= children[odLeft];
 	copy.right		= children[odRight];
+#else
+	copy.left		= [children[odLeft] copyWithZone: zone];
+	copy.right		= [children[odRight] copyWithZone: zone];
+#endif
 	
 	return copy;
 }

@@ -52,7 +52,11 @@
 	
 	// create a unique identifier
 	CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-	_uuid = objc_retainedObject(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+#if USING_ARC
+	_uuid = CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+#else
+	_uuid = (NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+#endif
 	CFRelease(uuid);
 	
 	NSMutableIndexSet * indices = [NSMutableIndexSet new];
@@ -82,9 +86,21 @@
 	}];
 	
 	_matchingIndices = [indices copy];
+#if !USING_ARC
+	[indices release];
+#endif
     
     return ( self );
 }
+
+#if !USING_ARC
+- (void) dealloc
+{
+	[_uuid release];
+	[_matchingIndices release];
+	[super dealloc];
+}
+#endif
 
 - (NSRange) fullRange
 {
@@ -171,6 +187,9 @@
 						matchingMasks: nil] );
 	
 	AQBitfield * field = [[AQBitfield alloc] init];
+#if !USING_ARC
+	[field autorelease];
+#endif
 	for ( NSUInteger i = 0; mask != 0; mask >>= 1, i++ )
 	{
 		if ( mask & 1 )
@@ -188,6 +207,9 @@
 						matchingMasks: nil] );
 	
 	AQBitfield * field = [[AQBitfield alloc] init];
+#if !USING_ARC
+	[field autorelease];
+#endif
 	for ( UInt64 i = 0; mask != 0; mask >>= 1, i++ )
 	{
 		if ( mask & 1 )

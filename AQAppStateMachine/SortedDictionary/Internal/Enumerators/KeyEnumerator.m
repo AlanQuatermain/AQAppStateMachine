@@ -7,7 +7,11 @@
 
 - (id) initWithEnumerator: (NSEnumerator *) anEnumerator {
 	if (self = [super init]) {
-		entryEnum = (EntryEnumerator *) anEnumerator;//[anEnumerator retain];
+#if USING_ARC
+		entryEnum = (EntryEnumerator *) anEnumerator;
+#else
+		entryEnum = (EntryEnumerator *) [anEnumerator retain];
+#endif
 	}
 	return self;
 }
@@ -29,11 +33,11 @@
 	return [[entryEnum nextObject] key];
 }
 
-/*
+#if !USING_ARC
 - (void) dealloc {
 	[entryEnum release];
 	[super dealloc];
 }
-*/
+#endif
 
 @end

@@ -28,7 +28,11 @@ static NSString *base64chars = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstu
 		[data appendBytes: triplet length: (quad[2] != 64) ? ((quad[3] != 64) ? 3 : 2) : 1];
 	}
 	
+#if USING_ARC
 	return data;
+#else
+	return [data autorelease];
+#endif
 }
 
 
@@ -54,7 +58,11 @@ static NSString *base64chars = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstu
 		[base64 appendString: [NSString stringWithCharacters: quad length: 4]];
 	}
 	
+#if USING_ARC
 	return base64;
+#else
+	return [base64 autorelease];
+#endif
 }
 
 

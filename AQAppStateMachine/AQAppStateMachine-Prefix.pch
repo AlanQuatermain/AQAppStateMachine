@@ -5,3 +5,9 @@
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>
 #endif
+
+#if __has_feature(objc_arc)
+# define USING_ARC	1
+#else
+# define USING_ARC	0
+#endif

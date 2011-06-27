@@ -1,7 +1,6 @@
 #import "EntryEnumerator+Private.h"
 #import "Node.h"
 
-
 @implementation EntryEnumerator (Private)
 
 
@@ -23,6 +22,5 @@
 	}
 	return self;
 }
-
 
 @end

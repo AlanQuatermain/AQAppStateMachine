@@ -77,6 +77,13 @@
 {
 	if ( _syncQ != NULL )
 		dispatch_release(_syncQ);
+#if !USING_ARC
+	[_stateBits release];
+	[_namedRanges release];
+	[_matchDescriptors release];
+	[_notifierLookup release];
+	[super dealloc];
+#endif
 }
 
 - (void) _runNotificationBlocksForChangeInRange: (NSRange) range
@@ -115,6 +122,9 @@
 	// create match descriptor and store it
 	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: nil];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
+#if !USING_ARC
+	[desc release];
+#endif
 }
 
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range
@@ -123,6 +133,9 @@
 {
 	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWith32BitMask: mask forRange: range];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
+#if !USING_ARC
+	[desc release];
+#endif
 }
 
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWith64BitInteger: (UInt64) mask
@@ -130,6 +143,9 @@
 {
 	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWith64BitMask: mask forRange: range];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
+#if !USING_ARC
+	[desc release];
+#endif
 }
 
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range
@@ -138,6 +154,9 @@
 {
 	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWithRange: range matchingMask: mask];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
+#if !USING_ARC
+	[desc release];
+#endif
 }
 
 @end
@@ -272,6 +291,11 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	AQStateMatchingDescriptor * desc = [[AQStateMatchingDescriptor alloc] initWithRanges: ranges
 																		   matchingMasks: bitmasks];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
+#if !USING_ARC
+	[ranges release];
+	[bitmasks release];
+	[desc release];
+#endif
 }
 
 - (BOOL) bitIsSetAtIndex: (NSUInteger) index forName: (NSString *) name
@@ -305,6 +329,10 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 			*stop = YES;
 		}
 	}];
+
+#if !USING_ARC
+	[test release];
+#endif
 	
 	return ( result );
 }

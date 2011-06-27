@@ -60,13 +60,22 @@
 {
 	if ( _syncQ != NULL )
 		dispatch_release(_syncQ);
+#if !USING_ARC
+	[_lookup release];
+	[super dealloc];
+#endif
 }
 
 - (void) notifyModificationOfBitsInRange: (NSRange) range usingBlock: (AQRangeNotification) block
 {
 	dispatch_async(_syncQ, ^{
 		AQRange * rangeObject = [[AQRange alloc] initWithRange: range];
-		[_lookup setObject: [block copy] forKey: rangeObject];
+		AQRangeNotification copied = [block copy];
+		[_lookup setObject: copied forKey: rangeObject];
+#if !USING_ARC
+		[rangeObject release];
+		[copied autorelease];
+#endif
 	});
 }
 
@@ -75,6 +84,9 @@
 	dispatch_async(_syncQ, ^{
 		AQRange * obj = [[AQRange alloc] initWithRange: range];
 		[_lookup removeObjectForKey: obj];
+#if !USING_ARC
+		[obj release];
+#endif
 	});
 }
 
@@ -99,6 +111,10 @@
 		{
 			[_lookup removeObjectForKey: key];
 		}
+		
+#if !USING_ARC
+		[keys release];
+#endif
 	});
 }
 

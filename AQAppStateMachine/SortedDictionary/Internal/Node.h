@@ -17,8 +17,13 @@ typedef enum { odLeft = 0, odRight = 1 } ODSide;
 	@property (retain, nonatomic)	id		value;
 	@property (assign, nonatomic)	int		balance;
 	@property (assign, nonatomic)	Node	__unsafe_unretained *parent;
+#if USING_ARC
 	@property (copy, nonatomic)		Node	*left;
 	@property (copy, nonatomic)		Node	*right;
+#else
+	@property (assign, nonatomic)	Node	*left;
+	@property (assign, nonatomic)	Node	*right;
+#endif
 
 	- (id) initWithKey: (id) aKey value: (id) aValue andParent: (Node *) aParent;
 	- (void) copyContentFromNode: (Node *) aNode;

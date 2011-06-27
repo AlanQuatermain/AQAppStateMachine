@@ -22,12 +22,27 @@ typedef enum { waitingForPlist, waitingForKey, waitingForValue, waitingForElemen
 @implementation Context
 	@synthesize state, container, key;
 	+ (id) contextWithContainer: (id) aContainer andState: (State) aState {
+#if USING_ARC
 		return [[Context alloc] initWithContainer: aContainer andState: aState];
+#else
+		return [[[Context alloc] initWithContainer: aContainer andState: aState] autorelease];
+#endif
 	}
 	- (id) initWithContainer: (id) aContainer andState: (State) aState {
-		if (self = [super init]) { container = aContainer; state = aState; key = nil; } return self;
+		if (self = [super init]) { 
+#if USING_ARC
+			container = aContainer;
+#else
+			container = [aContainer retain];
+#endif
+			state = aState;
+			key = nil;
+		}
+		return self;
 	}
-/*	- (void) dealloc { [container release]; [key release]; [super dealloc]; } */
+#if !USING_ARC
+- (void) dealloc { [container release]; [key release]; [super dealloc]; }
+#endif
 @end
 
 
@@ -86,8 +101,13 @@ typedef enum { waitingForPlist, waitingForKey, waitingForValue, waitingForElemen
  floatValue, or a \c boolValue), or NSData.
  */
 - (id) typedValueOfElement: (NSString *) elementName withContent: (NSString *) content {
+#if USING_ARC
 		 if ([elementName isEqualToString: @"string"])	{ return [content copy]; }
 	else if ([elementName isEqualToString: @"key"])		{ return [content copy]; }
+#else
+		 if ([elementName isEqualToString: @"string"])	{ return [[content copy] autorelease]; }
+	else if ([elementName isEqualToString: @"key"])		{ return [[content copy] autorelease]; }
+#endif
 	else if ([elementName isEqualToString: @"date"])	{ return [dateFormatter dateFromString: content]; }
 	else if ([elementName isEqualToString: @"integer"])	{ return [NSNumber numberWithInt: [content intValue]]; }
 	else if ([elementName isEqualToString: @"real"])	{ return [NSNumber numberWithFloat: [content floatValue]]; }
@@ -108,12 +128,14 @@ typedef enum { waitingForPlist, waitingForKey, waitingForValue, waitingForElemen
 			attributes: (NSDictionary *) attributeDict {
 
 	// reset the tracked element content, to track the content of the new element
-	//[elementContent release];
+#if !USING_ARC
+	[elementContent release];
+#endif
 	elementContent = [[NSMutableString alloc] init];
 	
 	// if the new element represents a collection, push a new context into the reader stack to track
 	// subsequent elements for the collection contents.
-	State state = [[stack lastObject] state];
+	State state = (State)[[stack lastObject] state];
 	if ([elementName isEqualToString: @"dict"]) {
 		switch (state) { case waitingForKey: case done: plist = nil; [aParser abortParsing]; return; default: break; }
 		[stack addObject: [Context contextWithContainer: [MutableSortedDictionary dictionary]
@@ -170,7 +192,11 @@ typedef enum { waitingForPlist, waitingForKey, waitingForValue, waitingForElemen
 	// put the parsed value into the appropriate property list container
 	switch ([context state]) {
 		case waitingForPlist:	// reached final </plist> tag
+#if USING_ARC
 			plist = readObject;			// we'll return this from the read method
+#else
+			plist = [readObject retain];
+#endif
 			[context setState: done];				// don't try to parse anything else
 			break;
 			
@@ -200,12 +226,14 @@ typedef enum { waitingForPlist, waitingForKey, waitingForValue, waitingForElemen
 }
 
 - (void) dealloc {
-	//[elementContent release];
-	//[dateFormatter release];
-	//[stack release];
 	[parser setDelegate: nil];
-	//[parser release];
-	//[super dealloc];
+#if !USING_ARC
+	[elementContent release];
+	[dateFormatter release];
+	[stack release];
+	[parser release];
+	[super dealloc];
+#endif
 }
 
 

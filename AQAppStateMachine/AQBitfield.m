@@ -59,6 +59,14 @@
 	return ( self );
 }
 
+#if !USING_ARC
+- (void) dealloc
+{
+	[_storage release];
+	[super dealloc];
+}
+#endif
+
 - (void) encodeWithCoder: (NSCoder *) aCoder
 {
 	[aCoder encodeObject: _storage forKey: @"bitVectorData"];
@@ -132,7 +140,11 @@
 {
 	AQBitfield * result = [[AQBitfield alloc] init];
 	[result->_storage addIndexes: [_storage indexesInRange: range options: 0 passingTest:^BOOL(NSUInteger idx, BOOL *stop) { return YES; }]];
+#if USING_ARC
 	return ( result );
+#else
+	return ( [result autorelease] );
+#endif
 }
 
 - (NSUInteger) firstIndexOfBit: (AQBit) bit
@@ -247,8 +259,12 @@
 	[tmp removeIndexesInRange: NSMakeRange(NSMaxRange(range), NSUIntegerMax-NSMaxRange(range))];
 	if ( range.location != 0 )
 		[tmp shiftIndexesStartingAtIndex: range.location by: -(NSInteger)(range.location)];
-	
+
+#if USING_ARC
 	return ( tmp );
+#else
+	return ( [tmp autorelease] );
+#endif
 }
 
 - (BOOL) bitsInRange: (NSRange) range matchBits: (NSUInteger) bits
@@ -317,6 +333,9 @@
 	[tmp1 maskWithBits: mask];
 	
 	AQBitfield * tmp2 = [bitfield copy];
+#if !USING_ARC
+	[tmp2 autorelease];
+#endif
 	[tmp2 maskWithBits: mask];
 	[tmp2->_storage removeIndexesInRange: NSMakeRange(range.length, NSUIntegerMax-range.length)];
 	

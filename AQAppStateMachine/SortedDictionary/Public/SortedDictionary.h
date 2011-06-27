@@ -1,6 +1,84 @@
 /*!
- @header SortedDictionary.h
- TADAA
+ \mainpage SortedDictionary
+ 
+ \section intro_sec Introduction
+ 
+ Writing for OS/X or the iPhone? Using \c NSDictionary to store and access key-value pairs? Ever
+ tried to enumerate them all only to find they come back in some random order? As \c NSDictionary
+ uses a hash table to map keys to values, it maintains no sort order whatsoever across its entries.
+ 
+ The SortedDictionary class and its mutable companion, MutableSortedDictionary implement
+ dictionaries that maintain a strong sort order across their keys. SortedDictionary and
+ MutableSortedDictionary deliver high performance using an implementation of a self-balancing binary
+ tree.
+ 
+ \section capabilities_sec Capabilities
+ 
+ The SortedDictionary and MutableSortedDictionary classes implement the interfaces of
+ \c NSDictionary and \c NSMutableDictionary, respectively, and can serve as drop-in replacements.
+ They support the \c NSCoding, \c NSCopying and \c NSMutableCopying protocols.
+ 
+ Additionally, the sorted dictionary classes add methods allowing you to enumerate entries in both
+ their forward and reverse key order, without having to sort and without any additional
+ computational cost.
+ 
+ \section usage_sec How to use SortedDictionary in your code
+ 
+ \subsection usage_source Option 1: Using the source code
+ 
+ Add the SortedDictionary folder to your project. Add all the files in the \a SortedDictionary
+ folder, including its \a Internal and \a External folders, into your project. When you build your
+ project, the sorted dictionaries classes will be compiled into your application.
+ 
+ To create a sorted dictionary in code, include the appropriate header file:
+ \code
+ #import "SortedDictionary.h"
+ 
+ - (void) someMethod {
+ SortedDictionary *dict = [MutableSortedDictionary dictionary];
+ 
+ [dict setValue: @"red" forKey: @"apple"];
+ [dict setValue: @"yellow" forKey: @"banana"];
+ [dict setValue: @"orange" forKey: @"orange"];
+ 
+ NSString *color = [dict objectForKey: @"apple"];
+ }
+ \endcode
+ 
+ \subsection usage_bin Option 2: Using the compiled frameworks
+ 
+ Add the compiled frameworks to your project:
+ -# In XCode, open \a Targets, then right-click (or ctrl-click) your target, and select Add>Existing
+ Frameworks...
+ -# The \a Target \a Info window opens. Click the + button below the \a Linked \a Libraries list.
+ Select Add Other...
+ -# Navigate to the folder that contains the compiled framework, and select
+ SortedDictionary.Framework.
+ -# Click \a Add, and close the \a Target \a Info window.
+ 
+ \section license LICENSE
+ 
+ MIT License
+ 
+ Copyright (c) 2009 Oren Trutner
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  */
 
 

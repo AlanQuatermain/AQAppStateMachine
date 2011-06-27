@@ -47,7 +47,11 @@
  \par Computational Complexity
  O(1)
  */
+#if USING_ARC
 + (id) dictionary { return [[self alloc] init]; }
+#else
++ (id) dictionary { return [[[self alloc] init] autorelease]; }
+#endif
 
 
 /**
@@ -72,7 +76,11 @@
  \see initWithContentsOfFile:
  */
 + (id) dictionaryWithContentsOfFile: (NSString *) path {
+#if USING_ARC
 	return [[self alloc] initWithContentsOfFile: path];
+#else
+	return [[[self alloc] initWithContentsOfFile: path] autorelease];
+#endif
 }
 
 
@@ -92,7 +100,11 @@
  \see initWithDictionary:
  */
 + (id) dictionaryWithDictionary: (NSDictionary *) otherDictionary {
+#if USING_ARC
 	return [[self alloc] initWithDictionary: otherDictionary];
+#else
+	return [[[self alloc] initWithDictionary: otherDictionary] autorelease];
+#endif
 }
 
 
@@ -111,7 +123,11 @@
  \see initWithSortedDictionary:
  */
 + (id) dictionaryWithSortedDictionary: (SortedDictionary *) otherDictionary {
+#if USING_ARC
 	return [[self alloc] initWithSortedDictionary: otherDictionary];
+#else
+	return [[[self alloc] initWithSortedDictionary: otherDictionary] autorelease];
+#endif
 }
 
 
@@ -166,8 +182,11 @@
 		@throw [NSException exceptionWithName: NSInvalidArgumentException
 									   reason: @"key count differs from value count" userInfo: nil];
 	}
-	
+#if USING_ARC
 	return [[self alloc] initWithObjects: objects forKeys: keys];
+#else
+	return [[[self alloc] initWithObjects: objects forKeys: keys] autorelease];
+#endif
 }
 
 
@@ -197,7 +216,11 @@
  \see dictionaryWithObjectsAndKeys:
  */
 + (id) dictionaryWithObjects: (const id []) objects forKeys: (const id []) keys count: (NSUInteger) objectCount {
+#if USING_ARC
 	return [[self alloc] initWithObjects: objects forKeys: keys count: objectCount];
+#else
+	return [[[self alloc] initWithObjects: objects forKeys: keys count: objectCount] autorelease];
+#endif
 }
 
 
@@ -231,7 +254,11 @@
 	dictionary = [[self alloc] initWithObject: firstObject andArglist: arglist];
 	va_end(arglist);
 	
+#if USING_ARC
 	return dictionary;
+#else
+	return [dictionary autorelease];
+#endif
 }
 
 /// \}
@@ -286,12 +313,16 @@
 	if (!data) { return nil; }
 	
 	// parse the file data as a plist
+#if USING_ARC
 	id plist = [[[PropertyListReader alloc] initWithData: data] read];
+#else
+	id plist = [[[[PropertyListReader alloc] initWithData: data] autorelease] read];
+#endif
 
 	// check that the parsed plist object is indeed a dictionary
 	if (!plist || ![plist isKindOfClass: [self class]]) { return nil; }
 
-	self = plist;
+	self = (SortedDictionary *)plist;
 	return self;
 }
 
@@ -794,6 +825,10 @@
 																	   selector: comparator];
 	NSArray				*sortedEntries	= [entries sortedArrayUsingDescriptors:[NSArray arrayWithObject: sort]];
 	NSArray				*sortedKeys		= [sortedEntries valueForKey: @"key"];
+
+#if !USING_ARC
+	[sort release];
+#endif
 	
 	return sortedKeys;
 }
@@ -1028,7 +1063,11 @@
  \see objectEnumerator
  \see entryEnumerator
  */
+#if USING_ARC
 - (NSEnumerator *) keyEnumerator { return [[KeyEnumerator alloc] initWithEnumerator: [tree entryEnumerator]]; }
+#else
+- (NSEnumerator *) keyEnumerator { return [[[KeyEnumerator alloc] initWithEnumerator: [tree entryEnumerator]] autorelease]; }
+#endif
 
 
 /**
@@ -1057,7 +1096,11 @@
  \see entryEnumerator
  \see allValues
  */
+#if USING_ARC
 - (NSEnumerator *) objectEnumerator	{ return [[ObjectEnumerator alloc]	initWithEnumerator: [tree entryEnumerator]]; }
+#else
+- (NSEnumerator *) objectEnumerator	{ return [[[ObjectEnumerator alloc]	initWithEnumerator: [tree entryEnumerator]] autorelease]; }
+#endif
 
 
 /**
@@ -1129,7 +1172,11 @@
  \see reverseObjectEnumerator
  \see reverseEntryEnumerator
  */
+#if USING_ARC
 - (NSEnumerator *) reverseKeyEnumerator { return [[KeyEnumerator alloc] initWithEnumerator: [tree reverseEntryEnumerator]]; }
+#else
+- (NSEnumerator *) reverseKeyEnumerator { return [[[KeyEnumerator alloc] initWithEnumerator: [tree reverseEntryEnumerator]] autorelease]; }
+#endif
 
 
 /**
@@ -1161,7 +1208,11 @@
  \see reverseEntryEnumerator
  \see allValues
  */
+#if USING_ARC
 - (NSEnumerator *) reverseObjectEnumerator { return [[ObjectEnumerator alloc] initWithEnumerator: [tree reverseEntryEnumerator]]; }
+#else
+- (NSEnumerator *) reverseObjectEnumerator { return [[[ObjectEnumerator alloc] initWithEnumerator: [tree reverseEntryEnumerator]] autorelease]; }
+#endif
 
 /// \}
 
@@ -1172,6 +1223,9 @@
 - (BOOL) writeToFile: (NSString *) path atomically: (BOOL) flag {
 	PropertyListWriter *writer = [[PropertyListWriter alloc] init];
 	NSData *data = [writer writePropertyList: self];
+#if !USING_ARC
+	[writer release];
+#endif
 	return [data writeToFile: path atomically: flag];
 }
 
@@ -1179,6 +1233,9 @@
 - (BOOL) writeToURL: (NSURL *) aURL atomically: (BOOL) flag {
 	PropertyListWriter *writer = [[PropertyListWriter alloc] init];
 	NSData *data = [writer writePropertyList: self];
+#if !USING_ARC
+	[writer release];
+#endif
 	return [data writeToURL: aURL atomically: flag];
 }
 
@@ -1201,13 +1258,13 @@
 
 /// \}
 
-/*
+#if !USING_ARC
 // destructor
 - (void) dealloc {
 	[tree release];
 	[super dealloc];
 }
-*/
+#endif
 
 /// \name NSCoding protocol
 /// \{
@@ -1238,6 +1295,9 @@
 - (id) initWithCoder: (NSCoder *) decoder {
 	if (self = [super init]) {
 		tree = [decoder decodeObjectForKey:	@"Tree"];
+#if !USING_ARC
+		[tree retain];
+#endif
 	}
 	return self;
 }
@@ -1267,7 +1327,11 @@
  O(\a n), where \a n is the number of entries in the dictionary.
  */
 - (id) copyWithZone: (NSZone *) zone {
+#if USING_ARC
 	return [[SortedDictionary alloc] initWithTree: [tree copy]];
+#else
+	return [[SortedDictionary alloc] initWithTree: [[tree copy] autorelease]];
+#endif
 }
 
 /// \}
@@ -1296,7 +1360,11 @@
  O(\a n), where \a n is the number of entries in the dictionary.
  */
 - (id) mutableCopyWithZone: (NSZone *) zone {
+#if USING_ARC
 	return [[MutableSortedDictionary alloc] initWithTree: [tree copy]];
+#else
+	return [[MutableSortedDictionary alloc] initWithTree: [[tree copy] autorelease]];
+#endif
 }
 
 /// \}

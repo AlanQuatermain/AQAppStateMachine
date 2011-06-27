@@ -6,7 +6,11 @@
 
 - (id) initWithNode: (Node *) newRoot andCount: (NSUInteger) newCount {
 	if (self = [super init]) {
-		root	= newRoot;//[newRoot retain];
+#if USING_ARC
+		root	= newRoot;
+#else
+		root	= [newRoot retain];
+#endif
 		count	= newCount;
 	}
 	return self;
