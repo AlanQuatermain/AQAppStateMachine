@@ -1,5 +1,5 @@
 //
-//  AQStateMatchingDescriptor.m
+//  AQStateMaskMatchingDescriptor.m
 //  AQAppStateMachine
 //
 //  Created by Jim Dovey on 11-06-17.
@@ -33,33 +33,22 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "AQStateMatchingDescriptor.h"
+#import "AQStateMaskMatchingDescriptor.h"
 #import "AQRange.h"
 #import "AQBitfield.h"
 #import "AQRangeMethods.h"
 
-@implementation AQStateMatchingDescriptor
-
-@synthesize uniqueID=_uuid;
+@implementation AQStateMaskMatchingDescriptor
 
 - (id) initWithRanges: (NSArray *) ranges matchingMasks: (NSArray *) masks
 {
 	NSParameterAssert([masks count] == 0 || [ranges count] == [masks count]);
 	
-    self = [super init];
+    self = [super initWithRanges: ranges];
     if ( self == nil )
 		return ( nil );
 	
-	// create a unique identifier
-	CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-#if USING_ARC
-	_uuid = CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
-#else
-	_uuid = (NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
-#endif
-	CFRelease(uuid);
-	
-	NSMutableIndexSet * indices = [NSMutableIndexSet new];
+	NSMutableIndexSet * indices = [_matchingIndices mutableCopy];
 	[ranges enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
 		AQBitfield * mask = nil;
 		NSRange range = [obj range];
@@ -72,45 +61,29 @@
 		
 		if ( mask == nil )
 		{
-			[indices addIndexesInRange: range];
+			// superclass has already setup the range for us
+			return;
 		}
 		else
 		{
 			// have to iterate & check each bit against the mask
 			for ( NSUInteger i = range.location, j=0; i < NSMaxRange(range); i++, j++ )
 			{
-				if ( [mask bitAtIndex: j] == 1 )
-					[indices addIndex: i];
+				if ( [mask bitAtIndex: j] == 0 )
+					[indices removeIndex: i];
 			}
 		}
 	}];
 	
+#if !USING_ARC
+	[_matchingIndices release];
+#endif
 	_matchingIndices = [indices copy];
 #if !USING_ARC
 	[indices release];
 #endif
     
     return ( self );
-}
-
-#if !USING_ARC
-- (void) dealloc
-{
-	[_uuid release];
-	[_matchingIndices release];
-	[super dealloc];
-}
-#endif
-
-- (NSRange) fullRange
-{
-	NSUInteger first = [_matchingIndices firstIndex];
-	NSUInteger last = [_matchingIndices lastIndex];
-	
-	if ( first == NSNotFound )
-		return ( NSMakeRange(NSNotFound, 0) );
-	
-	return ( NSMakeRange(first, (last - first) + 1) );
 }
 
 - (BOOL) matchesRange: (NSRange) range
@@ -120,49 +93,10 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-	AQStateMatchingDescriptor * theCopy = [[[self class] alloc] init];
+	AQStateMaskMatchingDescriptor * theCopy = [[[self class] alloc] init];
 	theCopy->_uuid = [_uuid copy];
 	theCopy->_matchingIndices = [_matchingIndices copy];
 	return ( theCopy );
-}
-
-- (BOOL) isEqual: (id) object
-{
-	if ( [object isKindOfClass: [AQStateMatchingDescriptor class]] == NO )
-		return ( NO );
-	
-	AQStateMatchingDescriptor * other = (AQStateMatchingDescriptor *)object;
-	return ( [_matchingIndices isEqual: other->_matchingIndices] );
-}
-
-- (NSComparisonResult) compare: (AQStateMatchingDescriptor *) other
-{
-	__block NSUInteger otherIdx = [other->_matchingIndices firstIndex];
-	__block NSComparisonResult result = NSOrderedSame;
-	[_matchingIndices enumerateIndexesUsingBlock: ^(NSUInteger idx, BOOL *stop) {
-		if ( idx == otherIdx )
-		{
-			otherIdx = [other->_matchingIndices indexGreaterThanIndex: otherIdx];
-			return;		// continue comparison
-		}
-		else if ( otherIdx == NSNotFound )
-		{
-			result = NSOrderedDescending;
-			*stop = YES;
-			return;
-		}
-		
-		result = (idx < otherIdx ? NSOrderedAscending : NSOrderedDescending);
-		*stop = YES;
-	}];
-	
-	if ( result != NSOrderedSame )
-		return ( result );
-	
-	if ( otherIdx != NSNotFound )
-		return ( NSOrderedAscending );
-	
-	return ( NSOrderedSame );
 }
 
 - (NSString *) description
@@ -172,7 +106,7 @@
 
 @end
 
-@implementation AQStateMatchingDescriptor (CreationConvenience)
+@implementation AQStateMaskMatchingDescriptor (CreationConvenience)
 
 - (id) initWithRange: (NSRange) range matchingMask: (AQBitfield *) mask
 {

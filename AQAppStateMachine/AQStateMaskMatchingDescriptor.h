@@ -1,5 +1,5 @@
 //
-//  AQStateMatchingDescriptor.h
+//  AQStateMaskMatchingDescriptor.h
 //  AQAppStateMachine
 //
 //  Created by Jim Dovey on 11-06-17.
@@ -34,17 +34,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AQStateMatchingDescriptor.h"
 
 @class AQBitfield;
 
 /**
- A class describing a comparison match for an AQBitfield.
+ A class describing a masked comparison match for an AQBitfield.
  */
-@interface AQStateMatchingDescriptor : NSObject <NSCopying>
-{
-	NSString *		_uuid;
-	NSIndexSet *	_matchingIndices;
-}
+@interface AQStateMaskMatchingDescriptor : AQStateMatchingDescriptor <NSCopying>
 
 /**
  Initialize a new descriptor.
@@ -57,29 +54,10 @@
  */
 - (id) initWithRanges: (NSArray *) ranges matchingMasks: (NSArray *) masks;
 
-/// A unique identifier for this descriptor.
-@property (nonatomic, readonly) NSString * uniqueID;
-/// The full range covered by this descriptor.
-@property (nonatomic, readonly) NSRange fullRange;
-
-/**
- Determine whether a descriptor checks any bits within a specific range.
- @param range The range of bits to compare.
- @result `YES` if the descriptor checks bits within _range_, `NO` otherwise.
- */
-- (BOOL) matchesRange: (NSRange) range;
-
-/**
- Compare two descriptors.
- @param other The descriptor against which to compare the receiver.
- @return An `NSComparisonResult` indicating the relative sort ordering of the two descriptors.
- */
-- (NSComparisonResult) compare: (AQStateMatchingDescriptor *) other;
-
 @end
 
 /// Convenience functions for creating descriptors for single range/mask pairs.
-@interface AQStateMatchingDescriptor (CreationConvenience)
+@interface AQStateMaskMatchingDescriptor (CreationConvenience)
 
 /**
  Initialize a descriptor using a single range and mask.
