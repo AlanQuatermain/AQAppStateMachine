@@ -47,13 +47,9 @@
 	
 	<option value="//api/name/compare:">&nbsp;&nbsp;&nbsp;&nbsp;- compare:</option>
 	
-	<option value="//api/name/initWith32BitMask:forRange:">&nbsp;&nbsp;&nbsp;&nbsp;- initWith32BitMask:forRange:</option>
+	<option value="//api/name/initWithRange:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithRange:</option>
 	
-	<option value="//api/name/initWith64BitMask:forRange:">&nbsp;&nbsp;&nbsp;&nbsp;- initWith64BitMask:forRange:</option>
-	
-	<option value="//api/name/initWithRange:matchingMask:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithRange:matchingMask:</option>
-	
-	<option value="//api/name/initWithRanges:matchingMasks:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithRanges:matchingMasks:</option>
+	<option value="//api/name/initWithRanges:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithRanges:</option>
 	
 	<option value="//api/name/matchesRange:">&nbsp;&nbsp;&nbsp;&nbsp;- matchesRange:</option>
 	
@@ -95,13 +91,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compare:">compare:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWith32BitMask:forRange:">initWith32BitMask:forRange:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithRange:">initWithRange:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWith64BitMask:forRange:">initWith64BitMask:forRange:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithRange:matchingMask:">initWithRange:matchingMask:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithRanges:matchingMasks:">initWithRanges:matchingMasks:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithRanges:">initWithRanges:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/matchesRange:">matchesRange:</a></span></li>
 	
@@ -145,7 +137,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>A class describing a comparison match for an <a href="../Classes/AQBitfield.html">AQBitfield</a>.</p>
+						<p>A class describing a range-mased match for an <a href="../Classes/AQBitfield.html">AQBitfield</a>.</p>
 					</div>
 					
 					
@@ -158,13 +150,20 @@
 						
 						
 						
-						<h3 class="subsubtitle task-title">Other Methods</h3>
+						
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithRanges:matchingMasks:">&ndash;&nbsp;initWithRanges:matchingMasks:</a></code>
+		<code><a href="#//api/name/initWithRanges:">&ndash;&nbsp;initWithRanges:</a></code>
 		<span class="tooltip"><p>Initialize a new descriptor.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithRange:">&ndash;&nbsp;initWithRange:</a></code>
+		<span class="tooltip"><p>Initialize a descriptor using a single range.</p></span>
 	</span>
 	
 	
@@ -193,35 +192,6 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/compare:">&ndash;&nbsp;compare:</a></code>
 		<span class="tooltip"><p>Compare two descriptors.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						
-						<h3 class="subsubtitle task-title">Other Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWithRange:matchingMask:">&ndash;&nbsp;initWithRange:matchingMask:</a></code>
-		<span class="tooltip"><p>Initialize a descriptor using a single range and mask.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWith32BitMask:forRange:">&ndash;&nbsp;initWith32BitMask:forRange:</a></code>
-		<span class="tooltip"><p>Initialize a descriptor using a single range and a 32-bit mask.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWith64BitMask:forRange:">&ndash;&nbsp;initWith64BitMask:forRange:</a></code>
-		<span class="tooltip"><p>Initialize a descriptor using a single range and a 64-bit mask.</p></span>
 	</span>
 	
 	
@@ -360,30 +330,25 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/initWith32BitMask:forRange:" title="initWith32BitMask:forRange:"></a>
-	<h3 class="subsubtitle method-title">initWith32BitMask:forRange:</h3>
+	<a name="//api/name/initWithRange:" title="initWithRange:"></a>
+	<h3 class="subsubtitle method-title">initWithRange:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize a descriptor using a single range and a 32-bit mask.</p>
+		<p>Initialize a descriptor using a single range.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWith32BitMask:(NSUInteger)<em>mask</em> forRange:(NSRange)<em>range</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithRange:(NSRange)<em>range</em></code></div>
 	
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>mask</em></dt>
-			<dd><p>A mask specifying which bits within the range to match. Do not pass zero.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
 			<dt><em>range</em></dt>
-			<dd><p>The range to match.</p></dd>
+			<dd><p>A range specifying which state bits to match.</p></dd>
 		</dl>
 		
 	</div>
@@ -412,112 +377,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/initWith64BitMask:forRange:" title="initWith64BitMask:forRange:"></a>
-	<h3 class="subsubtitle method-title">initWith64BitMask:forRange:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Initialize a descriptor using a single range and a 64-bit mask.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (id)initWith64BitMask:(UInt64)<em>mask</em> forRange:(NSRange)<em>range</em></code></div>
-	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>mask</em></dt>
-			<dd><p>A mask specifying which bits within the range to match. Do not pass zero.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>range</em></dt>
-			<dd><p>The range to match.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>The newly-initialized instance.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AQStateMatchingDescriptor.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/initWithRange:matchingMask:" title="initWithRange:matchingMask:"></a>
-	<h3 class="subsubtitle method-title">initWithRange:matchingMask:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Initialize a descriptor using a single range and mask.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (id)initWithRange:(NSRange)<em>range</em> matchingMask:(AQBitfield *)<em>mask</em></code></div>
-	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>range</em></dt>
-			<dd><p>The range to match.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>mask</em></dt>
-			<dd><p>A mask specifying which bits within the range to match. May be <code>nil</code>.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>The newly-initialized instance.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AQStateMatchingDescriptor.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/initWithRanges:matchingMasks:" title="initWithRanges:matchingMasks:"></a>
-	<h3 class="subsubtitle method-title">initWithRanges:matchingMasks:</h3>
+	<a name="//api/name/initWithRanges:" title="initWithRanges:"></a>
+	<h3 class="subsubtitle method-title">initWithRanges:</h3>
 	
 	
 	
@@ -526,7 +387,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithRanges:(NSArray *)<em>ranges</em> matchingMasks:(NSArray *)<em>masks</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithRanges:(NSArray *)<em>ranges</em></code></div>
 	
 	
 	<div class="method-subsection arguments-section parameters">
@@ -535,11 +396,6 @@
 		<dl class="argument-def parameter-def">
 			<dt><em>ranges</em></dt>
 			<dd><p>An array of <a href="../Classes/AQRange.html">AQRange</a> objects specifying ranges to match.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>masks</em></dt>
-			<dd><p>An array of <a href="../Classes/AQBitfield.html">AQBitfield</a> objects providing masks to apply to the ranges. May be <code>nil</code>.</p></dd>
 		</dl>
 		
 	</div>
@@ -555,8 +411,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>If masks are only required for some but not all entries in the <em>ranges</em> array, the
-corresponding entry in the <em>masks</em> array should be an <code>NSNull</code> instance.</p>
+		<p>This is the designated initializer for the <a href="AQStateMatchingDescriptor.html">AQStateMatchingDescriptor</a> class.</p>
 	</div>
 	
 	
@@ -633,7 +488,7 @@ corresponding entry in the <em>masks</em> array should be an <code>NSNull</code>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Jim Dovey. All rights reserved. (Last updated: 2011-06-24)</span><br />
+						<p><span class="copyright">&copy; 2011 Jim Dovey. All rights reserved. (Last updated: 2011-06-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 702)</a>.</span></p>
 						

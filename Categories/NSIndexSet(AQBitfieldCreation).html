@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>NSIndexSet(AQRangeMethods) Category Reference</title>
+		<title>NSIndexSet(AQBitfieldCreation) Category Reference</title>
 		<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" />
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
@@ -11,7 +11,7 @@
 	<body>
 		<header id="top_header">
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">NSIndexSet(AQRangeMethods) Category Reference</h1>
+				<h1 class="hideInXcode">NSIndexSet(AQBitfieldCreation) Category Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,7 +38,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/numberOfRanges">&nbsp;&nbsp;&nbsp;&nbsp;- numberOfRanges</option>
+	<option value="//api/name/bitfieldRepresentation">&nbsp;&nbsp;&nbsp;&nbsp;- bitfieldRepresentation</option>
 	
 	
 	
@@ -68,7 +68,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfRanges">numberOfRanges</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitfieldRepresentation">bitfieldRepresentation</a></span></li>
 	
 </ul></li>
 
@@ -77,7 +77,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="NSIndexSet(AQRangeMethods) Category Reference" name="top"></a>
+				<a title="NSIndexSet(AQBitfieldCreation) Category Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -86,7 +86,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">NSIndexSet(AQRangeMethods) Category Reference</h1>
+						<h1 class="title title-header">NSIndexSet(AQBitfieldCreation) Category Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -94,7 +94,7 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">AQRangeMethods.h</td>
+	<td class="specification-value">AQBitfield.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -104,11 +104,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Range-based methods for NSIndexSet.</p>
-
-<p>This category specifically implements some implementations of the enumerateRangesUsingBlock: functionality
-coming in OS X 10.7 and iOS 5.0. At runtime it will detect whether the official versions are available,
-and if they are not it will create them using the implementations given here for source code compatibility.</p>
+						<p>Convenience methods to build AQBitfields directly from NSIndexSets.</p>
 					</div>
 					
 					
@@ -126,8 +122,8 @@ and if they are not it will create them using the implementations given here for
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/numberOfRanges">&ndash;&nbsp;numberOfRanges</a></code>
-		<span class="tooltip"><p>The number of ranges present in the index set.</p></span>
+		<code><a href="#//api/name/bitfieldRepresentation">&ndash;&nbsp;bitfieldRepresentation</a></code>
+		<span class="tooltip"><p>Create an <a href="../Classes/AQBitfield.html">AQBitfield</a> using the contents of the receiver.</p></span>
 	</span>
 	
 	
@@ -149,17 +145,17 @@ and if they are not it will create them using the implementations given here for
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/numberOfRanges" title="numberOfRanges"></a>
-	<h3 class="subsubtitle method-title">numberOfRanges</h3>
+	<a name="//api/name/bitfieldRepresentation" title="bitfieldRepresentation"></a>
+	<h3 class="subsubtitle method-title">bitfieldRepresentation</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The number of ranges present in the index set.</p>
+		<p>Create an <a href="../Classes/AQBitfield.html">AQBitfield</a> using the contents of the receiver.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSUInteger)numberOfRanges</code></div>
+	<div class="method-subsection method-declaration"><code>- (AQBitfield *)bitfieldRepresentation</code></div>
 	
 	
 	
@@ -174,7 +170,7 @@ and if they are not it will create them using the implementations given here for
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AQRangeMethods.h</code><br />
+		<code class="declared-in-ref">AQBitfield.h</code><br />
 	</div>				
 	
 	
