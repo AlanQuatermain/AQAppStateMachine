@@ -43,6 +43,30 @@ typedef CFBit AQBit;
  */
 @interface AQBitfield : NSObject <NSCopying, NSMutableCopying, NSCoding>
 
+/// @name Initialization
+
+/**
+ Initialize an empty bitfield.
+ 
+ This is the designated initializer for the AQBitfield class.
+ @return A new bitfield instance, with all bits set to zero.
+ */
+- (id) init;
+
+/**
+ Initialize a bitfield using a 32-bit scalar value.
+ @param bits A 32-bit quantity whose bits will be used as initial content for the bitfield.
+ @return A new bitfield initialized with a copy of the bits within _bits_.
+ */
+- (id) initWith32BitField: (UInt32) bits;
+
+/**
+ Initialize a bitfield using a 64-bit scalar value.
+ @param bits A 64-bit quantity whose bits will be used as initial content for the bitfield.
+ @return A new bitfield initialized with a copy of the bits within _bits_.
+ */
+- (id) initWith64BitField: (UInt64) bits;
+
 /// @name Comparisons
 
 /// Returns a hash code for the object's current state.
@@ -54,6 +78,13 @@ typedef CFBit AQBit;
  @return `YES` if the objects are equal, `NO` otherwise.
  */
 - (BOOL) isEqual: (id) object;
+
+/**
+ Compare the receiver against another bitfield.
+ @param other The bitfield against which to compare the receiver.
+ @return An `NSComparisonResult` indicating the fields' relative ordering.
+ */
+- (NSComparisonResult) compare: (AQBitfield *) other;
 
 /// @name Counting
 
@@ -114,6 +145,22 @@ typedef CFBit AQBit;
  */
 - (NSUInteger) lastIndexOfBit: (AQBit) bit;
 
+/**
+ Obtain a 32-bit scalar value representing a range of bits within the field.
+ @param range The range from which to copy the bits.
+ @exception NSRangeException Thrown if the _range_ parameter specifies a length greater than 4.
+ @return A 32-bit value representing the bits in the given _range_.
+ */
+- (UInt32) scalarBitsFromRange: (NSRange) range;
+
+/**
+ Obtain a 64-bit scalar value representing a range of bits within the field.
+ @param range The range from which to copy the bits.
+ @exception NSRangeException Thrown if the _range_ parameter specifies a length greater than 8.
+ @return A 64-bit value representing the bits in the given _range_.
+ */
+- (UInt64) scalarBitsFrom64BitRange: (NSRange) range;
+
 /// @name Toggling Bits
 
 /**
@@ -143,6 +190,24 @@ typedef CFBit AQBit;
  @param bit The value to set.
  */
 - (void) setBitsInRange: (NSRange) range usingBit: (AQBit) bit;
+
+/**
+ Set the bits in the least-significant four words to those in a 32-bit quantity.
+ @param value The value whose bits to copy.
+ */
+- (void) setBitsFrom32BitValue: (UInt32) value;
+
+/**
+ Set the bits in the least-significant four words to those in a 64-bit quantity.
+ @param value The value whose bits to copy.
+ */
+- (void) setBitsFrom64BitValue: (UInt64) value;
+
+/**
+ Copy all 1 bits from another bitfield.
+ @param bitfield The bitfield with which to merge the receiver.
+ */
+- (void) unionWithBitfield: (AQBitfield *) bitfield;
 
 /**
  Fills the entire bitfield (from `0` to `NSNotFound-1`) with a given value.
@@ -205,5 +270,23 @@ typedef CFBit AQBit;
  @param mask The mask to apply to the bitfield's current state.
  */
 - (void) maskWithBits: (AQBitfield *) mask;
+
+/**
+ Obtain a copy of the receiver, masked with the given bits.
+ @param mask The mask to apply to the bitfield's current state.
+ */
+- (AQBitfield *) bitfieldUsingMask: (AQBitfield *) mask;
+
+@end
+
+/**
+ Convenience methods to build AQBitfields directly from NSIndexSets.
+ */
+@interface NSIndexSet (AQBitfieldCreation)
+
+/**
+ Create an AQBitfield using the contents of the receiver.
+ */
+- (AQBitfield *) bitfieldRepresentation;
 
 @end

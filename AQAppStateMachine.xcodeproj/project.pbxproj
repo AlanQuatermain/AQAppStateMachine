@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		381F03D713B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 381F03D513B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.h */; };
+		381F03D813B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 381F03D613B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m */; };
+		381F03D913B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 381F03D613B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m */; };
+		381F03DC13B9063600565E89 /* AQStateMatchingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 381F03DA13B9063600565E89 /* AQStateMatchingDescriptor.h */; };
+		381F03DD13B9063600565E89 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 381F03DB13B9063600565E89 /* AQStateMatchingDescriptor.m */; };
+		381F03DE13B9063600565E89 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 381F03DB13B9063600565E89 /* AQStateMatchingDescriptor.m */; };
 		3821C49D13AFC43D00175CEE /* AQBitfieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C49C13AFC43D00175CEE /* AQBitfieldTests.m */; };
 		3821C4A113B2322400175CEE /* AQBitfieldPredicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C4A013B2322400175CEE /* AQBitfieldPredicateTests.m */; };
 		3821C4A413B23C8500175CEE /* AQRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C4A313B23C8500175CEE /* AQRangeTests.m */; };
 		3821C4A713B240A900175CEE /* AQNotifyingBitfieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3821C4A613B240A900175CEE /* AQNotifyingBitfieldTests.m */; };
+		3834E23A13BA307E005DF984 /* AQIndexSetMasking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3834E23813BA307E005DF984 /* AQIndexSetMasking.h */; };
+		3834E23B13BA307E005DF984 /* AQIndexSetMasking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3834E23913BA307E005DF984 /* AQIndexSetMasking.m */; };
+		3834E23C13BA307E005DF984 /* AQIndexSetMasking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3834E23913BA307E005DF984 /* AQIndexSetMasking.m */; };
+		3834E23E13BA39F4005DF984 /* AQBitfieldPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3834E23D13BA39F4005DF984 /* AQBitfieldPrivate.h */; };
 		38431B5813A7C26800178A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
 		38431B6313A7C26800178A7E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B6213A7C26800178A7E /* SenTestingKit.framework */; };
 		38431B6613A7C26900178A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431B5713A7C26800178A7E /* Foundation.framework */; };
@@ -30,9 +40,9 @@
 		3866939513AAA0C600268560 /* AQAppStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866939313AAA0C600268560 /* AQAppStateMachine.h */; };
 		3866939613AAA0C600268560 /* AQAppStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939413AAA0C600268560 /* AQAppStateMachine.m */; };
 		3866939713AAA0C600268560 /* AQAppStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939413AAA0C600268560 /* AQAppStateMachine.m */; };
-		3866939A13ABC70300268560 /* AQStateMatchingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */; };
-		3866939B13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
-		3866939C13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */; };
+		3866939A13ABC70300268560 /* AQStateMaskMatchingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3866939813ABC70200268560 /* AQStateMaskMatchingDescriptor.h */; };
+		3866939B13ABC70300268560 /* AQStateMaskMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMaskMatchingDescriptor.m */; };
+		3866939C13ABC70300268560 /* AQStateMaskMatchingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3866939913ABC70300268560 /* AQStateMaskMatchingDescriptor.m */; };
 		3866940113AF8A1500268560 /* MutableSortedDictionaryContentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F113AF8A1500268560 /* MutableSortedDictionaryContentTests.m */; };
 		3866940213AF8A1500268560 /* NSStringExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F313AF8A1500268560 /* NSStringExtensionsTests.m */; };
 		3866940313AF8A1500268560 /* SortedDictionary+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 386693F513AF8A1500268560 /* SortedDictionary+Test.m */; };
@@ -112,6 +122,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		381F03D513B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMaskedEqualityMatchingDescriptor.h; sourceTree = "<group>"; };
+		381F03D613B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMaskedEqualityMatchingDescriptor.m; sourceTree = "<group>"; };
+		381F03DA13B9063600565E89 /* AQStateMatchingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMatchingDescriptor.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; wrapsLines = 1; };
+		381F03DB13B9063600565E89 /* AQStateMatchingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMatchingDescriptor.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; wrapsLines = 1; };
 		3821C49B13AFC43D00175CEE /* AQBitfieldTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldTests.h; sourceTree = "<group>"; };
 		3821C49C13AFC43D00175CEE /* AQBitfieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfieldTests.m; sourceTree = "<group>"; };
 		3821C49F13B2322400175CEE /* AQBitfieldPredicateTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldPredicateTests.h; sourceTree = "<group>"; };
@@ -120,6 +134,9 @@
 		3821C4A313B23C8500175CEE /* AQRangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQRangeTests.m; sourceTree = "<group>"; };
 		3821C4A513B240A900175CEE /* AQNotifyingBitfieldTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQNotifyingBitfieldTests.h; sourceTree = "<group>"; };
 		3821C4A613B240A900175CEE /* AQNotifyingBitfieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQNotifyingBitfieldTests.m; sourceTree = "<group>"; };
+		3834E23813BA307E005DF984 /* AQIndexSetMasking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQIndexSetMasking.h; sourceTree = "<group>"; };
+		3834E23913BA307E005DF984 /* AQIndexSetMasking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQIndexSetMasking.m; sourceTree = "<group>"; };
+		3834E23D13BA39F4005DF984 /* AQBitfieldPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQBitfieldPrivate.h; sourceTree = "<group>"; };
 		38431B5413A7C26800178A7E /* libAQAppStateMachine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAQAppStateMachine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		38431B5713A7C26800178A7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		38431B5B13A7C26800178A7E /* AQAppStateMachine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AQAppStateMachine-Prefix.pch"; sourceTree = "<group>"; };
@@ -133,15 +150,14 @@
 		38431B7F13A7C63B00178A7E /* AQBitfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQBitfield.m; sourceTree = "<group>"; };
 		38431B8313A7CCDC00178A7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		38466BA013B8E59600FEAFC8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		38466BDF13B8E61A00FEAFC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3866938813AA805500268560 /* AQRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRange.h; sourceTree = "<group>"; };
 		3866938913AA805500268560 /* AQRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQRange.m; sourceTree = "<group>"; };
 		3866938C13AA82C400268560 /* AQNotifyingBitfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQNotifyingBitfield.h; sourceTree = "<group>"; };
 		3866938D13AA82C400268560 /* AQNotifyingBitfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQNotifyingBitfield.m; sourceTree = "<group>"; };
 		3866939313AAA0C600268560 /* AQAppStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAppStateMachine.h; sourceTree = "<group>"; };
 		3866939413AAA0C600268560 /* AQAppStateMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAppStateMachine.m; sourceTree = "<group>"; };
-		3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMatchingDescriptor.h; sourceTree = "<group>"; };
-		3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMatchingDescriptor.m; sourceTree = "<group>"; };
+		3866939813ABC70200268560 /* AQStateMaskMatchingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQStateMaskMatchingDescriptor.h; sourceTree = "<group>"; };
+		3866939913ABC70300268560 /* AQStateMaskMatchingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQStateMaskMatchingDescriptor.m; sourceTree = "<group>"; };
 		386693F013AF8A1500268560 /* MutableSortedDictionaryContentTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSortedDictionaryContentTests.h; sourceTree = "<group>"; };
 		386693F113AF8A1500268560 /* MutableSortedDictionaryContentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSortedDictionaryContentTests.m; sourceTree = "<group>"; };
 		386693F213AF8A1500268560 /* NSStringExtensionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringExtensionsTests.h; sourceTree = "<group>"; };
@@ -230,7 +246,6 @@
 		38431B4913A7C26800178A7E = {
 			isa = PBXGroup;
 			children = (
-				38466BDF13B8E61A00FEAFC8 /* SenTestingKit.framework */,
 				38431B5913A7C26800178A7E /* AQAppStateMachine */,
 				38431B6C13A7C26900178A7E /* AQAppStateMachineTests */,
 				38431B5613A7C26800178A7E /* Frameworks */,
@@ -262,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				38431B7E13A7C63B00178A7E /* AQBitfield.h */,
+				3834E23D13BA39F4005DF984 /* AQBitfieldPrivate.h */,
 				38431B7F13A7C63B00178A7E /* AQBitfield.m */,
 				38AC30BA13AA3D5C00AB071C /* AQBitfieldPredicates.h */,
 				38AC30BB13AA3D5C00AB071C /* AQBitfieldPredicates.m */,
@@ -271,10 +287,16 @@
 				3866938D13AA82C400268560 /* AQNotifyingBitfield.m */,
 				3866939313AAA0C600268560 /* AQAppStateMachine.h */,
 				3866939413AAA0C600268560 /* AQAppStateMachine.m */,
-				3866939813ABC70200268560 /* AQStateMatchingDescriptor.h */,
-				3866939913ABC70300268560 /* AQStateMatchingDescriptor.m */,
+				381F03DA13B9063600565E89 /* AQStateMatchingDescriptor.h */,
+				381F03DB13B9063600565E89 /* AQStateMatchingDescriptor.m */,
+				3866939813ABC70200268560 /* AQStateMaskMatchingDescriptor.h */,
+				3866939913ABC70300268560 /* AQStateMaskMatchingDescriptor.m */,
+				381F03D513B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.h */,
+				381F03D613B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m */,
 				38F0AA1713B268F1006E014F /* AQRangeMethods.h */,
 				38F0AA1813B268F1006E014F /* AQRangeMethods.m */,
+				3834E23813BA307E005DF984 /* AQIndexSetMasking.h */,
+				3834E23913BA307E005DF984 /* AQIndexSetMasking.m */,
 				3866940A13AF8A1F00268560 /* SortedDictionary */,
 				38431B5A13A7C26800178A7E /* Supporting Files */,
 			);
@@ -430,7 +452,7 @@
 				3866938A13AA805500268560 /* AQRange.h in Headers */,
 				3866938E13AA82C400268560 /* AQNotifyingBitfield.h in Headers */,
 				3866939513AAA0C600268560 /* AQAppStateMachine.h in Headers */,
-				3866939A13ABC70300268560 /* AQStateMatchingDescriptor.h in Headers */,
+				3866939A13ABC70300268560 /* AQStateMaskMatchingDescriptor.h in Headers */,
 				3866942E13AF8A1F00268560 /* AvlTree+Private.h in Headers */,
 				3866943113AF8A1F00268560 /* AvlTree.h in Headers */,
 				3866943413AF8A1F00268560 /* common.h in Headers */,
@@ -448,6 +470,10 @@
 				3866945813AF8A1F00268560 /* SortedDictionary.h in Headers */,
 				3866945B13AF8A1F00268560 /* SortedDictionaryEntry.h in Headers */,
 				38F0AA1913B268F1006E014F /* AQRangeMethods.h in Headers */,
+				381F03D713B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.h in Headers */,
+				381F03DC13B9063600565E89 /* AQStateMatchingDescriptor.h in Headers */,
+				3834E23A13BA307E005DF984 /* AQIndexSetMasking.h in Headers */,
+				3834E23E13BA39F4005DF984 /* AQBitfieldPrivate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +581,7 @@
 				3866938B13AA805500268560 /* AQRange.m in Sources */,
 				3866938F13AA82C400268560 /* AQNotifyingBitfield.m in Sources */,
 				3866939613AAA0C600268560 /* AQAppStateMachine.m in Sources */,
-				3866939B13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */,
+				3866939B13ABC70300268560 /* AQStateMaskMatchingDescriptor.m in Sources */,
 				3866942F13AF8A1F00268560 /* AvlTree+Private.m in Sources */,
 				3866943213AF8A1F00268560 /* AvlTree.m in Sources */,
 				3866943513AF8A1F00268560 /* common.m in Sources */,
@@ -573,6 +599,9 @@
 				3866945913AF8A1F00268560 /* SortedDictionary.m in Sources */,
 				3866945F13AF8AF300268560 /* AQAdditions.m in Sources */,
 				38F0AA1A13B268F1006E014F /* AQRangeMethods.m in Sources */,
+				381F03D813B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m in Sources */,
+				381F03DD13B9063600565E89 /* AQStateMatchingDescriptor.m in Sources */,
+				3834E23B13BA307E005DF984 /* AQIndexSetMasking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +613,7 @@
 				38431B8213A7C63B00178A7E /* AQBitfield.m in Sources */,
 				38AC30BE13AA3D5C00AB071C /* AQBitfieldPredicates.m in Sources */,
 				3866939713AAA0C600268560 /* AQAppStateMachine.m in Sources */,
-				3866939C13ABC70300268560 /* AQStateMatchingDescriptor.m in Sources */,
+				3866939C13ABC70300268560 /* AQStateMaskMatchingDescriptor.m in Sources */,
 				3866940113AF8A1500268560 /* MutableSortedDictionaryContentTests.m in Sources */,
 				3866940213AF8A1500268560 /* NSStringExtensionsTests.m in Sources */,
 				3866940313AF8A1500268560 /* SortedDictionary+Test.m in Sources */,
@@ -617,6 +646,9 @@
 				38F0AA1B13B268F1006E014F /* AQRangeMethods.m in Sources */,
 				38C168C713B376500040BF99 /* AQRangeMethodsTest.m in Sources */,
 				38C168CB13B3A4E60040BF99 /* AQAppStateMachineCoreTests.m in Sources */,
+				381F03D913B904D600565E89 /* AQStateMaskedEqualityMatchingDescriptor.m in Sources */,
+				381F03DE13B9063600565E89 /* AQStateMatchingDescriptor.m in Sources */,
+				3834E23C13BA307E005DF984 /* AQIndexSetMasking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

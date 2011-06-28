@@ -40,6 +40,17 @@
 	NSMutableIndexSet *		_storage;
 }
 
+- (id) _initFromNSIndexSet: (NSIndexSet *) indexSet
+{
+	self = [self init];		// call the designated initializer like a good boy, now
+	if ( self == nil )
+		return ( nil );
+	
+	[_storage addIndexes: indexSet];
+	
+	return ( self );
+}
+
 - (id) init
 {
 	self = [super init];
@@ -47,6 +58,36 @@
 		return ( nil );
 	
 	_storage = [NSMutableIndexSet new];
+	
+	return ( self );
+}
+
+- (id) initWith32BitField: (UInt32) bits
+{
+	self = [self init];
+	if ( self == nil )
+		return ( nil );
+	
+	for ( NSUInteger i = 0; bits != 0; i++, bits >>= 1 )
+	{
+		if ( (bits & 1) == 1 )
+			[_storage addIndex: i];
+	}
+	
+	return ( self );
+}
+
+- (id) initWith64BitField: (UInt64) bits
+{
+	self = [self init];
+	if ( self == nil )
+		return ( nil );
+	
+	for ( NSUInteger i = 0; bits != 0; i++, bits >>= 1ull )
+	{
+		if ( (bits & 1ull) == 1ull )
+			[_storage addIndex: i];
+	}
 	
 	return ( self );
 }
@@ -103,6 +144,27 @@
 	return ( [_storage isEqualToIndexSet: other->_storage] );
 }
 
+- (NSComparisonResult) compare: (AQBitfield *) other
+{
+	NSUInteger mine = [_storage firstIndex];
+	NSUInteger theirs = [other->_storage firstIndex];
+	
+	while ( mine != NSNotFound && theirs != NSNotFound )
+	{
+		if ( mine > theirs )
+			return ( NSOrderedDescending );
+		else if ( mine > theirs )
+			return ( NSOrderedAscending );
+	}
+	
+	if ( mine != NSNotFound && theirs == NSNotFound )
+		return ( NSOrderedDescending );
+	else if ( mine == NSNotFound && theirs != NSNotFound )
+		return ( NSOrderedAscending );
+	
+	return ( NSOrderedSame );
+}
+
 - (NSUInteger) count
 {
 	NSUInteger last = [_storage lastIndex];
@@ -154,27 +216,11 @@
 	
 	__block NSUInteger result = 0;
 	
-	if ( [_storage respondsToSelector: @selector(enumerateRangesUsingBlock:)] )
-	{
-		[_storage enumerateRangesUsingBlock: ^(NSRange range, BOOL *stop) {
-			if ( range.location == 0 )
-				result = NSMaxRange(range);
-			*stop = YES;
-		}];
-	}
-	else
-	{
-		__block NSUInteger lastHighest = 0;
-		[_storage enumerateIndexesUsingBlock: ^(NSUInteger idx, BOOL *stop) {
-			if ( idx - lastHighest > 1 )
-			{
-				result = lastHighest+1;
-				*stop = YES;
-			}
-			
-			lastHighest = idx;
-		}];
-	}
+	[_storage enumerateRangesUsingBlock: ^(NSRange range, BOOL *stop) {
+		if ( range.location == 0 )
+			result = NSMaxRange(range);
+		*stop = YES;
+	}];
 	
 	return ( result );
 }
@@ -186,32 +232,54 @@
 	
 	__block NSUInteger result = NSNotFound;
 	
-	if ( [_storage respondsToSelector: @selector(enumerateRangesUsingBlock:)] )
+	[_storage enumerateRangesWithOptions: NSEnumerationReverse usingBlock: ^(NSRange range, BOOL *stop) {
+		if ( NSMaxRange(range) < NSNotFound-1 )
+		{
+			result = NSNotFound-1;
+		}
+		else if ( range.location > 0 )
+		{
+			result = range.location-1;
+		}
+		
+		*stop = YES;
+	}];
+	
+	return ( result );
+}
+
+- (UInt32) scalarBitsFromRange: (NSRange) range
+{
+	NSParameterAssert(range.length <= sizeof(UInt32));
+	if ( range.length > sizeof(UInt32) )
 	{
-		[_storage enumerateRangesWithOptions: NSEnumerationReverse usingBlock: ^(NSRange range, BOOL *stop) {
-			if ( NSMaxRange(range) < NSNotFound-1 )
-			{
-				result = NSNotFound-1;
-			}
-			else if ( range.location > 0 )
-			{
-				result = range.location-1;
-			}
-			
-			*stop = YES;
-		}];
+		[NSException raise: NSRangeException format: @"%@ specifies a range larger than the size of a 32-bit quantity", NSStringFromRange(range)];
 	}
-	else
+	
+	__block UInt32 result = 0;
+	
+	[_storage enumerateIndexesInRange: range options: 0 usingBlock: ^(NSUInteger idx, BOOL *stop) {
+		idx -= range.location;
+		result |= (1 << idx);
+	}];
+	
+	return ( result );
+}
+
+- (UInt64) scalarBitsFrom64BitRange: (NSRange) range
+{
+	NSParameterAssert(range.length <= sizeof(UInt64));
+	if ( range.length > sizeof(UInt64) )
 	{
-		__block NSUInteger lastLowest = NSNotFound-1;
-		[_storage enumerateIndexesWithOptions: NSEnumerationReverse usingBlock: ^(NSUInteger idx, BOOL *stop) {
-			if ( idx < lastLowest-1 )
-			{
-				result = lastLowest-1;
-				*stop = YES;
-			}
-		}];
+		[NSException raise: NSRangeException format: @"%@ specifies a range larger than the size of a 64-bit quantity", NSStringFromRange(range)];
 	}
+	
+	__block UInt64 result = 0ull;
+	
+	[_storage enumerateIndexesInRange: range options: 0 usingBlock: ^(NSUInteger idx, BOOL *stop) {
+		idx -= (UInt64)range.location;
+		result |= (1ull << idx);
+	}];
 	
 	return ( result );
 }
@@ -246,6 +314,33 @@
 		[_storage addIndexesInRange: range];
 	else
 		[_storage removeIndexesInRange: range];
+}
+
+- (void) setBitsFrom32BitValue: (UInt32) value
+{
+	for ( NSUInteger i = 0; i < 32; i++, value >>= 1 )
+	{
+		if ( (value & 1) == 1 )
+			[_storage addIndex: i];
+		else
+			[_storage removeIndex: i];
+	}
+}
+
+- (void) setBitsFrom64BitValue: (UInt64) value
+{
+	for ( NSUInteger i = 0; i < 64; i++, value >>= 1 )
+	{
+		if ( (value & 1) == 1 )
+			[_storage addIndex: i];
+		else
+			[_storage removeIndex: i];
+	}
+}
+
+- (void) unionWithBitfield: (AQBitfield *) bitfield
+{
+	[_storage addIndexes: bitfield->_storage];
 }
 
 - (void) setAllBits: (AQBit) bit
@@ -393,6 +488,43 @@
 			[_storage removeIndexesInRange: negativeRange];
 		}
 	}
+}
+
+- (AQBitfield *) bitfieldUsingMask: (AQBitfield *) mask
+{
+	AQBitfield * field = [self copy];
+	[field maskWithBits: mask];
+#if USING_ARC
+	return ( field );
+#else
+	return ( [field autorelease] );
+#endif
+}
+
+@end
+
+@implementation NSIndexSet (AQBitfieldCreation)
+
+- (AQBitfield *) bitfieldRepresentation
+{
+#if USING_ARC
+	return ( [[AQBitfield alloc] _initFromNSIndexSet: self] );
+#else
+	return ( [[[AQBitfield alloc] _initFromNSIndexSet: self] autorelease] );
+#endif
+}
+
+@end
+
+@implementation AQBitfield (_PrivateIndexSetAccess)
+
+- (NSMutableIndexSet *) indexSet
+{
+#if USING_ARC
+	return ( _storage );
+#else
+	return ( [[_storage retain] autorelease] );
+#endif
 }
 
 @end

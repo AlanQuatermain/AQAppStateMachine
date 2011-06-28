@@ -47,14 +47,43 @@
 + (AQAppStateMachine *) appStateMachine;
 
 // core notification API— everything else funnels through these functions
-- (void) notifyForChangesToStateBitAtIndex: (NSUInteger) index usingBlock: (void (^)(void)) block;
-- (void) notifyForChangesToStateBitsInRange: (NSRange) range usingBlock: (void (^)(void)) block;
-- (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWithInteger: (NSUInteger) mask
+- (void) notifyForChangesToStateBitAtIndex: (NSUInteger) index
+								usingBlock: (void (^)(void)) block;
+
+- (void) notifyForChangesToStateBitsInRange: (NSRange) range
 								 usingBlock: (void (^)(void)) block;
-- (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWith64BitInteger: (UInt64) mask
+- (void) notifyForChangesToStateBitsInRange: (NSRange) range
+						  maskedWithInteger: (NSUInteger) mask
+								 usingBlock: (void (^)(void)) block;
+- (void) notifyForChangesToStateBitsInRange: (NSRange) range
+					 maskedWith64BitInteger: (UInt64) mask
 								 usingBlock: (void (^)(void))block;
-- (void) notifyForChangesToStateBitsInRange: (NSRange) range maskedWithBits: (AQBitfield *) mask
+- (void) notifyForChangesToStateBitsInRange: (NSRange) range
+							 maskedWithBits: (AQBitfield *) mask
 								 usingBlock: (void (^)(void)) block;
+
+- (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
+							  toIntegerValue: (NSUInteger) value
+									   block: (void (^)(void)) block;
+- (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
+								to64BitValue: (UInt64) value
+									   block: (void (^)(void)) block;
+- (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
+									 toValue: (AQBitfield *) value
+								  usingBlock: (void (^)(void)) block;
+
+- (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
+								  maskedWith: (NSUInteger) mask
+							  toIntegerValue: (NSUInteger) value
+									   block: (void (^)(void)) block;
+- (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
+								  maskedWith: (UInt64) mask
+								to64BitValue: (UInt64) value
+									   block: (void (^)(void)) block;
+- (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
+								  maskedWith: (AQBitfield *) mask
+									 toValue: (AQBitfield *) value
+									   block: (void (^)(void)) block;
 
 @end
 
