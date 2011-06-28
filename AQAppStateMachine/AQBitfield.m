@@ -250,8 +250,8 @@
 
 - (UInt32) scalarBitsFromRange: (NSRange) range
 {
-	NSParameterAssert(range.length <= sizeof(UInt32));
-	if ( range.length > sizeof(UInt32) )
+	NSParameterAssert(range.length <= sizeof(UInt32)*8);
+	if ( range.length > sizeof(UInt32)*8 )
 	{
 		[NSException raise: NSRangeException format: @"%@ specifies a range larger than the size of a 32-bit quantity", NSStringFromRange(range)];
 	}
@@ -268,8 +268,8 @@
 
 - (UInt64) scalarBitsFrom64BitRange: (NSRange) range
 {
-	NSParameterAssert(range.length <= sizeof(UInt64));
-	if ( range.length > sizeof(UInt64) )
+	NSParameterAssert(range.length <= sizeof(UInt64)*8);
+	if ( range.length > sizeof(UInt64)*8 )
 	{
 		[NSException raise: NSRangeException format: @"%@ specifies a range larger than the size of a 64-bit quantity", NSStringFromRange(range)];
 	}
