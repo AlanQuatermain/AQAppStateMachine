@@ -64,7 +64,7 @@
 			}
 			else
 			{
-				NSMutableIndexSet * mutable = [_mask.indexSet mutableCopy];
+				NSMutableIndexSet * mutable = [mask.indexSet mutableCopy];
 				[mutable shiftIndexesStartingAtIndex: 0 by: rng.location];
 				[_mask.indexSet addIndexes: mutable];
 			}
@@ -271,7 +271,7 @@
 	
 	@autoreleasepool
 	{
-		self = [self initWithRanges: [NSArray arrayWithObject: rng] masks: [NSArray arrayWithObject: value] matchingValues: [NSArray arrayWithObject: mask]];
+		self = [self initWithRanges: [NSArray arrayWithObject: rng] masks: [NSArray arrayWithObject: mask] matchingValues: [NSArray arrayWithObject: value]];
 	}
 	
 #if !USING_ARC

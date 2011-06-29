@@ -124,4 +124,29 @@
 	STAssertFalse([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ NOT to match bitfield %@", desc, bitfield);
 }
 
+- (void) testZeroEquality
+{
+	AQBitfield * bitfield = [[AQBitfield alloc] initWith64BitField: 0xFFFF00000000FFFF];
+	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith32BitValue: 0 forRange: NSMakeRange(16, 32)];
+	
+	STAssertTrue([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ to match bitfield %@", desc, bitfield);
+	
+	[bitfield flipBitAtIndex: 32];
+	STAssertFalse([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ NOT to match bitfield %@", desc, bitfield);
+}
+
+- (void) testMaskedEquality
+{
+	AQBitfield * bitfield = [[AQBitfield alloc] initWith64BitField: 0xFFFF00000000FFFF];
+	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith32BitValue: 0x000000FF forRange: NSMakeRange(0, 32) matchingMask: 0xFFFF00FF];
+	
+	STAssertTrue([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ to match bitfield %@", desc, bitfield);
+	
+	[bitfield flipBitAtIndex: 12];
+	STAssertTrue([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ to match bitfield %@", desc, bitfield);
+	
+	[bitfield flipBitAtIndex: 24];
+	STAssertFalse([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ NOT to match bitfield %@", desc, bitfield);
+}
+
 @end
