@@ -76,14 +76,15 @@
 			if ( [masks count] > idx )
 				mask = [masks objectAtIndex: idx];
 			
-			if ( mask == nil )
-			{
-				[_value unionWithBitfield: obj];
-			}
-			else
-			{
-				[_value unionWithBitfield: [obj bitfieldUsingMask: mask]];
-			}
+			AQBitfield * modified = [obj copy];
+			if ( mask != nil )
+				[modified maskWithBits: mask];
+			
+			NSRange range = [[ranges objectAtIndex: idx] range];
+			if ( range.location != 0 )
+				[modified shiftBitsRightBy: range.location];
+			
+			[_value unionWithBitfield: modified];
 		}];
 	}
 	

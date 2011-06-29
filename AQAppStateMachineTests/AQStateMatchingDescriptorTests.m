@@ -35,6 +35,7 @@
 
 #import "AQStateMatchingDescriptorTests.h"
 #import "AQStateMaskMatchingDescriptor.h"
+#import "AQStateMaskedEqualityMatchingDescriptor.h"
 #import "AQBitfield.h"
 #import "AQRange.h"
 
@@ -107,6 +108,20 @@
 	
 	AQStateMaskMatchingDescriptor * desc = [[AQStateMaskMatchingDescriptor alloc] initWithRanges: [NSArray arrayWithObjects: r1, r2, nil] matchingMasks: nil];
 	STAssertTrue(NSEqualRanges(totalRange, desc.fullRange), @"Expected total range of %@ to be %@, got %@", desc, NSStringFromRange(totalRange), NSStringFromRange(desc.fullRange));
+}
+
+- (void) testSimpleEquality
+{
+	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith32BitValue: 0xFF700055 forRange: NSMakeRange(32, 32)];
+	AQBitfield * bitfield = [[AQBitfield alloc] initWith64BitField: 0xFF700055FF00FF00];
+	
+	STAssertTrue([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ to match bitfield %@", desc, bitfield);
+	
+	[bitfield flipBitAtIndex: 20];
+	STAssertTrue([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ to match bitfield %@", desc, bitfield);
+	
+	[bitfield flipBitAtIndex: 40];
+	STAssertFalse([desc matchesBitfield: bitfield], @"Expected equality descriptor %@ NOT to match bitfield %@", desc, bitfield);
 }
 
 @end

@@ -501,6 +501,28 @@
 #endif
 }
 
+- (AQBitfield *) bitfieldFromLeftShiftingBy: (NSUInteger) bits
+{
+	AQBitfield * result = [self copy];
+	[result shiftBitsLeftBy: bits];
+#if USING_ARC
+	return ( result );
+#else
+	return ( [result autorelease] );
+#endif
+}
+
+- (AQBitfield *) bitfieldFromRightShiftingBy: (NSUInteger) bits
+{
+	AQBitfield * result = [self copy];
+	[result shiftBitsRightBy: bits];
+#if USING_ARC
+	return ( result );
+#else
+	return ( [result autorelease] );
+#endif
+}
+
 @end
 
 @implementation NSIndexSet (AQBitfieldCreation)

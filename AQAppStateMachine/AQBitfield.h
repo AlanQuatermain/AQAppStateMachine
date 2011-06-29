@@ -277,6 +277,20 @@ typedef CFBit AQBit;
  */
 - (AQBitfield *) bitfieldUsingMask: (AQBitfield *) mask;
 
+/**
+ Obtain a bitfield matching the receiver with all bits shifted to the left.
+ @param bits The number of places to shift.
+ @return A new bitfield instance.
+ */
+- (AQBitfield *) bitfieldFromLeftShiftingBy: (NSUInteger) bits;
+
+/**
+ Obtain a bitfield matching the receiver with all bits shifted to the roght.
+ @param bits The number of places to shift.
+ @return A new bitfield instance.
+ */
+- (AQBitfield *) bitfieldFromRightShiftingBy: (NSUInteger) bits;
+
 @end
 
 /**
