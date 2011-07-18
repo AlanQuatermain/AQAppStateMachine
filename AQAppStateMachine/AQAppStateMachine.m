@@ -325,6 +325,33 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	[self setBit: 0 atIndex: index ofStateBitsInRange: rng];
 }
 
+- (UInt32) valueForEnumerationWithName: (NSString *) name
+{
+	NSRange rng = [self underlyingBitfieldRangeForName: name];
+	if ( rng.location == NSNotFound )
+		return ( 0 );
+	
+	return ( [_stateBits scalarBitsFromRange: rng] );
+}
+
+- (UInt64) largeValueForEnumerationWithName: (NSString *) name
+{
+	NSRange rng = [self underlyingBitfieldRangeForName: name];
+	if ( rng.location == NSNotFound )
+		return ( 0ull );
+	
+	return ( [_stateBits scalarBitsFrom64BitRange: rng] );
+}
+
+- (AQBitfield *) bitsForEnumerationWithName: (NSString *) name
+{
+	NSRange rng = [self underlyingBitfieldRangeForName: name];
+	if ( rng.location == NSNotFound )
+		return ( nil );
+	
+	return ( [_stateBits bitfieldFromRange: rng] );
+}
+
 - (void) notifyChangesToStateMachineValuesWithName: (NSString *) name
 										usingBlock: (void (^)(void)) block
 {
@@ -440,7 +467,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	return ( result );
 }
 
-- (BOOL) bitValuesForName: (NSString *) name matchInteger: (NSUInteger) value
+- (BOOL) bitValuesForName: (NSString *) name matchInteger: (UInt32) value
 {
 	AQRange * rangeObj = [_namedRanges objectForKey: name];
 	if ( rangeObj == nil )

@@ -118,27 +118,7 @@
 	});
 }
 
-- (void) _scheduleNotificationsForIndex: (NSUInteger) index
-{
-	dispatch_async(_syncQ, ^{
-		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			if ( NSLocationInRange(index, [key range]) )
-			{
-				AQRangeNotification block = (AQRangeNotification)obj;
-				if ( block != nil )
-				{
-					dispatch_async(dispatch_get_global_queue(0, 0), ^{ block([key range]); });
-				}
-			}
-			else if ( index < [key range].location )
-			{
-				*stop = YES;
-			}
-		}];
-	});
-}
-
-- (void) _scheduleNotificationsForRange: (NSRange) range
+- (void) _updatedBitsInRange: (NSRange) range
 {
 	dispatch_async(_syncQ, ^{
 		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
@@ -154,43 +134,6 @@
 			{
 				*stop = YES;
 			}
-		}];
-	});
-}
-
-- (void) flipBitAtIndex: (NSUInteger) index
-{
-	[super flipBitAtIndex: index];
-	[self _scheduleNotificationsForIndex: index];
-}
-
-- (void) flipBitsInRange: (NSRange) range
-{
-	[super flipBitsInRange: range];
-	[self _scheduleNotificationsForRange: range];
-}
-
-- (void) setBit: (AQBit) bit atIndex: (NSUInteger) index
-{
-	[super setBit: bit atIndex: index];
-	[self _scheduleNotificationsForIndex: index];
-}
-
-- (void) setBitsInRange: (NSRange) range usingBit: (AQBit) bit
-{
-	[super setBitsInRange: range usingBit: bit];
-	[self _scheduleNotificationsForRange: range];
-}
-
-- (void) setAllBits: (AQBit) bit
-{
-	[super setAllBits: bit];
-	
-	// always scheduling for all bits
-	dispatch_async(_syncQ, ^{
-		[_lookup enumerateKeysAndObjectsUsingBlock: ^(__strong id key, __strong id obj, BOOL *stop) {
-			AQRangeNotification block = (AQRangeNotification)obj;
-			dispatch_async(dispatch_get_global_queue(0, 0), ^{ block([key range]); });
 		}];
 	});
 }

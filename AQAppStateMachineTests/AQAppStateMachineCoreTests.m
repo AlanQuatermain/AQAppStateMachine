@@ -36,19 +36,25 @@
 #import "AQAppStateMachineCoreTests.h"
 #import "AQAppStateMachine.h"
 
+static NSString * const kSampleOneName = @"Sample One";
+static NSString * const kSampleTwoName = @"Sample Two";
+
 enum
 {
-	kSampleOneFirst,
-	kSampleOneSecond,
+	kSampleOneFirst,		// 00
+	kSampleOneSecond,		// 01
+	kSampleOneThird,		// 10
+	kSampleOneFourth,		// 11
 	
 	kSampleOneCount
 };
 
 enum
 {
-	kSampleTwoFirst,
-	kSampleTwoSecond,
-	kSampleTwoThird,
+	kSampleTwoFirst,		// 00
+	kSampleTwoSecond,		// 01
+	kSampleTwoThird,		// 10
+	kSampleTwoFourth,		// 11
 	
 	kSampleTwoCount
 };
@@ -64,14 +70,28 @@ enum
 	stateMachine = [AQAppStateMachine new];
 	
 	// add the named ranges
-	[stateMachine addStateMachineValuesFromZeroTo: kSampleOneCount withName: @"Sample One"];
-	[stateMachine addStateMachineValuesFromZeroTo: kSampleTwoCount withName: @"Sample Two"];
+	[stateMachine addStateMachineValuesFromZeroTo: kSampleOneCount withName: kSampleOneName];
+	[stateMachine addStateMachineValuesFromZeroTo: kSampleTwoCount withName: kSampleTwoName];
+	
+	[stateMachine setValue: kSampleOneSecond forEnumerationWithName: kSampleOneName];
+	[stateMachine setValue: kSampleTwoThird forEnumerationWithName: kSampleTwoName];
 }
 
 - (void) tearDown
 {
+#if !USING_ARC
+	[stateMachine release];
+#endif
 	// ARC code-- no -release, just nilify it
 	stateMachine = nil;
+}
+
+- (void) testSimpleValues
+{
+	STAssertTrue([stateMachine valueForEnumerationWithName: kSampleOneName] == kSampleOneSecond, @"Expected value for %@ to be %lu, got %lu", kSampleOneName, kSampleOneSecond, [stateMachine valueForEnumerationWithName: kSampleOneName]);
+	
+	[stateMachine clearBitAtIndex: 0 ofEnumerationWithName: kSampleOneName];
+	STAssertTrue([stateMachine valueForEnumerationWithName: kSampleOneName] == kSampleOneFirst, @"Expected value for %@ to be %lu, got %lu", kSampleOneName, kSampleOneFirst, [stateMachine valueForEnumerationWithName: kSampleOneName]);
 }
 
 - (void) testNamedRanges
@@ -80,12 +100,90 @@ enum
 	NSUInteger sampleOneBitCount = (kSampleOneCount + 7) & ~7;
 	NSUInteger sampleTwoBitCount = (kSampleTwoCount + 7) & ~7;
 	
-	STAssertTrue(NSEqualRanges(NSMakeRange(0, sampleOneBitCount), [stateMachine underlyingBitfieldRangeForName: @"Sample One"]), @"The underlying range is unexpectedly %@", NSStringFromRange([stateMachine underlyingBitfieldRangeForName: @"Sample One"]));
-	STAssertTrue(NSEqualRanges(NSMakeRange(sampleOneBitCount, sampleTwoBitCount), [stateMachine underlyingBitfieldRangeForName: @"Sample Two"]), @"The underlying range is unexpectedly %@", NSStringFromRange([stateMachine underlyingBitfieldRangeForName: @"Sample Two"]));
+	STAssertTrue(NSEqualRanges(NSMakeRange(0, sampleOneBitCount), [stateMachine underlyingBitfieldRangeForName: kSampleOneName]), @"The underlying range is unexpectedly %@", NSStringFromRange([stateMachine underlyingBitfieldRangeForName: kSampleOneName]));
+	STAssertTrue(NSEqualRanges(NSMakeRange(sampleOneBitCount, sampleTwoBitCount), [stateMachine underlyingBitfieldRangeForName: kSampleTwoName]), @"The underlying range is unexpectedly %@", NSStringFromRange([stateMachine underlyingBitfieldRangeForName: kSampleTwoName]));
 }
 
-- (void) testChangesToSingleBit
+- (void) testChangesToSingleBitInRange
 {
+	STAssertTrue([stateMachine bitIsSetAtIndex: 1 forName: kSampleTwoName], @"Expected bit one of %@ to be set", kSampleTwoName);
+	
+	[stateMachine clearBitAtIndex: 1 ofEnumerationWithName: kSampleTwoName];
+	STAssertTrue([stateMachine bitIsSetAtIndex: 1 forName: kSampleTwoName] == NO, @"Expected bit one of %@ NOT to be set", kSampleTwoName);
+	
+	[stateMachine setBitAtIndex: 1 ofEnumerationWithName: kSampleTwoName];
+	STAssertTrue([stateMachine bitIsSetAtIndex: 1 forName: kSampleTwoName], @"Expected bit one of %@ to be set", kSampleTwoName);
+}
+
+- (void) testChangesToValueInRange
+{
+	STAssertTrue([stateMachine bitValuesForName: kSampleTwoName matchInteger: kSampleTwoThird], @"Expected range %@ to contain %lu", kSampleTwoName, kSampleTwoThird);
+	
+	[stateMachine setValue: kSampleTwoSecond forEnumerationWithName: kSampleTwoName];
+	STAssertTrue([stateMachine bitValuesForName: kSampleTwoName matchInteger: kSampleTwoSecond], @"Expected range %@ to contain %lu", kSampleTwoName, kSampleTwoSecond);
+}
+
+- (void) testEnumerationChangeNotifications
+{
+	__block BOOL matched = NO;
+	[stateMachine notifyChangesToStateMachineValuesWithName: kSampleOneName usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setValue: kSampleOneFirst forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called upon change to value in %@", kSampleOneName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleTwoThird forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called upon change to value in %@", kSampleTwoName);
+}
+
+- (void) testSingleBitChangeNotifications
+{
+	__block BOOL matched = NO;
+	[stateMachine notifyChangesToStateMachineValuesWithName: kSampleOneName matchingMask: kSampleOneSecond usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setBitAtIndex: 0 ofEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called upon change to bit zero in %@", kSampleOneName);
+	
+	matched = NO;
+	[stateMachine setBitAtIndex: 1 ofEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called upon change to bit one in %@", kSampleOneName);
+	
+	matched = NO;
+	[stateMachine clearBitAtIndex: 0 ofEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called upon change to bit zero in %@", kSampleOneName);
+}
+
+- (void) testValueChangeNotifications
+{
+	__block BOOL matched = NO;
+	[stateMachine notifyChangesToStateMachineValuesWithName: kSampleTwoName matchingMask: kSampleTwoThird usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setValue: kSampleTwoThird forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleTwoThird was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleOneSecond forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called when kSampleTwoSecond was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleTwoFourth forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleTwoFourth was set in %@", kSampleTwoName);
 }
 
 @end

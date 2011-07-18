@@ -38,4 +38,5 @@
 
 @interface AQBitfield (_PrivateIndexSetAccess)
 @property (nonatomic, readonly) NSMutableIndexSet * indexSet;
+- (void) _updatedBitsInRange: (NSRange) range;
 @end

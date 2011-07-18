@@ -34,11 +34,9 @@
 //
 
 #import "AQBitfield.h"
+#import "AQBitfieldPrivate.h"
 
 @implementation AQBitfield
-{
-	NSMutableIndexSet *		_storage;
-}
 
 - (id) _initFromNSIndexSet: (NSIndexSet *) indexSet
 {
@@ -174,6 +172,14 @@
 	return ( last + 1 );
 }
 
+- (NSRange) rangeOfAllBits
+{
+	if ( [_storage count] == 0 )
+		return ( NSMakeRange(NSNotFound, 0) );
+	
+	return ( NSMakeRange([_storage firstIndex], [_storage lastIndex]-[_storage firstIndex]) );
+}
+
 - (NSUInteger) countOfBit: (AQBit) bit inRange: (NSRange) range
 {
 	if ( bit )
@@ -290,14 +296,21 @@
 		[_storage removeIndex: index];
 	else
 		[_storage addIndex: index];
+	
+	[self _updatedBitsInRange: NSMakeRange(index, 1)];
 }
 
 - (void) flipBitsInRange: (NSRange) range
 {
 	for ( NSUInteger i = range.location; i < NSMaxRange(range); i++ )
 	{
-		[self flipBitAtIndex: i];
+		if ( [_storage containsIndex: i] )
+			[_storage removeIndex: i];
+		else
+			[_storage addIndex: i];
 	}
+	
+	[self _updatedBitsInRange: range];
 }
 
 - (void) setBit: (AQBit) bit atIndex: (NSUInteger) index
@@ -306,6 +319,8 @@
 		[_storage addIndex: index];
 	else
 		[_storage removeIndex: index];
+	
+	[self _updatedBitsInRange: NSMakeRange(index, 1)];
 }
 
 - (void) setBitsInRange: (NSRange) range usingBit: (AQBit) bit
@@ -314,28 +329,36 @@
 		[_storage addIndexesInRange: range];
 	else
 		[_storage removeIndexesInRange: range];
+	
+	[self _updatedBitsInRange: range];
 }
 
 - (void) setBitsFrom32BitValue: (UInt32) value
 {
-	for ( NSUInteger i = 0; i < 32; i++, value >>= 1 )
+	NSUInteger i = 0;
+	for ( i = 0; i < 32; i++, value >>= 1 )
 	{
 		if ( (value & 1) == 1 )
 			[_storage addIndex: i];
 		else
 			[_storage removeIndex: i];
 	}
+	
+	[self _updatedBitsInRange: NSMakeRange(0, i)];
 }
 
 - (void) setBitsFrom64BitValue: (UInt64) value
 {
-	for ( NSUInteger i = 0; i < 64; i++, value >>= 1 )
+	NSUInteger i = 0;
+	for ( i = 0; i < 64; i++, value >>= 1 )
 	{
 		if ( (value & 1) == 1 )
 			[_storage addIndex: i];
 		else
 			[_storage removeIndex: i];
 	}
+	
+	[self _updatedBitsInRange: NSMakeRange(0, i)];
 }
 
 - (void) setBitsInRange: (NSRange) range from32BitValue: (UInt32) value
@@ -343,13 +366,16 @@
 	if ( range.length > 32 )
 		[NSException raise: NSInvalidArgumentException format: @"Range supplied to -%@ must have a length of 32 or less (received range %@)", NSStringFromClass([self class]), NSStringFromRange(range)];
 	
-	for ( NSUInteger i = 0; i < range.length; i++, value >>= 1 )
+	NSUInteger i = 0;
+	for ( i = 0; i < range.length; i++, value >>= 1 )
 	{
 		if ( (value & 1) == 1 )
 			[_storage addIndex: range.location + i];
 		else
 			[_storage removeIndex: range.location + i];
 	}
+	
+	[self _updatedBitsInRange: NSMakeRange(range.location, i)];
 }
 
 - (void) setBitsInRange: (NSRange) range from64BitValue: (UInt64) value
@@ -357,23 +383,28 @@
 	if ( range.length > 64 )
 		[NSException raise: NSInvalidArgumentException format: @"Range supplied to -%@ must have a length of 64 or less (received range %@)", NSStringFromClass([self class]), NSStringFromRange(range)];
 	
-	for ( NSUInteger i = 0; i < range.length; i++, value >>= 1 )
+	NSUInteger i = 0;
+	for ( i = 0; i < range.length; i++, value >>= 1 )
 	{
 		if ( (value & 1) == 1 )
 			[_storage addIndex: range.location + i];
 		else
 			[_storage removeIndex: range.location + i];
 	}
+	
+	[self _updatedBitsInRange: NSMakeRange(range.location, i)];
 }
 
 - (void) unionWithBitfield: (AQBitfield *) bitfield
 {
 	[_storage addIndexes: bitfield->_storage];
+	[self _updatedBitsInRange: [bitfield rangeOfAllBits]];
 }
 
 - (void) setAllBits: (AQBit) bit
 {
 	[_storage addIndexesInRange: NSMakeRange(0, NSNotFound)];
+	[self _updatedBitsInRange: NSMakeRange(0, NSNotFound)];
 }
 
 - (NSMutableIndexSet *) _zeroBasedIndexSetForIndexesInRange: (NSRange) range
@@ -467,18 +498,49 @@
 
 - (void) shiftBitsLeftBy: (NSUInteger) bits
 {
+	if ( [_storage count] == 0 )
+		return;
+	
+	NSRange myRange = [self rangeOfAllBits];
+	if ( myRange.location > bits )
+	{
+		myRange.location -= bits;
+		myRange.length += bits;
+	}
+	else
+	{
+		myRange.length += myRange.location;
+		myRange.location = 0;
+	}
+	
 	NSInteger shift = 0 - (NSInteger)bits;
 	[_storage shiftIndexesStartingAtIndex: bits by: shift];
+	[self _updatedBitsInRange: myRange];
 }
 
 - (void) shiftBitsRightBy: (NSUInteger) bits
 {
+	if ( [_storage count] == 0 )
+		return;
+	
+	NSRange myRange = [self rangeOfAllBits];
+	if ( NSMaxRange(myRange) + bits < NSNotFound )
+	{
+		myRange.length += bits;
+	}
+	else
+	{
+		myRange.length += NSMaxRange(myRange) - NSNotFound;
+	}
+	
 	[_storage shiftIndexesStartingAtIndex: 0 by: (NSInteger)bits];
+	[self _updatedBitsInRange: myRange];
 }
 
 - (void) maskWithBits: (AQBitfield *) mask
 {
 	NSRange range = NSMakeRange(0, MIN(self.count, mask.count));
+	__block NSRange changed = {0, 0};
 	
 	if ( [mask->_storage respondsToSelector: @selector(enumerateRangesUsingBlock:)] )
 	{
@@ -486,14 +548,18 @@
 		[mask->_storage enumerateRangesInRange: range options: 0 usingBlock: ^(NSRange range, BOOL *stop) {
 			if ( range.location > negativeRangeLocation )
 			{
-				[_storage removeIndexesInRange: NSMakeRange(negativeRangeLocation, range.location - negativeRangeLocation)];
+				NSRange r = NSMakeRange(negativeRangeLocation, range.location - negativeRangeLocation);
+				[_storage removeIndexesInRange: r];
+				changed = NSUnionRange(changed, r);
 			}
 			negativeRangeLocation = NSMaxRange(range);
 		}];
 		
 		if ( negativeRangeLocation <= [_storage lastIndex] )
 		{
-			[_storage removeIndexesInRange: NSMakeRange(negativeRangeLocation, NSUIntegerMax-negativeRangeLocation)];
+			NSRange r = NSMakeRange(negativeRangeLocation, NSUIntegerMax-negativeRangeLocation);
+			[_storage removeIndexesInRange: r];
+			changed = NSUnionRange(changed, r);
 		}
 	}
 	else
@@ -505,6 +571,7 @@
 				// expand negative range to fill the area below current index and remove all indices from local storage
 				negativeRange.length = idx-negativeRange.location;
 				[_storage removeIndexesInRange: negativeRange];
+				changed = NSUnionRange(changed, negativeRange);
 			}
 			
 			negativeRange.location = idx+1;
@@ -514,8 +581,11 @@
 		{
 			negativeRange.length = [_storage lastIndex] - negativeRange.location;
 			[_storage removeIndexesInRange: negativeRange];
+			changed = NSUnionRange(changed, negativeRange);
 		}
 	}
+	
+	[self _updatedBitsInRange: changed];
 }
 
 - (AQBitfield *) bitfieldUsingMask: (AQBitfield *) mask
@@ -575,6 +645,11 @@
 #else
 	return ( [[_storage retain] autorelease] );
 #endif
+}
+
+- (void) _updatedBitsInRange: (NSRange) range
+{
+	// this class does nothing-- it's for subclassers to implement
 }
 
 @end

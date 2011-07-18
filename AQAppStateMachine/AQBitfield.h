@@ -42,6 +42,10 @@ typedef CFBit AQBit;
  A class representing a bitfield of indeterminate size.
  */
 @interface AQBitfield : NSObject <NSCopying, NSMutableCopying, NSCoding>
+{
+@protected
+	NSMutableIndexSet *		_storage;
+}
 
 /// @name Initialization
 
