@@ -54,22 +54,38 @@ enum
 };
 
 @implementation AQAppStateMachineCoreTests
+{
+	AQAppStateMachine * stateMachine;
+}
 
-- (void) testNamedRanges
+- (void) setUp
 {
 	// temporary version just for the tests
-	AQAppStateMachine * stateMachine = [AQAppStateMachine new];
+	stateMachine = [AQAppStateMachine new];
 	
 	// add the named ranges
 	[stateMachine addStateMachineValuesFromZeroTo: kSampleOneCount withName: @"Sample One"];
 	[stateMachine addStateMachineValuesFromZeroTo: kSampleTwoCount withName: @"Sample Two"];
-	
+}
+
+- (void) tearDown
+{
+	// ARC code-- no -release, just nilify it
+	stateMachine = nil;
+}
+
+- (void) testNamedRanges
+{
 	// the state machine will round up to byte-size to allocate ranges, like so:
 	NSUInteger sampleOneBitCount = (kSampleOneCount + 7) & ~7;
 	NSUInteger sampleTwoBitCount = (kSampleTwoCount + 7) & ~7;
 	
 	STAssertTrue(NSEqualRanges(NSMakeRange(0, sampleOneBitCount), [stateMachine underlyingBitfieldRangeForName: @"Sample One"]), @"The underlying range is unexpectedly %@", NSStringFromRange([stateMachine underlyingBitfieldRangeForName: @"Sample One"]));
 	STAssertTrue(NSEqualRanges(NSMakeRange(sampleOneBitCount, sampleTwoBitCount), [stateMachine underlyingBitfieldRangeForName: @"Sample Two"]), @"The underlying range is unexpectedly %@", NSStringFromRange([stateMachine underlyingBitfieldRangeForName: @"Sample Two"]));
+}
+
+- (void) testChangesToSingleBit
+{
 }
 
 @end

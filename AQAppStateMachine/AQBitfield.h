@@ -198,10 +198,26 @@ typedef CFBit AQBit;
 - (void) setBitsFrom32BitValue: (UInt32) value;
 
 /**
- Set the bits in the least-significant four words to those in a 64-bit quantity.
+ Set the bits in the least-significant eight words to those in a 64-bit quantity.
  @param value The value whose bits to copy.
  */
 - (void) setBitsFrom64BitValue: (UInt64) value;
+
+/**
+ Set the bits in the given range to those in a 32-bit quantity.
+ @param value The value whose bits to copy.
+ @param range The range of bits to modify.
+ @exception NSInvalidArgumentException Thrown if the supplied range is greater than 32 bits in length.
+ */
+- (void) setBitsInRange: (NSRange) range from32BitValue: (UInt32) value;
+
+/**
+ Set the bits in the given range to those in a 64-bit quantity.
+ @param value The value whose bits to copy.
+ @param range The range of bits to modify.
+ @exception NSInvalidArgumentException Thrown if the supplied range is greater than 64 bits in length.
+ */
+- (void) setBitsInRange: (NSRange) range from64BitValue: (UInt64) value;
 
 /**
  Copy all 1 bits from another bitfield.

@@ -112,6 +112,56 @@
 	STAssertTrue([bitfield countOfBit: 1 inRange: test6] == 3, @"Expected %@ to have 3 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test3), (unsigned long)[bitfield countOfBit: 1 inRange: test6]);
 }
 
+- (void) setSetBitsInRangeFrom32BitScalar
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	
+	NSRange setRange = NSMakeRange(10, 32);
+	[bitfield setBitsInRange: setRange from32BitValue: 0xFF00FFFF];
+	
+	NSRange test1 = NSMakeRange(setRange.location,     16);		// should be 16 bits set
+	NSRange test2 = NSMakeRange(setRange.location + 16, 8);		// should be 0 bits set
+	NSRange test3 = NSMakeRange(setRange.location + 24, 8);		// should be 8 bits set
+	
+	STAssertTrue([bitfield countOfBit: 1 inRange: test1] == 16, @"Expected %@ to have 16 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test1), (unsigned long)[bitfield countOfBit: 1 inRange: test1]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test2] == 0, @"Expected %@ to have 0 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test2), (unsigned long)[bitfield countOfBit: 1 inRange: test2]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test3] == 8, @"Expected %@ to have 8 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test3), (unsigned long)[bitfield countOfBit: 1 inRange: test3]);
+	
+	NSRange before = NSMakeRange(0, setRange.location);
+	NSRange after = NSMakeRange(NSMaxRange(setRange), 20);
+	
+	STAssertTrue([bitfield countOfBit: 1 inRange: before] == 0, @"Expected %@ to have no bits set in range %@, but got %lu", bitfield, NSStringFromRange(before), (unsigned long)[bitfield countOfBit: 1 inRange: before]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: after] == 0, @"Expected %@ to have no bits set in range %@, but got %lu", bitfield, NSStringFromRange(before), (unsigned long)[bitfield countOfBit: 1 inRange: after]);
+}
+
+- (void) testSetBitsInRangeFrom64BitScalar
+{
+	AQBitfield * bitfield = [AQBitfield new];
+	
+	NSRange setRange = NSMakeRange(10, 64);
+	[bitfield setBitsInRange: setRange from64BitValue: 0xE000007FFF00FFFFull];
+	
+	NSRange test1 = NSMakeRange(setRange.location,     16);		// should be 16 bits set
+	NSRange test2 = NSMakeRange(setRange.location + 16, 8);		// should be 0 bits set
+	NSRange test3 = NSMakeRange(setRange.location + 24, 8);		// should be 8 bits set
+	NSRange test4 = NSMakeRange(setRange.location + 32, 8);		// should be 7 bits set
+	NSRange test5 = NSMakeRange(setRange.location + 40, 16);	// should be 0 bits set
+	NSRange test6 = NSMakeRange(setRange.location + 56, 8);		// should be 3 bits set
+	
+	STAssertTrue([bitfield countOfBit: 1 inRange: test1] == 16, @"Expected %@ to have 16 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test1), (unsigned long)[bitfield countOfBit: 1 inRange: test1]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test2] == 0, @"Expected %@ to have 0 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test2), (unsigned long)[bitfield countOfBit: 1 inRange: test2]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test3] == 8, @"Expected %@ to have 8 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test3), (unsigned long)[bitfield countOfBit: 1 inRange: test3]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test4] == 7, @"Expected %@ to have 7 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test3), (unsigned long)[bitfield countOfBit: 1 inRange: test4]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test5] == 0, @"Expected %@ to have 0 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test3), (unsigned long)[bitfield countOfBit: 1 inRange: test5]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: test6] == 3, @"Expected %@ to have 3 bits set in range %@, but got %lu", bitfield, NSStringFromRange(test3), (unsigned long)[bitfield countOfBit: 1 inRange: test6]);
+	
+	NSRange before = NSMakeRange(0, setRange.location);
+	NSRange after = NSMakeRange(NSMaxRange(setRange), 20);
+	
+	STAssertTrue([bitfield countOfBit: 1 inRange: before] == 0, @"Expected %@ to have no bits set in range %@, but got %lu", bitfield, NSStringFromRange(before), (unsigned long)[bitfield countOfBit: 1 inRange: before]);
+	STAssertTrue([bitfield countOfBit: 1 inRange: after] == 0, @"Expected %@ to have no bits set in range %@, but got %lu", bitfield, NSStringFromRange(before), (unsigned long)[bitfield countOfBit: 1 inRange: after]);
+}
+
 - (void) testBitCount
 {
 	AQBitfield * bitfield = [AQBitfield new];

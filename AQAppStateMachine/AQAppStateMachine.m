@@ -135,6 +135,21 @@
 #endif
 }
 
+- (void) setBit: (AQBit) aBit atIndex: (NSUInteger) index ofStateBitsInRange: (NSRange) range
+{
+	[_stateBits setBit: aBit atIndex: range.location + index];
+}
+
+- (void) setScalar32Value: (UInt32) value forStateBitsInRange: (NSRange) range
+{
+	[_stateBits setBitsInRange: range from32BitValue: value];
+}
+
+- (void) setScalar64Value: (UInt64) value forStateBitsInRange: (NSRange) range
+{
+	[_stateBits setBitsInRange: range from64BitValue: value];
+}
+
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range
 						  maskedWithInteger: (NSUInteger) mask
 								 usingBlock: (void (^)(void)) block
@@ -281,6 +296,33 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 		[_namedRanges setObject: range forKey: name];
 		_nextRangeStart = NSMaxRange(range.range);
 	});
+}
+
+- (void) setValue: (UInt64) value forEnumerationWithName: (NSString *) name
+{
+	NSRange rng = [self underlyingBitfieldRangeForName: name];
+	if ( rng.location == NSNotFound )
+		return;
+	
+	[self setScalar64Value: value forStateBitsInRange: rng];
+}
+
+- (void) setBitAtIndex: (NSUInteger) index ofEnumerationWithName: (NSString *) name
+{
+	NSRange rng = [self underlyingBitfieldRangeForName: name];
+	if ( rng.location == NSNotFound )
+		return;
+	
+	[self setBit: 1 atIndex: index ofStateBitsInRange: rng];
+}
+
+- (void) clearBitAtIndex: (NSUInteger) index ofEnumerationWithName: (NSString *) name
+{
+	NSRange rng = [self underlyingBitfieldRangeForName: name];
+	if ( rng.location == NSNotFound )
+		return;
+	
+	[self setBit: 0 atIndex: index ofStateBitsInRange: rng];
 }
 
 - (void) notifyChangesToStateMachineValuesWithName: (NSString *) name

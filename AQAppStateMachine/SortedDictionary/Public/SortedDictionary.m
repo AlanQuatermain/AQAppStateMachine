@@ -17,10 +17,10 @@
 // terminated argument list
 - (id) initWithObject: (id) firstObject andArglist: (va_list) arglist {
 	if (self = [self init]) {
-		id key, value;
+		id  __unsafe_unretained key, value;
 		
 		if ((value = firstObject)) {
-			if ((key = va_arg(arglist, id)) != nil) {
+			if ((key = va_arg(arglist, __unsafe_unretained id)) != nil) {
 				do {
 					if (!key || !value) {
 						@throw [NSException exceptionWithName: NSInvalidArgumentException
@@ -28,7 +28,7 @@
 					}
 					
 					[tree setObject: value forKey: key];
-				} while ((value = va_arg(arglist, id)) && (key = va_arg(arglist, id)));
+				} while ((value = va_arg(arglist, __unsafe_unretained id)) && (key = va_arg(arglist, __unsafe_unretained id)));
 			}
 		}		
 	}

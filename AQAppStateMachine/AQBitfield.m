@@ -338,6 +338,34 @@
 	}
 }
 
+- (void) setBitsInRange: (NSRange) range from32BitValue: (UInt32) value
+{
+	if ( range.length > 32 )
+		[NSException raise: NSInvalidArgumentException format: @"Range supplied to -%@ must have a length of 32 or less (received range %@)", NSStringFromClass([self class]), NSStringFromRange(range)];
+	
+	for ( NSUInteger i = 0; i < range.length; i++, value >>= 1 )
+	{
+		if ( (value & 1) == 1 )
+			[_storage addIndex: range.location + i];
+		else
+			[_storage removeIndex: range.location + i];
+	}
+}
+
+- (void) setBitsInRange: (NSRange) range from64BitValue: (UInt64) value
+{
+	if ( range.length > 64 )
+		[NSException raise: NSInvalidArgumentException format: @"Range supplied to -%@ must have a length of 64 or less (received range %@)", NSStringFromClass([self class]), NSStringFromRange(range)];
+	
+	for ( NSUInteger i = 0; i < range.length; i++, value >>= 1 )
+	{
+		if ( (value & 1) == 1 )
+			[_storage addIndex: range.location + i];
+		else
+			[_storage removeIndex: range.location + i];
+	}
+}
+
 - (void) unionWithBitfield: (AQBitfield *) bitfield
 {
 	[_storage addIndexes: bitfield->_storage];

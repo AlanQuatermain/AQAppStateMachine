@@ -46,6 +46,11 @@
  */
 + (AQAppStateMachine *) appStateMachine;
 
+// core value change API
+- (void) setBit: (AQBit) aBit atIndex: (NSUInteger) index ofStateBitsInRange: (NSRange) range;
+- (void) setScalar32Value: (UInt32) value forStateBitsInRange: (NSRange) range;
+- (void) setScalar64Value: (UInt64) value forStateBitsInRange: (NSRange) range;
+
 // core notification API— everything else funnels through these functions
 - (void) notifyForChangesToStateBitAtIndex: (NSUInteger) index
 								usingBlock: (void (^)(void)) block;
@@ -87,7 +92,7 @@
 
 @end
 
-/*!
+/**
  This category defines an interface whereby API clients can interact with the state machine using
  atomic-sized enumerated value ranges keyed with specific names, rather than knowing the internals
  of the (potentially quite large) bitfield layout.
@@ -102,6 +107,11 @@
 
 // generic named bit-range creator -- the others all funnel through here
 - (void) addStateMachineValuesUsingBitfieldOfLength: (NSUInteger) length withName: (NSString *) name;
+
+// setting values -- simple version
+- (void) setValue: (UInt64) value forEnumerationWithName: (NSString *) name;
+- (void) setBitAtIndex: (NSUInteger) index ofEnumerationWithName: (NSString *) name;
+- (void) clearBitAtIndex: (NSUInteger) index ofEnumerationWithName: (NSString *) name;
 
 // add notifications for named enumerations
 - (void) notifyChangesToStateMachineValuesWithName: (NSString *) name
