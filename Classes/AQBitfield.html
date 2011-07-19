@@ -45,7 +45,11 @@
 	
 	<option value="//api/name/bitAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- bitAtIndex:</option>
 	
+	<option value="//api/name/bitfieldFromLeftShiftingBy:">&nbsp;&nbsp;&nbsp;&nbsp;- bitfieldFromLeftShiftingBy:</option>
+	
 	<option value="//api/name/bitfieldFromRange:">&nbsp;&nbsp;&nbsp;&nbsp;- bitfieldFromRange:</option>
+	
+	<option value="//api/name/bitfieldFromRightShiftingBy:">&nbsp;&nbsp;&nbsp;&nbsp;- bitfieldFromRightShiftingBy:</option>
 	
 	<option value="//api/name/bitfieldUsingMask:">&nbsp;&nbsp;&nbsp;&nbsp;- bitfieldUsingMask:</option>
 	
@@ -94,6 +98,10 @@
 	<option value="//api/name/setBitsFrom32BitValue:">&nbsp;&nbsp;&nbsp;&nbsp;- setBitsFrom32BitValue:</option>
 	
 	<option value="//api/name/setBitsFrom64BitValue:">&nbsp;&nbsp;&nbsp;&nbsp;- setBitsFrom64BitValue:</option>
+	
+	<option value="//api/name/setBitsInRange:from32BitValue:">&nbsp;&nbsp;&nbsp;&nbsp;- setBitsInRange:from32BitValue:</option>
+	
+	<option value="//api/name/setBitsInRange:from64BitValue:">&nbsp;&nbsp;&nbsp;&nbsp;- setBitsInRange:from64BitValue:</option>
 	
 	<option value="//api/name/setBitsInRange:usingBit:">&nbsp;&nbsp;&nbsp;&nbsp;- setBitsInRange:usingBit:</option>
 	
@@ -155,7 +163,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitAtIndex:">bitAtIndex:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitfieldFromLeftShiftingBy:">bitfieldFromLeftShiftingBy:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitfieldFromRange:">bitfieldFromRange:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitfieldFromRightShiftingBy:">bitfieldFromRightShiftingBy:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitfieldUsingMask:">bitfieldUsingMask:</a></span></li>
 	
@@ -204,6 +216,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBitsFrom32BitValue:">setBitsFrom32BitValue:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBitsFrom64BitValue:">setBitsFrom64BitValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBitsInRange:from32BitValue:">setBitsInRange:from32BitValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBitsInRange:from64BitValue:">setBitsInRange:from64BitValue:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBitsInRange:usingBit:">setBitsInRange:usingBit:</a></span></li>
 	
@@ -460,7 +476,21 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setBitsFrom64BitValue:">&ndash;&nbsp;setBitsFrom64BitValue:</a></code>
-		<span class="tooltip"><p>Set the bits in the least-significant four words to those in a 64-bit quantity.</p></span>
+		<span class="tooltip"><p>Set the bits in the least-significant eight words to those in a 64-bit quantity.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setBitsInRange:from32BitValue:">&ndash;&nbsp;setBitsInRange:from32BitValue:</a></code>
+		<span class="tooltip"><p>Set the bits in the given range to those in a 32-bit quantity.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setBitsInRange:from64BitValue:">&ndash;&nbsp;setBitsInRange:from64BitValue:</a></code>
+		<span class="tooltip"><p>Set the bits in the given range to those in a 64-bit quantity.</p></span>
 	</span>
 	
 	
@@ -539,6 +569,20 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/bitfieldUsingMask:">&ndash;&nbsp;bitfieldUsingMask:</a></code>
 		<span class="tooltip"><p>Obtain a copy of the receiver, masked with the given bits.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitfieldFromLeftShiftingBy:">&ndash;&nbsp;bitfieldFromLeftShiftingBy:</a></code>
+		<span class="tooltip"><p>Obtain a bitfield matching the receiver with all bits shifted to the left.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitfieldFromRightShiftingBy:">&ndash;&nbsp;bitfieldFromRightShiftingBy:</a></code>
+		<span class="tooltip"><p>Obtain a bitfield matching the receiver with all bits shifted to the roght.</p></span>
 	</span>
 	
 	
@@ -651,6 +695,53 @@ i.e. it will return <code>((index of highest 1-bit) + 1)</code>.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/bitfieldFromLeftShiftingBy:" title="bitfieldFromLeftShiftingBy:"></a>
+	<h3 class="subsubtitle method-title">bitfieldFromLeftShiftingBy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Obtain a bitfield matching the receiver with all bits shifted to the left.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (AQBitfield *)bitfieldFromLeftShiftingBy:(NSUInteger)<em>bits</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bits</em></dt>
+			<dd><p>The number of places to shift.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new bitfield instance.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/bitfieldFromRange:" title="bitfieldFromRange:"></a>
 	<h3 class="subsubtitle method-title">bitfieldFromRange:</h3>
 	
@@ -694,6 +785,53 @@ i.e. it will return <code>((index of highest 1-bit) + 1)</code>.</p>
 		</dl>
 		
 	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitfieldFromRightShiftingBy:" title="bitfieldFromRightShiftingBy:"></a>
+	<h3 class="subsubtitle method-title">bitfieldFromRightShiftingBy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Obtain a bitfield matching the receiver with all bits shifted to the roght.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (AQBitfield *)bitfieldFromRightShiftingBy:(NSUInteger)<em>bits</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bits</em></dt>
+			<dd><p>The number of places to shift.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A new bitfield instance.</p>
+	</div>
+	
+	
+	
+	
 	
 	
 	
@@ -1805,7 +1943,7 @@ i.e. it will return <code>((index of highest 1-bit) + 1)</code>.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set the bits in the least-significant four words to those in a 64-bit quantity.</p>
+		<p>Set the bits in the least-significant eight words to those in a 64-bit quantity.</p>
 	</div>		
 	
 	
@@ -1827,6 +1965,120 @@ i.e. it will return <code>((index of highest 1-bit) + 1)</code>.</p>
 	
 	
 	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setBitsInRange:from32BitValue:" title="setBitsInRange:from32BitValue:"></a>
+	<h3 class="subsubtitle method-title">setBitsInRange:from32BitValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the bits in the given range to those in a 32-bit quantity.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setBitsInRange:(NSRange)<em>range</em> from32BitValue:(UInt32)<em>value</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to modify.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The value whose bits to copy.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection arguments-section exceptions">
+		<h4 class="method-subtitle exception-title">Exceptions</h4>
+		
+		<dl class="argument-def exception-def">
+			<dt><em>NSInvalidArgumentException</em></dt>
+			<dd><p>Thrown if the supplied range is greater than 32 bits in length.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AQBitfield.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setBitsInRange:from64BitValue:" title="setBitsInRange:from64BitValue:"></a>
+	<h3 class="subsubtitle method-title">setBitsInRange:from64BitValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the bits in the given range to those in a 64-bit quantity.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setBitsInRange:(NSRange)<em>range</em> from64BitValue:(UInt64)<em>value</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>range</em></dt>
+			<dd><p>The range of bits to modify.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The value whose bits to copy.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection arguments-section exceptions">
+		<h4 class="method-subtitle exception-title">Exceptions</h4>
+		
+		<dl class="argument-def exception-def">
+			<dt><em>NSInvalidArgumentException</em></dt>
+			<dd><p>Thrown if the supplied range is greater than 64 bits in length.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -2026,7 +2278,7 @@ i.e. it will return <code>((index of highest 1-bit) + 1)</code>.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Jim Dovey. All rights reserved. (Last updated: 2011-06-28)</span><br />
+						<p><span class="copyright">&copy; 2011 Jim Dovey. All rights reserved. (Last updated: 2011-07-19)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 702)</a>.</span></p>
 						

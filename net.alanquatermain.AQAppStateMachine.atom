@@ -1,18 +1,18 @@
-<?xml version="1.0"?>
+<?xml version="1.0" standalone="no"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:docset="http://developer.apple.com/rss/docset_extensions" xml:lang="en">
-    <id>http://alanquatermain.github.com/AQAppStateMachine/net.alanquatermain.AQAppStateMachine.atom/20110628165122</id>
+    <id>http://alanquatermain.github.com/AQAppStateMachine/net.alanquatermain.AQAppStateMachine.atom/20110719114453</id>
     <title type="text">AQAppStateMachine Documentation</title>
     <rights>Copyright © 2011 Jim Dovey. All rights reserved.</rights>
     <link rel="self" href="http://alanquatermain.github.com/AQAppStateMachine/net.alanquatermain.AQAppStateMachine.atom"></link>
     <docset:publisherName>Jim Dovey</docset:publisherName>
     <docset:publisherID>net.alanquatermain.documentation</docset:publisherID>
-    <updated>2011-06-28T16:51:22-04:00</updated>
+    <updated>2011-07-19T11:44:53-04:00</updated>
     <entry>
-        <id>tag:alanquatermain.github.com,2011-06-28:net.alanquatermain.AQAppStateMachine/0.1.0</id>
+        <id>tag:alanquatermain.github.com,2011-07-19:net.alanquatermain.AQAppStateMachine/0.1.0</id>
         <title type="text">AQAppStateMachine Documentation</title>
-        <updated>2011-06-28T16:51:22-04:00</updated>
+        <updated>2011-07-19T11:44:53-04:00</updated>
         <content type="text">AQAppStateMachine Documentation (v0.1.0)</content>
-        <link rel="enclosure" type="application/octet-stream" href="http://alanquatermain.github.com/AQAppStateMachine/net.alanquatermain.AQAppStateMachine-0.1.xar" length="78361"></link>
+        <link rel="enclosure" type="application/octet-stream" href="http://alanquatermain.github.com/AQAppStateMachine/net.alanquatermain.AQAppStateMachine-0.1.xar" length="95293"></link>
         <docset:identifier>net.alanquatermain.AQAppStateMachine</docset:identifier>
         <docset:version>0.1.0</docset:version>
         <docset:minimumXcodeVersion>3.0.0</docset:minimumXcodeVersion>
