@@ -143,7 +143,7 @@ enum
 - (void) testSingleBitChangeNotifications
 {
 	__block BOOL matched = NO;
-	[stateMachine notifyChangesToStateMachineValuesWithName: kSampleOneName matchingMask: kSampleOneSecond usingBlock: ^{ matched = YES; }];
+	[stateMachine notifyChangesToStateMachineValuesWithName: kSampleOneName matchingMask: 0x01 usingBlock: ^{ matched = YES; }];
 	
 	[stateMachine setBitAtIndex: 0 ofEnumerationWithName: kSampleOneName];
 	
@@ -184,6 +184,157 @@ enum
 	
 	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
 	STAssertTrue(matched, @"Expected block to be called when kSampleTwoFourth was set in %@", kSampleTwoName);
+}
+
+- (void) testEqualityNotifications
+{
+	static NSString * const kEqualityEnum = @"Equality";
+	static const NSUInteger kMatchValue   = 548;
+	
+	[stateMachine addStateMachineValuesFromZeroTo: USHRT_MAX withName: kEqualityEnum];
+	
+	__block BOOL matched = NO;
+	[stateMachine notifyEqualityOfStateMachineValuesWithName: kEqualityEnum toInteger: 548 usingBlock: ^{ matched = YES; }];
+	
+	// set that value, verify that the match is called
+	[stateMachine setValue: kMatchValue forEnumerationWithName: kEqualityEnum];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected equality notifier on %@ to fire when value was set to %lu", kEqualityEnum, (unsigned long)kMatchValue);
+	
+	// set a different value, ensure it does NOT fire the notification
+	matched = NO;
+	[stateMachine setValue: kMatchValue+1 forEnumerationWithName: kEqualityEnum];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected equality notifier on %@ NOT to fire when value was set to %lu", kEqualityEnum, (unsigned long)kMatchValue);
+	
+	// set it again and verify that it once more fires
+	matched = NO;
+	[stateMachine setValue: kMatchValue forEnumerationWithName: kEqualityEnum];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected equality notifier on %@ to fire when value was re-set to %lu", kEqualityEnum, (unsigned long)kMatchValue);
+}
+
+- (void) testMultipleValueChangeNotifications
+{
+	__block BOOL matched = NO;
+	NSArray * values = [NSArray arrayWithObjects: kSampleOneName, kSampleTwoName, nil];
+	NSArray * masks  = [NSArray arrayWithObjects: [NSNull null], [NSNull null], nil];
+	
+	[stateMachine notifyChangesToStateMachineValuesWithNames: values matchingMasks: masks usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setValue: kSampleTwoThird forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleTwoThird was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleOneSecond forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleOneSecond was set in %@", kSampleOneName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleTwoFourth forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleTwoFourth was set in %@", kSampleTwoName);
+}
+
+- (void) testMultipleValueChangeNotificationsWithMasks
+{
+	__block BOOL matched = NO;
+	NSArray * values = [NSArray arrayWithObjects: kSampleOneName, kSampleTwoName, nil];
+	NSArray * masks  = [NSArray arrayWithObjects: [NSNumber numberWithInt: kSampleOneThird], [NSNumber numberWithInt: kSampleTwoThird], nil];
+	
+	[stateMachine notifyChangesToStateMachineValuesWithNames: values matchingMasks: masks usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setValue: kSampleTwoThird forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleTwoThird was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleOneSecond forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleOneSecond was set in %@", kSampleOneName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleTwoFourth forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when kSampleTwoFourth was set in %@", kSampleTwoName);
+}
+
+- (void) testMultipleValueEqualityNotifications
+{
+	__block BOOL matched = NO;
+	NSArray * names  = [NSArray arrayWithObjects: kSampleOneName, kSampleTwoName, nil];
+	NSArray * masks  = [NSArray arrayWithObjects: [NSNull null], [NSNull null], nil];
+	NSArray * values = [NSArray arrayWithObjects: [NSNumber numberWithInt: kSampleOneSecond], [NSNumber numberWithInt: kSampleTwoSecond], nil];
+	
+	// reset the state machine
+	[stateMachine setValue: 0 forEnumerationWithName: kSampleOneName];
+	[stateMachine setValue: 0 forEnumerationWithName: kSampleTwoName];
+	
+	[stateMachine notifyEqualityOfStateMachineValuesWithNames: names matchingMasks: masks toValues: values usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setValue: kSampleTwoSecond forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called when kSampleTwoThird was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleOneSecond forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when both kSampleOneSecond was set in %@ and kSampleTwoSecond was set in %@", kSampleOneName, kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleTwoFourth forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block to be called when kSampleTwoFourth was set in %@", kSampleTwoName);
+}
+
+- (void) testMultipleValueEqualityNotificationsWithMasks
+{
+	__block BOOL matched = NO;
+	NSArray * names  = [NSArray arrayWithObjects: kSampleOneName, kSampleTwoName, nil];
+	NSArray * masks  = [NSArray arrayWithObjects: [NSNumber numberWithInt: kSampleOneThird], [NSNumber numberWithInt: kSampleTwoThird], nil];
+	NSArray * values = [NSArray arrayWithObjects: [NSNumber numberWithInt: kSampleOneFourth], [NSNumber numberWithInt: kSampleTwoFourth], nil];
+	
+	// reset the state machine
+	[stateMachine setValue: 0 forEnumerationWithName: kSampleOneName];
+	[stateMachine setValue: 0 forEnumerationWithName: kSampleTwoName];
+	
+	[stateMachine notifyEqualityOfStateMachineValuesWithNames: names matchingMasks: masks toValues: values usingBlock: ^{ matched = YES; }];
+	
+	[stateMachine setValue: kSampleTwoThird forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called when only kSampleTwoThird was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleOneSecond forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called when kSampleOneSecond was set in %@", kSampleOneName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleTwoFourth forEnumerationWithName: kSampleTwoName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertFalse(matched, @"Expected block NOT to be called when kSampleTwoFourth was set in %@", kSampleTwoName);
+	
+	matched = NO;
+	[stateMachine setValue: kSampleOneFourth forEnumerationWithName: kSampleOneName];
+	
+	[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]];
+	STAssertTrue(matched, @"Expected block to be called when both kSampleTwoFourth nad kSampleOneFourth were set", kSampleTwoName);
 }
 
 @end

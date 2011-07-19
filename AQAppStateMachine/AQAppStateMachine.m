@@ -184,7 +184,7 @@
 
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 							  toIntegerValue: (NSUInteger) value
-									   block: (void (^)(void)) block
+								  usingBlock: (void (^)(void)) block
 {
 	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith32BitValue: value forRange: range];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
@@ -195,7 +195,7 @@
 
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								to64BitValue: (UInt64) value
-									   block: (void (^)(void)) block
+								  usingBlock: (void (^)(void)) block
 {
 	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith64BitValue: value forRange: range];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
@@ -218,7 +218,7 @@
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								  maskedWith: (NSUInteger) mask
 							  toIntegerValue: (NSUInteger) value
-									   block: (void (^)(void)) block
+								  usingBlock: (void (^)(void)) block
 {
 	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith32BitValue: value forRange: range matchingMask: mask];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
@@ -230,7 +230,7 @@
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								  maskedWith: (UInt64) mask
 								to64BitValue: (UInt64) value
-									   block: (void (^)(void)) block
+								  usingBlock: (void (^)(void)) block
 {
 	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWith64BitValue: value forRange: range matchingMask: mask];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
@@ -242,7 +242,7 @@
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								  maskedWith: (AQBitfield *) mask
 									 toValue: (AQBitfield *) value
-									   block: (void (^)(void)) block
+								  usingBlock: (void (^)(void)) block
 {
 	AQStateMaskedEqualityMatchingDescriptor * desc = [[AQStateMaskedEqualityMatchingDescriptor alloc] initWithRange: range matchingValue: value withMask: mask];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
@@ -255,6 +255,7 @@
 
 @implementation AQAppStateMachine (NamedStateEnumerations)
 
+#if 0
 static inline NSUInteger HighestOneBit32(NSUInteger x)
 {
 	x |= x >> 1;
@@ -275,6 +276,29 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	x |= x >> 32;
 	return ( (NSUInteger)(x & ~(x >> 1)) );
 }
+#else
+static inline NSUInteger HighestOneBit32(NSUInteger x)
+{
+	NSUInteger i = 0;
+	for ( i = 0; i < 32; i++, x >>= 1 )
+	{
+		if ( x == 0 )
+			break;
+	}
+	return ( i );
+}
+
+static inline NSUInteger HighestOneBit64(UInt64 x)
+{
+	NSUInteger i = 0;
+	for ( i = 0; i < 64; i++, x >>= 1 )
+	{
+		if ( x == 0 )
+			break;
+	}
+	return ( i );
+}
+#endif
 
 - (void) addStateMachineValuesFromZeroTo: (NSUInteger) maxValue withName: (NSString *) name
 {
@@ -403,18 +427,18 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	if ( range == nil )
 		return;			// nonexistent named range
 	
-	
+	[self notifyForEqualityOfStateBitsInRange: range.range toIntegerValue: value usingBlock: block];
 }
 
 - (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
-										   toUInt64: (NSUInteger) value
+										   toUInt64: (UInt64) value
 										 usingBlock: (void (^)(void)) block
 {
 	AQRange * range = [_namedRanges objectForKey: name];
 	if ( range == nil )
 		return;			// nonexistent named range
 	
-	
+	[self notifyForEqualityOfStateBitsInRange: range.range to64BitValue: value usingBlock: block];
 }
 
 - (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
@@ -425,7 +449,43 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	if ( range == nil )
 		return;			// nonexistent named range
 	
+	[self notifyForEqualityOfStateBitsInRange: range.range toValue: bits usingBlock: block];
+}
+
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										 maskedWith: (NSUInteger) mask
+										  toInteger: (NSUInteger) value
+										 usingBlock: (void (^)(void)) block
+{
+	AQRange * range = [_namedRanges objectForKey: name];
+	if ( range == nil )
+		return;			// nonexistent named range
 	
+	[self notifyForEqualityOfStateBitsInRange: range.range maskedWith: mask toIntegerValue: value usingBlock: block];
+}
+
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										 maskedWith: (UInt64) mask
+										   toUInt64: (UInt64) value
+										 usingBlock: (void (^)(void)) block
+{
+	AQRange * range = [_namedRanges objectForKey: name];
+	if ( range == nil )
+		return;			// nonexistent named range
+	
+	[self notifyForEqualityOfStateBitsInRange: range.range maskedWith: mask to64BitValue: value usingBlock: block];
+}
+
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										 maskedWith: (AQBitfield *) mask
+											 toBits: (AQBitfield *) bits
+										 usingBlock: (void (^)(void)) block
+{
+	AQRange * range = [_namedRanges objectForKey: name];
+	if ( range == nil )
+		return;			// nonexistent named range
+	
+	[self notifyForEqualityOfStateBitsInRange: range.range maskedWith: mask toValue: bits usingBlock: block];
 }
 
 - (BOOL) bitIsSetAtIndex: (NSUInteger) index forName: (NSString *) name
@@ -497,7 +557,19 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	NSParameterAssert(block != nil);
 	
 	NSMutableArray * ranges = [NSMutableArray new];
-	[names enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop){[ranges addObject: obj];}];
+	[names enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		NSRange range = [self underlyingBitfieldRangeForName: obj];
+		if ( range.location == NSNotFound )
+		{
+			NSAssert(NO, @"No range registered for name '%@'", obj);
+		}
+		
+		AQRange * r = [[AQRange alloc] initWithRange: range];
+		[ranges addObject: r];
+#if !USING_ARC
+		[r release];
+#endif
+	}];
 	
 	NSMutableArray * bitmasks = [NSMutableArray new];
 	[masks enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
@@ -509,7 +581,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 		{
 			AQBitfield * field = [AQBitfield new];
 			UInt64 bits = [obj unsignedLongLongValue];
-			for ( NSUInteger i = 0; i > 0; i++, bits >>= 1 )
+			for ( NSUInteger i = 0; i < 64; i++, bits >>= 1 )
 			{
 				if ( (bits & 1) == 1 )
 					[field setBit: 1 atIndex: i];
@@ -517,7 +589,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 			
 			[bitmasks addObject: field];
 		}
-		else
+		else if ( obj != [NSNull null] )
 		{
 			// throw an exception, but only on debug builds
 			NSAssert(NO, @"Invalid object type in masks array: %@", NSStringFromClass([obj class]));
@@ -525,7 +597,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	}];
 	
 	AQStateMaskMatchingDescriptor * desc = [[AQStateMaskMatchingDescriptor alloc] initWithRanges: ranges
-																		   matchingMasks: bitmasks];
+																				   matchingMasks: bitmasks];
 	[self _notifyForChangesToStatesMatchingDescriptor: desc usingBlock: block];
 #if !USING_ARC
 	[ranges release];
@@ -543,7 +615,19 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 	NSParameterAssert(block != nil);
 	
 	NSMutableArray * ranges = [NSMutableArray new];
-	[names enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop){[ranges addObject: obj];}];
+	[names enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
+		NSRange range = [self underlyingBitfieldRangeForName: obj];
+		if ( range.location == NSNotFound )
+		{
+			NSAssert(NO, @"No range registered for name '%@'", obj);
+		}
+		
+		AQRange * r = [[AQRange alloc] initWithRange: range];
+		[ranges addObject: r];
+#if !USING_ARC
+		[r release];
+#endif
+	}];
 	
 	NSMutableArray * bitmasks = [NSMutableArray new];
 	[masks enumerateObjectsUsingBlock: ^(__strong id obj, NSUInteger idx, BOOL *stop) {
@@ -555,7 +639,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 		{
 			AQBitfield * field = [AQBitfield new];
 			UInt64 bits = [obj unsignedLongLongValue];
-			for ( NSUInteger i = 0; i > 0; i++, bits >>= 1 )
+			for ( NSUInteger i = 0; bits > 0; i++, bits >>= 1 )
 			{
 				if ( (bits & 1) == 1 )
 					[field setBit: 1 atIndex: i];
@@ -563,7 +647,7 @@ static inline NSUInteger HighestOneBit64(UInt64 x)
 			
 			[bitmasks addObject: field];
 		}
-		else
+		else if ( obj != [NSNull null] )
 		{
 			// throw an exception, but only on debug builds
 			NSAssert(NO, @"Invalid object type in masks array: %@", NSStringFromClass([obj class]));

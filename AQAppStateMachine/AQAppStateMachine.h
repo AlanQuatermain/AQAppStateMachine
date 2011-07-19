@@ -83,7 +83,7 @@
 
 /**
  Run a notification block when any bit in a range is modified.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param block The block to run when a modification occurs.
  */
 - (void) notifyForChangesToStateBitsInRange: (NSRange) range
@@ -91,7 +91,7 @@
 
 /**
  Run a notification block when any bit within a masked range is modified.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param mask A mask showing which bits within the range should be monitored.
  @param block The block to run when a modification occurs.
  */
@@ -101,7 +101,7 @@
 
 /**
  Run a notification block when any bit within a masked eight-byte range is modified.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param mask A mask showing which bits within the range should be monitored.
  @param block The block to run when a modification occurs.
  */
@@ -111,7 +111,7 @@
 
 /**
  Run a notification block when any bit within a masked range is modified.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param mask A bitfield mask showing which bits within the range should be monitored.
  @param block The block to run when a modification occurs.
  */
@@ -121,27 +121,27 @@
 
 /**
  Run a notification block when the bits in a given range exactly match a given value.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param value The value against which to compare the range's bits.
  @param block The block to run when a modification occurs.
  */
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 							  toIntegerValue: (NSUInteger) value
-									   block: (void (^)(void)) block;
+								  usingBlock: (void (^)(void)) block;
 
 /**
  Run a notification block when the bits in a given range exactly match a given 64-bit value.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param value The value against which to compare the range's bits.
  @param block The block to run when a modification occurs.
  */
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								to64BitValue: (UInt64) value
-									   block: (void (^)(void)) block;
+								  usingBlock: (void (^)(void)) block;
 
 /**
  Run a notification block when the bits in a given range exactly match a given bitfield value.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param value The value against which to compare the range's bits.
  @param block The block to run when a modification occurs.
  */
@@ -151,7 +151,7 @@
 
 /**
  Run a notification block when the bits in a given range exactly match a given masked value.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param mask A mask denoting which bits within the range should be compared.
  @param value The value against which to compare the range's bits.
  @param block The block to run when a modification occurs.
@@ -159,11 +159,11 @@
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								  maskedWith: (NSUInteger) mask
 							  toIntegerValue: (NSUInteger) value
-									   block: (void (^)(void)) block;
+								  usingBlock: (void (^)(void)) block;
 
 /**
  Run a notification block when the bits in a given range exactly match a given masked 64-bit value.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param mask A mask denoting which bits within the range should be compared.
  @param value The value against which to compare the range's bits.
  @param block The block to run when a modification occurs.
@@ -171,11 +171,11 @@
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								  maskedWith: (UInt64) mask
 								to64BitValue: (UInt64) value
-									   block: (void (^)(void)) block;
+								  usingBlock: (void (^)(void)) block;
 
 /**
  Run a notification block when the bits in a given range exactly match a given masked bitfield.
- @param index The range of bits to watch for changes.
+ @param range The range of bits to watch for changes.
  @param mask A mask bitfield denoting which bits within the range should be compared.
  @param value The bitfield against which to compare the range's bits.
  @param block The block to run when a modification occurs.
@@ -183,7 +183,7 @@
 - (void) notifyForEqualityOfStateBitsInRange: (NSRange) range
 								  maskedWith: (AQBitfield *) mask
 									 toValue: (AQBitfield *) value
-									   block: (void (^)(void)) block;
+								  usingBlock: (void (^)(void)) block;
 
 @end
 
@@ -354,7 +354,7 @@
  @param block A block to run upon any changes.
  */
 - (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
-										   toUInt64: (NSUInteger) value
+										   toUInt64: (UInt64) value
 										 usingBlock: (void (^)(void)) block;
 
 /**
@@ -364,6 +364,42 @@
  @param block A block to run upon any changes.
  */
 - (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+											 toBits: (AQBitfield *) bits
+										 usingBlock: (void (^)(void)) block;
+
+/**
+ Request notification whenever the masked content of a named enumeration matches a 32-bit scalar value.
+ @param name The name of the enumeration to monitor.
+ @param mask A mask defining which bits to compare.
+ @param value The value against which to compare the enumeration.
+ @param block A block to run upon any changes.
+ */
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										 maskedWith: (NSUInteger) mask
+										  toInteger: (NSUInteger) value
+										 usingBlock: (void (^)(void)) block;
+
+/**
+ Request notification whenever the masked content of a named enumeration matches a 64-bit scalar value.
+ @param name The name of the enumeration to monitor.
+ @param mask A mask defining which bits to compare.
+ @param value The value against which to compare the enumeration.
+ @param block A block to run upon any changes.
+ */
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										 maskedWith: (UInt64) mask
+										   toUInt64: (UInt64) value
+										 usingBlock: (void (^)(void)) block;
+
+/**
+ Request notification whenever the masked content of a named enumeration matches a bitfield.
+ @param name The name of the enumeration to monitor.
+ @param mask A mask defining which bits to compare.
+ @param bits The bitfield against which to compare the enumeration.
+ @param block A block to run upon any changes.
+ */
+- (void) notifyEqualityOfStateMachineValuesWithName: (NSString *) name
+										 maskedWith: (AQBitfield *) mask
 											 toBits: (AQBitfield *) bits
 										 usingBlock: (void (^)(void)) block;
 

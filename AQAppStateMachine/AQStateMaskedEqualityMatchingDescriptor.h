@@ -112,7 +112,7 @@
 
 /**
  Initialize a descriptor using a single range and a 32-bit value.
- @param mask A value specifying the exact bits within the range to match. Can be zero.
+ @param value A value specifying the exact bits within the range to match. Can be zero.
  @param range The range to match.
  @param mask A value specifying which bits to compare during the match.
  @return The newly-initialized instance.
@@ -121,7 +121,7 @@
 
 /**
  Initialize a descriptor using a single range and a 64-bit mask.
- @param mask A value specifying the exact bits within the range to match. Can be zero.
+ @param value A value specifying the exact bits within the range to match. Can be zero.
  @param range The range to match.
  @param mask A value specifying which bits to compare during the match.
  @return The newly-initialized instance.

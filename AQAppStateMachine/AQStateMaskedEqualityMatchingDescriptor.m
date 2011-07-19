@@ -76,7 +76,12 @@
 			if ( [masks count] > idx )
 				mask = [masks objectAtIndex: idx];
 			
-			AQBitfield * modified = [obj copy];
+			AQBitfield * modified = nil;
+			if ( [obj isKindOfClass: [NSNumber class]] )
+				modified = [[AQBitfield alloc] initWith64BitField: [obj unsignedLongLongValue]];
+			else
+				modified = [obj copy];
+			
 			if ( mask != nil )
 				[modified maskWithBits: mask];
 			
@@ -85,6 +90,9 @@
 				[modified shiftBitsRightBy: range.location];
 			
 			[_value unionWithBitfield: modified];
+#if !USING_ARC
+			[modified release];
+#endif
 		}];
 	}
 	
